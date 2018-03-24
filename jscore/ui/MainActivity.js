@@ -1,13 +1,12 @@
-/**
- -----------------------------------------
+/*
+ * @Author: Jpeng
+ * @Date: 2018-03-24 22:54:27 
+ * @Last Modified by:   Jpeng
+ * @Last Modified time: 2018-03-24 22:54:27 
+ * @Email: peng8350@gmail.com 
+ */
 
- 作者:
- 时间: 2018/3/23 上午12:33
- 邮箱: peng8350@gmail.com
-
- -----------------------------------------
-
-**/
+//@flow
 
 import React, { Component } from 'react';
 import {
@@ -15,7 +14,7 @@ import {
     Platform,
     StyleSheet,
     Text,Image,
-    View
+    View,FlatList
 } from 'react-native';
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from 'react-native-tab-navigator';
@@ -33,8 +32,9 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-class MainActivity extends Component<Props> {
+
+
+class MainActivity extends Component {
     static navigationOptions = {
         headerTitle: 'Home',
         headerTitleStyle: {
@@ -44,13 +44,17 @@ class MainActivity extends Component<Props> {
 
     constructor(props) {
       super(props);
+       
     }
-
-
+    
+   
 
     render() {
+        
         return (
+         
             <View style={styles.container}>
+         
                 {this.renderTabBar()}
             </View>
         );
@@ -60,6 +64,7 @@ class MainActivity extends Component<Props> {
     renderTabBar()
     {
         return (
+     
             <TabNavigator>
                 {this.renderTabBarItem(0,'首页',this.renderTabIcon(require('../resources/tab1_normal.png'))
                     ,this.renderTabIcon(require('../resources/tab1_selected.png')),(<HomePage/>))}
@@ -77,7 +82,9 @@ class MainActivity extends Component<Props> {
     renderTabBarItem(index,title,normalIcon,selectedIcon,page)
     {
         return (
+
             <TabNavigator.Item
+              
                 selected={this.props.selectedTab === index }
                 title={title}
                 renderIcon={() => normalIcon}
@@ -119,7 +126,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     tabBar:{
-
+      
         height: 45
     },
     tabIcon:{

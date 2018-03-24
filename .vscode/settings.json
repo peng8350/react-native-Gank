@@ -1,0 +1,12 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 16,
+    "background.useDefault": false,
+    "background.enabled": false,
+    "background.customImages": [],
+    "fileheader.Author": 
+    "Jpeng",
+    "fileheader.LastModifiedBy": 
+    "Jpeng",
+    "fileheader.tpl": "/*\r\n * @Author: {author} \r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime} \r\n * @Email: peng8350@gmail.com \r\n */\r\n"
+}

@@ -1,12 +1,10 @@
-/**
- -----------------------------------------
-
- 作者:
- 时间: 2018/3/24 下午12:21
- 邮箱: peng8350@gmail.com
-
- -----------------------------------------
- **/
+/*
+ * @Author: Jpeng
+ * @Date: 2018-03-24 22:54:48 
+ * @Last Modified by: Jpeng
+ * @Last Modified time: 2018-03-24 22:56:16
+ * @Email: peng8350@gmail.com 
+ */
  
 import * as Types from '../actions/ActionType'
 

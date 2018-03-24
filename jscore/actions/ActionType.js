@@ -1,11 +1,9 @@
-/**
- -----------------------------------------
-
- 作者:
- 时间: 2018/3/23 下午11:28
- 邮箱: peng8350@gmail.com
-
- -----------------------------------------
- **/
+/*
+ * @Author: Jpeng
+ * @Date: 2018-03-24 22:54:36 
+ * @Last Modified by: Jpeng
+ * @Last Modified time: 2018-03-24 22:56:27
+ * @Email: peng8350@gmail.com 
+ */
 
 export const updateTab = "UPDATE_TAB"

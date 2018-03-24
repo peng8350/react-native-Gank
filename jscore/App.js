@@ -1,12 +1,10 @@
-/**
- -----------------------------------------
-
- 作者:
- 时间: 2018/3/23 下午11:22
- 邮箱: peng8350@gmail.com
-
- -----------------------------------------
- **/
+/*
+ * @Author: Jpeng
+ * @Date: 2018-03-24 22:54:57 
+ * @Last Modified by: Jpeng
+ * @Last Modified time: 2018-03-24 22:55:43
+ * @Email: peng8350@gmail.com 
+ */
 
 
 import React, { Component } from 'react';
