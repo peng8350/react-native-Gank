@@ -1,11 +1,19 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+ -----------------------------------------
+
+ 作者:
+ 时间: 2018/3/23 上午12:33
+ 邮箱: peng8350@gmail.com
+
+ -----------------------------------------
+
+**/
+
+// @flow
 
 import React, { Component } from 'react';
 import {
+    Button,
     Platform,
     StyleSheet,
     Text,
@@ -19,15 +27,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-
 type Props = {};
 export default class MainActivity extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
-                    主页面
-                </Text>
+                <Text>主界面</Text>
             </View>
         );
     }
@@ -41,3 +46,43 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

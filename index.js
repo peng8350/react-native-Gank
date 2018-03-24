@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
-import MainActivity from './jscore/ui/MainActivity';
+import App from "./jscore/App";
 
-AppRegistry.registerComponent('Gank', () => MainActivity);
 
+AppRegistry.registerComponent('Gank', () => App);
