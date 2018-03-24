@@ -14,7 +14,7 @@ const initState= {
     selectedTab: 0
 }
 
-export default function homeReducer(state=initState,action)
+export default function TabReducer(state=initState,action)
 {
     switch (action.type){
         case Types.updateTab:

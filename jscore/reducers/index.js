@@ -12,11 +12,11 @@
 
 import {thunk} from 'redux-thunk'
 import {combineReducers}  from 'redux'
-import homeReducer from './homeReducer'
+import TabReducer from './TabReducer'
 
 
 const rootReducer = combineReducers(
-    {homeReducer}
+    {TabReducer}
 )
 
 export default rootReducer

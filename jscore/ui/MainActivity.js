@@ -22,6 +22,9 @@ import TabNavigator from 'react-native-tab-navigator';
 import HomePage from "./pagers/HomePage";
 import ReadPage from "./pagers/ReadPage";
 import GirlPage from "./pagers/GirlPage";
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as Actions from '../actions/TabAction'
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -31,7 +34,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class MainActivity extends Component<Props> {
+class MainActivity extends Component<Props> {
     static navigationOptions = {
         headerTitle: 'Home',
         headerTitleStyle: {
@@ -41,9 +44,6 @@ export default class MainActivity extends Component<Props> {
 
     constructor(props) {
       super(props);
-      this.state = {
-          selectedTab :0
-      };
     }
 
 
@@ -78,11 +78,11 @@ export default class MainActivity extends Component<Props> {
     {
         return (
             <TabNavigator.Item
-                selected={this.state.selectedTab === index }
+                selected={this.props.selectedTab === index }
                 title={title}
                 renderIcon={() => normalIcon}
                 renderSelectedIcon={() => selectedIcon}
-                onPress={() => this.setState({selectedTab: index})}
+                onPress={() => this.props.actions.updateTab(index)}
             >{page}</TabNavigator.Item>
         )
     }
@@ -94,6 +94,20 @@ export default class MainActivity extends Component<Props> {
     }
 }
 
+const stateToprops= (state) => {
+    return {
+        selectedTab: state.TabReducer.selectedTab
+    }
+}
+
+const actionsToProps = (dispatch) => {
+    return{
+        actions: bindActionCreators(Actions,dispatch)
+    }
+}
+
+
+export default connect(stateToprops,actionsToProps)(MainActivity)
 
 
 
