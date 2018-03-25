@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-24 22:56:50
+ * @Last Modified time: 2018-03-25 00:48:35
  * @Email: peng8350@gmail.com 
  */
  
@@ -10,6 +10,7 @@ import React,{Component} from 'react'
 import {
     View,Text,StyleSheet
 } from 'react-native'
+
 
 
 export default class SettingPage extends  Component{
@@ -25,7 +26,6 @@ const styles =StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
     },
 
 })

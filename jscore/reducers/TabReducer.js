@@ -2,29 +2,29 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:48 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-24 22:56:16
+ * @Last Modified time: 2018-03-25 13:53:21
  * @Email: peng8350@gmail.com 
  */
+
  
 import * as Types from '../actions/ActionType'
+import { TAB1_TITLE } from '../constants/strings';
 
 const initState= {
-    selectedTab: 0
+    selectedTab: 0,
 }
 
-export default function TabReducer(state=initState,action)
+export default function TabReducer(state =initState,action)
 {
     switch (action.type){
-        case Types.updateTab:
+        case Types.UPDATE_TAB:
             return {
                 ...state,
                 selectedTab: action.selectedTab
             }
-            break;
 
         default:
             return state;
-            break;
 
     }
 }

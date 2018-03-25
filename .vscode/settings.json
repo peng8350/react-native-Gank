@@ -1,9 +1,6 @@
 {
     "files.autoSave": "afterDelay",
     "editor.fontSize": 16,
-    "background.useDefault": false,
-    "background.enabled": false,
-    "background.customImages": [],
     "fileheader.Author": 
     "Jpeng",
     "fileheader.LastModifiedBy": 
