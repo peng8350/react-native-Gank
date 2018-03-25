@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-25 22:32:37
+ * @Last Modified time: 2018-03-26 00:10:34
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -27,7 +27,7 @@ import GirlPage from "../ui/pagers/GirlPage";
 class TabBar extends Component {
   render() {
     return (
-      <TabNavigator>
+      <TabNavigator tabBarStyle={styles.tabBar}>
         {this._renderTabBarItem(
           0,
           TAB1_TITLE,
@@ -67,14 +67,13 @@ class TabBar extends Component {
         title={title}
         renderIcon={() => normalIcon}
         renderSelectedIcon={() => selectedIcon}
+        allowFontScaling={true}
         onPress={() => {
           this.props.navigation.setParams({
             navTitle:
               index === 0
                 ? TAB1_TITLE
-                : index === 1
-                  ? TAB2_TITLE
-                  : index === 2 ? TAB3_TITLE : TAB4_TITLE
+                : index === 1 ? TAB2_TITLE : index === 2 ? TAB3_TITLE : TAB4_TITLE
           });
           this.props.actions.updateTab(index);
         }}
@@ -93,7 +92,8 @@ class TabBar extends Component {
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: 45
+    alignItems: "center",
+    height: 52
   },
   tabIcon: {
     width: 24,

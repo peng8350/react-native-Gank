@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-25 11:44:01
+ * @Last Modified time: 2018-03-25 23:07:54
  * @Email: peng8350@gmail.com 
  */
 
@@ -17,7 +17,7 @@ export default class GirlPage extends  Component{
 
     render(){
         return <View style={styles.container}>
-            <Text>妹子界面</Text>
+            <Text>福利界面</Text>
         </View>
     }
 }

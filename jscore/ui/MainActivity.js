@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-25 22:32:54
+ * @Last Modified time: 2018-03-26 00:01:45
  * @Email: peng8350@gmail.com 
  */
 
@@ -40,27 +40,27 @@ const instructions = Platform.select({
 });
 
 class MainActivity extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerTitle: navigation.state.params
-      ? navigation.state.params.navTitle
-      : "",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
-  });
+    static navigationOptions = ({navigation}) => ({
+        headerTitle: navigation.state.params?navigation.state.params.navTitle:'',
+        headerStyle: styles.navStyle,
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+    })
 
   render() {
     return (
-      <View style={styles.container}>
-        <TabBar navigation={this.props.navigation} />>
-      </View>
-    );
+        <TabBar navigation={this.props.navigation}/>
+    )
   }
 
-  componentDidMount() {
-    this.props.navigation.setParams({ navTitle: TAB1_TITLE });
+  componentDidMount(){
+      this.props.navigation.setParams({navTitle: TAB1_TITLE})
   }
 }
+
+
 
 const stateToprops = state => {
   return {
@@ -71,9 +71,7 @@ const stateToprops = state => {
 export default connect(stateToprops)(MainActivity);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#F5FCFF"
+  navStyle:{
+    backgroundColor:'#2fa3e4',
   }
 });
