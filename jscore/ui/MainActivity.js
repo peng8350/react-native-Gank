@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 00:01:45
+ * @Last Modified time: 2018-03-26 21:51:47
  * @Email: peng8350@gmail.com 
  */
 
@@ -16,7 +16,7 @@ import {
   Text,
   Image,
   View,
-  FlatList
+
 } from "react-native";
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from "react-native-tab-navigator";
@@ -48,10 +48,10 @@ class MainActivity extends Component {
           fontWeight: "bold"
         }
     })
-
+    
   render() {
     return (
-        <TabBar navigation={this.props.navigation}/>
+        <TabBar navigation={this.props.navigation} />
     )
   }
 

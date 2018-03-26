@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-24 22:54:20 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-25 11:22:17
+ * @Last Modified time: 2018-03-26 21:50:21
  * @Email: peng8350@gmail.com 
  */
 
@@ -25,7 +25,6 @@ const styles =StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
     },
 
 })

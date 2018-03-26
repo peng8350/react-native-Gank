@@ -12,7 +12,6 @@ import {
     View,Text,StyleSheet
 } from 'react-native'
 
-
 export default class GirlPage extends  Component{
 
     render(){
@@ -27,7 +26,6 @@ const styles =StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
     },
 
 })

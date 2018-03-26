@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 00:10:34
+ * @Last Modified time: 2018-03-26 21:54:37
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -24,10 +24,11 @@ import ReadPage from "../ui/pagers/ReadPage";
 import SettingPage from "../ui/pagers/SettingPage";
 import GirlPage from "../ui/pagers/GirlPage";
 
+//@flow
 class TabBar extends Component {
   render() {
     return (
-      <TabNavigator tabBarStyle={styles.tabBar}>
+      <TabNavigator sceneStyle={styles.screen}  tabBarStyle={styles.tabBar}>
         {this._renderTabBarItem(
           0,
           TAB1_TITLE,
@@ -59,7 +60,7 @@ class TabBar extends Component {
       </TabNavigator>
     );
   }
-
+  
   _renderTabBarItem(index, title, normalIcon, selectedIcon, page) {
     return (
       <TabNavigator.Item
@@ -67,7 +68,6 @@ class TabBar extends Component {
         title={title}
         renderIcon={() => normalIcon}
         renderSelectedIcon={() => selectedIcon}
-        allowFontScaling={true}
         onPress={() => {
           this.props.navigation.setParams({
             navTitle:
@@ -91,6 +91,9 @@ class TabBar extends Component {
 }
 
 const styles = StyleSheet.create({
+  screen:{
+    backgroundColor: '#f3f3f3',
+  },
   tabBar: {
     alignItems: "center",
     height: 52
