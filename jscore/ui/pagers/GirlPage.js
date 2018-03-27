@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 13:03:15
+ * @Last Modified time: 2018-03-27 21:32:59
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,20 +15,16 @@ import { connect } from "react-redux";
 import GirlList from "../../components/GirlList";
 
 class GirlPage extends Component {
+
+  componentDidMount(){
+    this.props.actions.fetchGirl(1)
+  }
+
   render() {
     return (
+      
         <GirlList 
-          dataSource={[
-            {
-            key: '1',
-              url:
-                "https://ws1.sinaimg.cn/large/610dc034ly1fp9qm6nv50j20u00miacg.jpg"
-            },
-            {
-                key:'2',
-                url:"https://ws1.sinaimg.cn/large/610dc034ly1fp9qm6nv50j20u00miacg.jpg"
-            }
-          ]}
+          dataSource={this.props.dataSource}
         />
     );
   }
@@ -44,7 +40,7 @@ const stateToProps = state => {
 
 const actionsToProps = dispatch => {
   return {
-    actions: bindActionCreators(dispatch, Actions)
+    actions: bindActionCreators(Actions, dispatch)
   };
 };
 

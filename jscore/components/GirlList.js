@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 13:05:26
+ * @Last Modified time: 2018-03-27 21:50:20
  * @Email: peng8350@gmail.com 
  */
 
@@ -13,14 +13,18 @@ import { StyleSheet, FlatList, View,Image } from 'react-native';
 import {getWidth} from '../utils/ScreenUtils'
 
 export default class GirlList extends Component{
-
+    
     render(){
         return ( <FlatList data={this.props.dataSource} renderItem={({item}) => this._renderItem(item)}
-                numColumns={2} 
+                numColumns={2}  keyExtractor={this._extraUniqueKey}
         />
         )
     }
 
+    _extraUniqueKey(item ,index){
+        return "index"+index+item;
+    }
+    
     _renderItem(item){
         return (
             <Image source={{

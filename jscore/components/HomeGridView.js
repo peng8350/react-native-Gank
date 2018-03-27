@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 22:17:21
+ * @Last Modified time: 2018-03-27 13:29:37
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,6 +12,8 @@ import React, { Component } from "react";
 import { FlatList, StyleSheet, View, Image, Text, TouchableHighlight } from "react-native";
 import { PRESSEDCOLOR } from "../constants/colors";
 import ItemSeparater from "./ItemSeparater";
+
+
 
 export default class HomeGirdView extends Component {
   dataSource = [];

@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 21:51:47
+ * @Last Modified time: 2018-03-27 20:18:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -59,7 +59,6 @@ class MainActivity extends Component {
       this.props.navigation.setParams({navTitle: TAB1_TITLE})
   }
 }
-
 
 
 const stateToprops = state => {
