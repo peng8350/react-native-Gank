@@ -2,11 +2,11 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:48 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-25 13:53:21
+ * @Last Modified time: 2018-03-27 12:39:01
  * @Email: peng8350@gmail.com 
  */
 
- 
+ //@flow
 import * as Types from '../actions/ActionType'
 import { TAB1_TITLE } from '../constants/strings';
 
