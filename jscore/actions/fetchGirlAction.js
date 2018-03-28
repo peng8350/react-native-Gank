@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 12:37:42 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 22:01:23
+ * @Last Modified time: 2018-03-28 15:55:09
  * @Email: peng8350@gmail.com 
  */
 
@@ -24,21 +24,25 @@ export function fetchGirlFailed() {
   };
 }
 
-export function fetchGirlSuccess(dataSource) {
+export function fetchGirlSuccess(dataSource,isUp) {
   return {
     type: Types.FETCH_GIRL_SUCCESS,
-    dataSource: dataSource.results
+    dataSource: dataSource.results,
+    up: isUp
   };
 }
 
-export function fetchGirl(pageIndex) {
+export function fetchGirl(isUp,pageIndex) {
   const fetchGirlUrl = FETCHGIRL_URL+pageIndex;
   return dispatch => {
     dispatch(fetchGirlRequesting());
-    HttpUtils.get(fetchGirlUrl,responseJson => {
-        dispatch(fetchGirlSuccess(responseJson))
+    setTimeout(() => {
+      HttpUtils.get(fetchGirlUrl,responseJson => {
+        dispatch(fetchGirlSuccess(responseJson,isUp))
     }, (error) => {
         dispatch(fetchGirlFailed())
     });
+    }, 1000);
+
   };
 }

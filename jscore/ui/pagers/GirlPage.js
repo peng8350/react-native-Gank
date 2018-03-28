@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 21:32:59
+ * @Last Modified time: 2018-03-28 15:51:22
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,38 +10,16 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import * as Actions from "../../actions/fetchGirlAction";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import GirlList from "../../components/GirlList";
 
-class GirlPage extends Component {
-
-  componentDidMount(){
-    this.props.actions.fetchGirl(1)
-  }
+export default class GirlPage extends Component {
 
   render() {
     return (
-      
-        <GirlList 
-          dataSource={this.props.dataSource}
-        />
+      <GirlList
+      />
     );
   }
+
 }
 
-
-const stateToProps = state => {
-  return {
-    fetching: state.GirlReducer.fetching,
-    dataSource: state.GirlReducer.dataSource
-  };
-};
-
-const actionsToProps = dispatch => {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  };
-};
-
-export default connect(stateToProps, actionsToProps)(GirlPage);
