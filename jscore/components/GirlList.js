@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 23:36:24
+ * @Last Modified time: 2018-03-29 00:00:07
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,7 +15,8 @@ import {
   View,
   ActivityIndicator,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from "react-native";
 import { getWidth } from "../utils/ScreenUtils";
 import PicImage from "./PicImage";
@@ -53,7 +54,7 @@ class GirlList extends Component {
         }}
         onEndReachedThreshold={0.5}
         ListFooterComponent={
-          this.props.dataSource.length != 0 ? <GirlFooter /> : undefined
+          this.props.dataSource.length != 0&&Platform.OS==='ios' ? <GirlFooter /> : undefined
         }
       />
     );

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 22:46:16 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 23:37:25
+ * @Last Modified time: 2018-03-28 23:54:32
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,16 +12,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "../actions/fetchGirlAction";
 import { bindActionCreators } from "redux";
-import { Modal } from "react-native";
+import { Modal, ActivityIndicator, Text, Button } from "react-native";
 import { ImageViewer } from "react-native-image-zoom-viewer";
 
 class ZoomPicView extends Component {
     
-  render() {
+  render() {Button
     return (
-        
       <Modal visible={this.props.viewing} >
-        <ImageViewer imageUrls={this.props.dataSource}
+        <ImageViewer imageUrls={this.props.dataSource} loadingRender= {() => <ActivityIndicator/>}
             onClick= {this.props.actions.stopViewPic} index ={this.props.viewIndex}
         />
       </Modal>
