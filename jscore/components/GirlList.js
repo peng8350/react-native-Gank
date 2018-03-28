@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 15:56:17
+ * @Last Modified time: 2018-03-28 23:36:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -14,7 +14,8 @@ import {
   FlatList,
   View,
   ActivityIndicator,
-  Text
+  Text,
+  TouchableHighlight
 } from "react-native";
 import { getWidth } from "../utils/ScreenUtils";
 import PicImage from "./PicImage";
@@ -34,7 +35,7 @@ class GirlList extends Component {
     this.props.actions.fetchGirl(isUp, this.pageSize);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.actions.fetchGirl(true, ++this.pageSize);
   }
 
@@ -42,7 +43,7 @@ class GirlList extends Component {
     return (
       <FlatList
         data={this.props.dataSource}
-        renderItem={({ item }) => this._renderItem(item)}
+        renderItem={(info) => this._renderItem(info)}
         numColumns={2}
         keyExtractor={this._extraUniqueKey}
         refreshing={this.props.fetching}
@@ -62,8 +63,16 @@ class GirlList extends Component {
     return "index" + index + item;
   }
 
-  _renderItem(item) {
-    return <PicImage url={item.url} />;
+  _renderItem(info) {
+    return (
+      <TouchableHighlight
+        onPress={() => {
+          this.props.actions.startViewPic(info.index);
+        }}
+      >
+        <PicImage url={info.item.url} />
+      </TouchableHighlight>
+    );
   }
 }
 

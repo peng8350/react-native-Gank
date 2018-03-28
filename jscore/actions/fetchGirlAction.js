@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 12:37:42 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 15:55:09
+ * @Last Modified time: 2018-03-28 23:36:31
  * @Email: peng8350@gmail.com 
  */
 
@@ -45,4 +45,17 @@ export function fetchGirl(isUp,pageIndex) {
     }, 1000);
 
   };
+}
+
+export function startViewPic(index){
+  return {
+    type: Types.START_VIEWPIC,
+    viewIndex:index
+  }
+}
+
+export function stopViewPic(){
+  return {
+    type: Types.STOP_VIEWPIC,
+  }
 }

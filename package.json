@@ -10,6 +10,7 @@
     "babel-eslint": "^8.2.2",
     "react": "16.3.0-alpha.2",
     "react-native": "0.54.2",
+    "react-native-image-zoom-viewer": "^2.1.0",
     "react-native-tab-navigator": "^0.3.4",
     "react-navigation": "^1.5.8",
     "react-redux": "^5.0.7",

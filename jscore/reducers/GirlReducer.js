@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 12:37:59 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 15:42:48
+ * @Last Modified time: 2018-03-28 23:36:45
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,7 +12,9 @@ import * as Types from "../actions/ActionType";
 const initState = {
   fetching: false,
   dataSource: [],
-  error: false
+  error: false,
+  viewing: false, //是否在查看图片中
+  viewIndex: 0,//查看图片的下标在数组里第几个元素
 };
 
 export default function GirlReducer(state = initState, action) {
@@ -37,6 +39,18 @@ export default function GirlReducer(state = initState, action) {
         fetching:false,
         error:true
     };
+    case Types.START_VIEWPIC:
+    return {
+      ...state,
+      viewing: true,
+      viewIndex: action.viewIndex
+    }
+    case Types.STOP_VIEWPIC:
+    return {
+      ...state,
+      viewing: false,
+      viewIndex: 0
+    }
     default:
       return state;
   }

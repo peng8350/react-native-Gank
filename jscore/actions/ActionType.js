@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 11:51:44
+ * @Last Modified time: 2018-03-28 23:33:11
  * @Email: peng8350@gmail.com 
  * @flow
  */
@@ -14,3 +14,7 @@ export const FETCH_GIRL_SUCCESS = 'FETCH_GIRL_SUCCESS';
 export const FETCH_GIRL_REQUESTING = 'FETCH_GIRL_REQUESTING';
 
 export const FETCH_GIRL_FAILED = 'FETCH_GIRL_FAILED';
+
+export const START_VIEWPIC = "START_VIEWPIC"
+
+export const STOP_VIEWPIC = "STOP_VIEWPIC"
