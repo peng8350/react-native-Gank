@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 22:07:04 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 22:01:49
+ * @Last Modified time: 2018-03-28 13:33:41
  * @Email: peng8350@gmail.com 
  */
 
@@ -16,4 +16,4 @@ export const TAB3_TITLE = "福利"
 
 export const TAB4_TITLE = "设置"
 
-export const FETCHGIRL_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/30/"
+export const FETCHGIRL_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/100/"

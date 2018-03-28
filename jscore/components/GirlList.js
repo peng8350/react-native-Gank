@@ -2,15 +2,16 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 21:50:20
+ * @Last Modified time: 2018-03-28 13:30:35
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, View,Image } from 'react-native';
+import { StyleSheet, FlatList, View} from 'react-native';
 import {getWidth} from '../utils/ScreenUtils'
+import PicImage from './PicImage';
 
 export default class GirlList extends Component{
     
@@ -27,24 +28,11 @@ export default class GirlList extends Component{
     
     _renderItem(item){
         return (
-            <Image source={{
-                uri: item.url,
-                method: 'POST',
-                headers: {
-                Pragma: 'no-cache'
-                },
-            }}  style={styles.picture} />
-                
+            <PicImage url = {item.url}  />
         )
     }
     
 }
-const styles = StyleSheet.create({
-    picture: {
-        width:getWidth()/2,
-        height:200,
-    }
-})
 
 
 
