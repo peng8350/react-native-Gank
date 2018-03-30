@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 19:25:01
+ * @Last Modified time: 2018-03-30 19:37:43
  * @Email: peng8350@gmail.com 
  */
 
@@ -43,9 +43,6 @@ const instructions = Platform.select({
 class MainActivity extends Component {
     static navigationOptions = ({navigation}) => ({
         headerTitle: navigation.state.params?navigation.state.params.navTitle:'',
-        headerStyle: globalStyles.navStyle,
-        headerTintColor: 'white',
-        headerTitleStyle: globalStyles.navTitle
     })
     
   render() {
