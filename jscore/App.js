@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:57 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 19:45:30
+ * @Last Modified time: 2018-03-30 22:36:47
  * @Email: peng8350@gmail.com 
  */
 import React, { Component } from "react";
@@ -26,7 +26,7 @@ const Screens = StackNavigator({
   },
   mode: 'modal'
 });
-StackNavigator
+
 export default class App extends Component {
   render() {
     return (

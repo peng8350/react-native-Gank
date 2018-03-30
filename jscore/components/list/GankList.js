@@ -1,47 +1,62 @@
-import React,{ Component } from "react";
-import { FlatList } from "react-native";
-import GankItem from "../Item/GankItem";
-import ItemSeparater from "../ItemSeparater";
-
 /*
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 20:25:29
+ * @Last Modified time: 2018-03-30 22:34:46
  * @Email: peng8350@gmail.com 
  */
 
- //@flow
+//@flow
+import React, { Component } from "react";
+import { FlatList } from "react-native";
+import GankItem from "../Item/GankItem";
+import { bindActionCreators } from "redux";
+import * as Actions from "../../actions/fetchGankAction";
+import ItemSeparater from "../ItemSeparater";
+import { FETCHGANK_URL, FETCHGIRL_URL } from "../../constants/strings";
+import { connect } from "react-redux";
 
- export default class GankList extends Component{
 
 
-    fakeData =[]
+class GankList extends Component {
+  static defaultProps = {
+    pageIndex: 1
+  };
 
+  render() {
+    return (
+      <FlatList
+        data={this.props.dataSource}
+        keyExtractor={ (item,index) => index+''}
+        renderItem={({ item }) => {
+          return (
+            <GankItem ctn={item.desc} author={item.who} time={item.publishedAt} />
+          );
+        }}
+        ItemSeparatorComponent={() => <ItemSeparater />}
+      />
+    );
+  }
 
-    render(){
-        return (
-            <FlatList
-                data= {this.fakeData} renderItem={({item}) => {
-                    return <GankItem ctn={item.ctn} author={item.author}
-                        time = {item.time}
-                    />
-                }}
-                ItemSeparatorComponent={() => <ItemSeparater/>}
-            />
-        
-        )
-    }
+  componentDidMount() {
+      const url = FETCHGANK_URL+this.props.gankType+"/40/"+this.props.pageIndex
+      this.props.acations.fetchGank(url)
+  }
+  
+}
 
-    componentWillMount(){
-        for(let i =  0 ;i<20;i++){
-            this.fakeData.push({
-                key: i+'',
-                time: '1111',
-                ctn: '这是描述',
-                author: '谁谁谁',
-                url : '网址网址'
-            })
-        }
-    }
- }
+const stateToprops = state => {
+  return {
+    dataSource: state.GankReducer.dataSource,
+    fetching: state.GankReducer.fetching,
+    error: state.GankReducer.error
+  };
+};
+
+const dispatchToProps = dispatch => {
+  return {
+    acations: bindActionCreators(Actions, dispatch)
+  };
+};
+
+export default connect(stateToprops, dispatchToProps)(GankList);

@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from "react-native";
  * @Author: Jpeng 
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 20:50:55
+ * @Last Modified time: 2018-03-30 22:38:14
  * @Email: peng8350@gmail.com 
  */
 

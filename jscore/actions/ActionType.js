@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 23:33:11
+ * @Last Modified time: 2018-03-30 21:35:44
  * @Email: peng8350@gmail.com 
  * @flow
  */
@@ -14,6 +14,12 @@ export const FETCH_GIRL_SUCCESS = 'FETCH_GIRL_SUCCESS';
 export const FETCH_GIRL_REQUESTING = 'FETCH_GIRL_REQUESTING';
 
 export const FETCH_GIRL_FAILED = 'FETCH_GIRL_FAILED';
+
+export const FETCH_GANK_SUCCESS = 'FETCH_GANK_SUCCESS';
+
+export const FETCH_GANK_REQUESTING = 'FETCH_GANK_REQUESTING';
+
+export const FETCH_GANK_FAILED = 'FETCH_GANK_FAILED';
 
 export const START_VIEWPIC = "START_VIEWPIC"
 

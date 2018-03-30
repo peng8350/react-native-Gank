@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 20:14:53
+ * @Last Modified time: 2018-03-30 22:18:02
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,17 +12,24 @@
 import { View } from 'react-native';
 import { globalStyles } from '../constants/styles';
 import GankList from '../components/list/GankList';
+import { FETCHGANK_URL } from '../constants/strings';
  
 
  export default class GankActivity extends Component{
 
+
+
     static navigationOptions = ({navigation}) => ({
         headerTitle: navigation.state.params.GankType,
     })
+
+
     render(){
         return (
-                <GankList  />
+                <GankList gankType= {this.props.navigation.state.params.GankType}  />
         )
     }
 
+
  }
+
