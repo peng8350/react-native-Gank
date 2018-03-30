@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 13:29:37
+ * @Last Modified time: 2018-03-30 19:18:08
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,6 +12,7 @@ import React, { Component } from "react";
 import { FlatList, StyleSheet, View, Image, Text, TouchableHighlight } from "react-native";
 import { PRESSEDCOLOR } from "../constants/colors";
 import ItemSeparater from "./ItemSeparater";
+import { StackNavigator } from "react-navigation";
 
 
 
@@ -55,7 +56,9 @@ export default class HomeGirdView extends Component {
 
   _renderGridItem(data) {
     return (
-        <TouchableHighlight style={{flex:1}} underlayColor={PRESSEDCOLOR} onPress={() => {}} >
+        <TouchableHighlight style={{flex:1}} underlayColor={PRESSEDCOLOR} onPress={() => {
+            this.props.navigation.navigate('Gank',{GankType: data.title})
+        }} >
         <View  style={styles.itemContainer}>
         <Image  style={styles.imageView} source={data.img} />
 

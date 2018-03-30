@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-27 20:18:24
+ * @Last Modified time: 2018-03-30 19:25:01
  * @Email: peng8350@gmail.com 
  */
 
@@ -31,6 +31,7 @@ import {
   TAB3_TITLE,
   TAB4_TITLE
 } from "../constants/strings";
+import { globalStyles } from "../constants/styles";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -42,11 +43,9 @@ const instructions = Platform.select({
 class MainActivity extends Component {
     static navigationOptions = ({navigation}) => ({
         headerTitle: navigation.state.params?navigation.state.params.navTitle:'',
-        headerStyle: styles.navStyle,
+        headerStyle: globalStyles.navStyle,
         headerTintColor: 'white',
-        headerTitleStyle: {
-          fontWeight: "bold"
-        }
+        headerTitleStyle: globalStyles.navTitle
     })
     
   render() {
@@ -69,8 +68,3 @@ const stateToprops = state => {
 
 export default connect(stateToprops)(MainActivity);
 
-const styles = StyleSheet.create({
-  navStyle:{
-    backgroundColor:'#2fa3e4',
-  }
-});

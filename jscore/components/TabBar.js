@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 12:35:44
+ * @Last Modified time: 2018-03-30 19:17:05
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -34,7 +34,7 @@ class TabBar extends Component {
           TAB1_TITLE,
           this._renderTabIcon(require("../resources/tab1_normal.png")),
           this._renderTabIcon(require("../resources/tab1_selected.png")),
-          <HomePage />
+          <HomePage navigation={this.props.navigation} />
         )}
         {this._renderTabBarItem(
           1,
