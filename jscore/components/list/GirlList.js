@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-29 00:00:07
+ * @Last Modified time: 2018-03-30 20:00:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,12 +18,12 @@ import {
   TouchableHighlight,
   Platform
 } from "react-native";
-import { getWidth } from "../utils/ScreenUtils";
-import PicImage from "./PicImage";
-import { TEXTNORMALCOLOR } from "../constants/colors";
+import { getWidth } from "../../utils/ScreenUtils";
+import PicImage from "../PicImage";
+import { TEXTNORMALCOLOR } from "../../constants/colors";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as Actions from "../actions/fetchGirlAction";
+import * as Actions from "../../actions/fetchGirlAction";
 
 class GirlList extends Component {
   pageSize = 0;

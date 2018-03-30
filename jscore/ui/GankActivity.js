@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 19:37:47
+ * @Last Modified time: 2018-03-30 20:14:53
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,6 +11,7 @@
  import React, { Component } from 'react';
 import { View } from 'react-native';
 import { globalStyles } from '../constants/styles';
+import GankList from '../components/list/GankList';
  
 
  export default class GankActivity extends Component{
@@ -20,9 +21,7 @@ import { globalStyles } from '../constants/styles';
     })
     render(){
         return (
-            <View>
-
-            </View>
+                <GankList  />
         )
     }
 

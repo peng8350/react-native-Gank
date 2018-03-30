@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 19:18:08
+ * @Last Modified time: 2018-03-30 20:03:12
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,8 +10,8 @@
 
 import React, { Component } from "react";
 import { FlatList, StyleSheet, View, Image, Text, TouchableHighlight } from "react-native";
-import { PRESSEDCOLOR } from "../constants/colors";
-import ItemSeparater from "./ItemSeparater";
+import { PRESSEDCOLOR } from "../../constants/colors";
+import ItemSeparater from "../ItemSeparater";
 import { StackNavigator } from "react-navigation";
 
 
@@ -22,12 +22,12 @@ export default class HomeGirdView extends Component {
   componentWillMount() {
     const itemTitles = ["前端", "Android", "IOS", "App", "瞎推荐", "拓展资源"];
     const images = [
-      require("../resources/homeGrid1.png"),
-      require("../resources/homeGrid2.png"),
-      require("../resources/homeGrid3.png"),
-      require("../resources/homeGrid4.png"),
-      require("../resources/homeGrid5.png"),
-      require("../resources/homeGrid6.png")
+      require("../../resources/homeGrid1.png"),
+      require("../../resources/homeGrid2.png"),
+      require("../../resources/homeGrid3.png"),
+      require("../../resources/homeGrid4.png"),
+      require("../../resources/homeGrid5.png"),
+      require("../../resources/homeGrid6.png")
     ];
     this._initData(itemTitles, images);
   }
