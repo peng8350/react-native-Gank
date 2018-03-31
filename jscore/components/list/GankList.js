@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:34:46
+ * @Last Modified time: 2018-03-30 22:51:48
  * @Email: peng8350@gmail.com 
  */
 
@@ -39,10 +39,14 @@ class GankList extends Component {
   }
 
   componentDidMount() {
+      this.props.dataSource = []
       const url = FETCHGANK_URL+this.props.gankType+"/40/"+this.props.pageIndex
+      alert(this.props.pageIndex)
       this.props.acations.fetchGank(url)
   }
   
+
+
 }
 
 const stateToprops = state => {
