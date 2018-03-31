@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 22:46:16 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-28 23:54:32
+ * @Last Modified time: 2018-03-31 10:47:40
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,7 +10,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Actions from "../actions/fetchGirlAction";
+import * as Actions from "../../actions/fetchGirlAction";
 import { bindActionCreators } from "redux";
 import { Modal, ActivityIndicator, Text, Button } from "react-native";
 import { ImageViewer } from "react-native-image-zoom-viewer";

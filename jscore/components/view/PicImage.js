@@ -10,7 +10,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Image } from 'react-native';
-import { getWidth } from '../utils/ScreenUtils';
+import { getWidth } from '../../utils/ScreenUtils';
 
 
 

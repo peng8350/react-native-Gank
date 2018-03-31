@@ -3,7 +3,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:41:35
+ * @Last Modified time: 2018-03-31 11:07:22
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -17,7 +17,6 @@ class  HomeGridItem extends Component {
 
 
     render() {
-
         return (
             <TouchableHighlight style={{flex:1}} underlayColor={PRESSEDCOLOR} onPress={() => this.props.onItemPress(this.props.title)} >
             <View  style={styles.itemContainer}>

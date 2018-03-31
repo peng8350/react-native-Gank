@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 20:00:24
+ * @Last Modified time: 2018-03-31 10:49:02
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,7 +19,7 @@ import {
   Platform
 } from "react-native";
 import { getWidth } from "../../utils/ScreenUtils";
-import PicImage from "../PicImage";
+import PicImage from "../view/PicImage";
 import { TEXTNORMALCOLOR } from "../../constants/colors";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";

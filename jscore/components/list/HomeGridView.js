@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:42:56
+ * @Last Modified time: 2018-03-31 10:50:59
  * @Email: peng8350@gmail.com 
  */
 
@@ -13,7 +13,7 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
-import ItemSeparater from "../ItemSeparater";
+import ItemSeparater from "../other/ItemSeparater";
 import { StackNavigator } from "react-navigation";
 import HomeGridItem from "../Item/HomeGridItem";
 

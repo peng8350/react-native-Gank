@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 22:06:44 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 22:16:19
+ * @Last Modified time: 2018-03-31 10:48:44
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,7 +10,7 @@
 
 import React,{ Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { SEPERATERCOLOR } from "../constants/colors";
+import { SEPERATERCOLOR } from "../../constants/colors";
 
 export default class ItemSeparater extends Component {
   render() {

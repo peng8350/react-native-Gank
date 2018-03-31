@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { globalStyles } from "../../constants/styles";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import DateUtils from "../../utils/DateUtils";
+import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 
 /*
  * @Author: Jpeng 
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:38:14
- * @Email: peng8350@gmail.com 
+ * @Last Modified time: 2018-03-31 12:16:36
+ * @Last Modified time: 2018-03-31 13:00:11
  */
 
 //@flow
@@ -15,33 +18,46 @@ import { View, Text, StyleSheet } from "react-native";
 export default class GankItem extends Component {
   render() {
     return (
+
+      <TouchableHighlight  underlayColor={PRESSEDCOLOR} onPress={() => {}}>
       <View style={globalStyles.itemContainer}>
         <View style={styles.leftContainer}>
           <Text style={globalStyles.normalText}>{this.props.ctn}</Text>
         </View>
 
-        <View
-          style={{
-            width: 100
-          }}
-        >
-          <View style={[globalStyles.verticalLayout, styles.rightContainer]}>
-            <Text style={[{ textAlign: "right" }, globalStyles.smallText]}>
-              {this.props.author}
+        <View style={styles.rightContainer}>
+          <View
+            style={[
+              globalStyles.verticalLayout,
+              {
+                alignItems: "flex-end",
+                justifyContent: "space-between"
+              }
+            ]}
+          >
+            <Text style={globalStyles.smallText}>
+              <Icon
+                name="ios-person-outline"
+                color={TEXTSMALLCOLOR}
+                size={16}
+              />
+              {" " + this.props.author}
             </Text>
-            <Text style={[{ textAlign: "right" },globalStyles.smallText]}>{this.props.time}</Text>
+            <Text style={globalStyles.smallText}>
+              <Icon name="ios-clock-outline" color={TEXTSMALLCOLOR} size={14} />
+              {' ' +DateUtils.parseString(this.props.time,'YYYY年MM月DD日')}
+            </Text>
           </View>
         </View>
       </View>
+      </TouchableHighlight>
     );
   }
 }
 
 const styles = StyleSheet.create({
   rightContainer: {
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-    width: 100
+    width:120
   },
   leftContainer: {
     flex: 1

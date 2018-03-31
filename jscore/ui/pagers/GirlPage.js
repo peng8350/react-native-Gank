@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:15:31
+ * @Last Modified time: 2018-03-31 10:49:52
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import * as Actions from "../../actions/fetchGirlAction";
 import GirlList from "../../components/list/GirlList";
-import ZoomPicView from "../../components/ZoomPicView";
+import ZoomPicView from "../../components/view/ZoomPicView";
 
 export default class GirlPage extends Component {
   render() {

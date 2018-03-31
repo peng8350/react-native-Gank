@@ -5,7 +5,7 @@ import { TEXTNORMALCOLOR, TEXTSMALLCOLOR } from "./colors";
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 20:51:51
+ * @Last Modified time: 2018-03-31 12:28:42
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,11 +19,11 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold"
   },
   smallText:{
-      fontSize:14,
-      color: TEXTSMALLCOLOR
+      fontSize:12,
+      color: TEXTSMALLCOLOR,
   },
   normalText:{
-      fontSize: 15,
+      fontSize: 14,
       color: TEXTNORMALCOLOR,
   },
   itemContainer:{

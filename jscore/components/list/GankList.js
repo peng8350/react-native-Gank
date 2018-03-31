@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:51:48
+ * @Last Modified time: 2018-03-31 10:48:19
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,7 +12,7 @@ import { FlatList } from "react-native";
 import GankItem from "../Item/GankItem";
 import { bindActionCreators } from "redux";
 import * as Actions from "../../actions/fetchGankAction";
-import ItemSeparater from "../ItemSeparater";
+import ItemSeparater from "../other/ItemSeparater";
 import { FETCHGANK_URL, FETCHGIRL_URL } from "../../constants/strings";
 import { connect } from "react-redux";
 
@@ -41,7 +41,6 @@ class GankList extends Component {
   componentDidMount() {
       this.props.dataSource = []
       const url = FETCHGANK_URL+this.props.gankType+"/40/"+this.props.pageIndex
-      alert(this.props.pageIndex)
       this.props.acations.fetchGank(url)
   }
   
