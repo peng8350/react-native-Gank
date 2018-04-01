@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:57 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:36:47
+ * @Last Modified time: 2018-04-01 20:30:37
  * @Email: peng8350@gmail.com 
  */
 import React, { Component } from "react";
@@ -14,10 +14,12 @@ import { StackNavigator } from "react-navigation";
 import MainActivity from "./ui/MainActivity";
 import GankActivity from "./ui/GankActivity";
 import { globalStyles } from "./constants/styles";
+import WebActivity from "./ui/WebActivity";
 
 const Screens = StackNavigator({
   Main: { screen: MainActivity },
-  Gank: {screen: GankActivity}
+  Gank: {screen: GankActivity},
+  Web: {screen: WebActivity}
 },{
   navigationOptions:{
     headerStyle: globalStyles.navStyle,

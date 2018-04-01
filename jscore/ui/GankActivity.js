@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-30 22:18:02
+ * @Last Modified time: 2018-04-01 20:33:39
  * @Email: peng8350@gmail.com 
  */
 
@@ -26,7 +26,7 @@ import { FETCHGANK_URL } from '../constants/strings';
 
     render(){
         return (
-                <GankList gankType= {this.props.navigation.state.params.GankType}  />
+                <GankList gankType= {this.props.navigation.state.params.GankType}  navigation ={this.props.navigation}/>
         )
     }
 

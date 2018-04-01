@@ -5,7 +5,7 @@ import { TEXTNORMALCOLOR, TEXTSMALLCOLOR } from "./colors";
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 12:28:42
+ * @Last Modified time: 2018-04-01 20:26:43
  * @Email: peng8350@gmail.com 
  */
 
@@ -31,7 +31,7 @@ export const globalStyles = StyleSheet.create({
       height:100,
       flex:1,
       flexDirection: 'row',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       paddingVertical: 10,
       paddingHorizontal: 5,
   },
@@ -42,6 +42,11 @@ export const globalStyles = StyleSheet.create({
   },
   verticalLayout:{
     flex:1,
+    alignItems: 'center',
+  },
+  verCenLayout:{
+    flex:1,
+    justifyContent:'center',
     alignItems: 'center',
   }
 });

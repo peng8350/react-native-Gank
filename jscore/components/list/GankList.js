@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:48:19
+ * @Last Modified time: 2018-04-01 20:33:34
  * @Email: peng8350@gmail.com 
  */
 
@@ -16,8 +16,6 @@ import ItemSeparater from "../other/ItemSeparater";
 import { FETCHGANK_URL, FETCHGIRL_URL } from "../../constants/strings";
 import { connect } from "react-redux";
 
-
-
 class GankList extends Component {
   static defaultProps = {
     pageIndex: 1
@@ -27,10 +25,17 @@ class GankList extends Component {
     return (
       <FlatList
         data={this.props.dataSource}
-        keyExtractor={ (item,index) => index+''}
+        keyExtractor={(item, index) => index + ""}
         renderItem={({ item }) => {
           return (
-            <GankItem ctn={item.desc} author={item.who} time={item.publishedAt} />
+            <GankItem
+              ctn={item.desc}
+              author={item.who}
+              time={item.publishedAt}
+              onItemSelect={() => {
+                this.props.navigation.navigate("Web", { url: item.url });
+              }}
+            />
           );
         }}
         ItemSeparatorComponent={() => <ItemSeparater />}
@@ -39,13 +44,11 @@ class GankList extends Component {
   }
 
   componentDidMount() {
-      this.props.dataSource = []
-      const url = FETCHGANK_URL+this.props.gankType+"/40/"+this.props.pageIndex
-      this.props.acations.fetchGank(url)
+    this.props.dataSource = [];
+    const url =
+      FETCHGANK_URL + this.props.gankType + "/40/" + this.props.pageIndex;
+    this.props.acations.fetchGank(url);
   }
-  
-
-
 }
 
 const stateToprops = state => {
