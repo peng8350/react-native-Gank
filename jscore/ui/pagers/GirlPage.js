@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:49:52
+ * @Last Modified time: 2018-04-02 19:52:42
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,8 +18,8 @@ export default class GirlPage extends Component {
     return (
       <View>
         
-        {/* <GirlList /> */}
-        {/* <ZoomPicView /> */}
+        { <GirlList /> }
+        { <ZoomPicView /> }
       </View>
     );
   }

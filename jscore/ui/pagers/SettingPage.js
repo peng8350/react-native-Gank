@@ -2,22 +2,22 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-26 21:50:23
+ * @Last Modified time: 2018-04-02 20:13:33
  * @Email: peng8350@gmail.com 
  */
- 
+ //@flow
 import React,{Component} from 'react'
 import {
     View,Text,StyleSheet
 } from 'react-native'
-
+import SettingList from '../../components/list/SettingList';
 
 
 export default class SettingPage extends  Component{
     render(){
-        return <View style={styles.container}>
-            <Text>设置界面</Text>
-        </View>
+        return (
+            <SettingList/>
+        )
     }
 }
 
