@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:50:59
+ * @Last Modified time: 2018-04-02 23:47:01
  * @Email: peng8350@gmail.com 
  */
 
@@ -23,12 +23,36 @@ export default class HomeGirdView extends Component {
   componentWillMount() {
     const itemTitles = ["前端", "Android", "IOS", "App", "瞎推荐", "拓展资源"];
     const images = [
-      require("../../resources/homeGrid1.png"),
-      require("../../resources/homeGrid2.png"),
-      require("../../resources/homeGrid3.png"),
-      require("../../resources/homeGrid4.png"),
-      require("../../resources/homeGrid5.png"),
-      require("../../resources/homeGrid6.png")
+      {
+        iconName: 'ios-globe',
+        bgColor: '#f1c410',
+        iconType: 'Ionicons'
+      },
+      {
+        iconName: 'logo-android',
+        bgColor: '#19bc9c',
+        iconType: 'Ionicons'
+      },
+      {
+        iconName: 'logo-apple',
+        bgColor: '#bdc3c7',
+        iconType: 'Ionicons'
+      },
+      {
+        iconName: 'mobile-phone',
+        bgColor: '#e67e22',
+        iconType: 'FontAwesome'
+      },
+      {
+        iconName: 'ios-magnet',
+        bgColor: '#b493c8',
+        iconType: 'Ionicons'
+      },
+      {
+        iconName: 'ios-briefcase',
+        bgColor: '#1e527e',
+        iconType: 'Ionicons'
+      },
     ];
     this._initData(itemTitles, images);
   }
@@ -51,7 +75,10 @@ export default class HomeGirdView extends Component {
       this.dataSource.push({
         key: i,
         title: itemTitles[i],
-        img: images[i]
+        img: images[i].iconName,
+        bgColor: images[i].bgColor,
+        iconColor: images[i].iconColor,
+        iconType: images[i].iconType
       });
     }
   };
@@ -66,6 +93,8 @@ export default class HomeGirdView extends Component {
         onItemPress={this._onItemPress}
         img={data.img}
         title={data.title}
+        bgColor={data.bgColor}
+        iconType= {data.iconType}
       />
     );
   }

@@ -3,7 +3,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 11:07:22
+ * @Last Modified time: 2018-04-02 23:47:16
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -12,6 +12,7 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, View, Image, Text, StyleSheet } from 'react-native';
 import { PRESSEDCOLOR } from '../../constants/colors';
+import IconView from '../view/IconView';
 
 class  HomeGridItem extends Component {
 
@@ -20,7 +21,9 @@ class  HomeGridItem extends Component {
         return (
             <TouchableHighlight style={{flex:1}} underlayColor={PRESSEDCOLOR} onPress={() => this.props.onItemPress(this.props.title)} >
             <View  style={styles.itemContainer}>
-            <Image  style={styles.imageView} source={this.props.img} />
+            <IconView  iconName={this.props.img} iconSize={28} size= {50} bgColor={this.props.bgColor}
+                iconColor={'#fff'} radius={50} iconType = {this.props.iconType}
+            />
     
             <Text style={styles.textView}>{this.props.title}</Text>
             </View>
@@ -37,13 +40,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: 'center',
       },
-      imageView: {
-        marginBottom: 5,
-        width: 45,
-        height: 45
-      },
       textView: {
-
+        marginTop: 5,
       }
 })
 

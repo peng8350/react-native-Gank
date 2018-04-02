@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:50:16
+ * @Last Modified time: 2018-04-03 00:02:13
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -23,6 +23,7 @@ import HomePage from "../../ui/pagers/HomePage";
 import ReadPage from "../../ui/pagers/ReadPage";
 import SettingPage from "../../ui/pagers/SettingPage";
 import GirlPage from "../../ui/pagers/GirlPage";
+import Icon from 'react-native-vector-icons/Ionicons'
 
 //@flow
 class TabBar extends Component {
@@ -32,29 +33,29 @@ class TabBar extends Component {
         {this._renderTabBarItem(
           0,
           TAB1_TITLE,
-          this._renderTabIcon(require("../../resources/tab1_normal.png")),
-          this._renderTabIcon(require("../../resources/tab1_selected.png")),
+          this._renderTabIcon({name:'ios-home-outline',iconColor:'#979797'}),
+          this._renderTabIcon({name:'ios-home',iconColor:'#2fa3e4'}),
           <HomePage navigation={this.props.navigation} />
         )}
         {this._renderTabBarItem(
           1,
           TAB2_TITLE,
-          this._renderTabIcon(require("../../resources/tab2_normal.png")),
-          this._renderTabIcon(require("../../resources/tab2_selected.png")),
+          this._renderTabIcon({name:'ios-cafe-outline',iconColor:'#979797'}),
+          this._renderTabIcon({name:'ios-cafe',iconColor:'#2fa3e4'}),
           <ReadPage />
         )}
         {this._renderTabBarItem(
           2,
           TAB3_TITLE,
-          this._renderTabIcon(require("../../resources/tab3_normal.png")),
-          this._renderTabIcon(require("../../resources/tab3_selected.png")),
+          this._renderTabIcon({name:'ios-compass-outline',iconColor:'#979797'}),
+          this._renderTabIcon({name:'ios-compass',iconColor:'#2fa3e4'}),
           <GirlPage />
         )}
         {this._renderTabBarItem(
           3,
           TAB4_TITLE,
-          this._renderTabIcon(require("../../resources/tab4_normal.png")),
-          this._renderTabIcon(require("../../resources/tab4_selected.png")),
+          this._renderTabIcon({name:'ios-settings-outline',iconColor:'#979797'}),
+          this._renderTabIcon({name:'ios-settings',iconColor:'#2fa3e4'}),
           <SettingPage />
         )}
       </TabNavigator>
@@ -83,8 +84,8 @@ class TabBar extends Component {
     );
   }
 
-  _renderTabIcon(path) {
-    return <Image source={path} style={styles.tabIcon} />;
+  _renderTabIcon({name,iconColor}) {
+    return <Icon size={22} name={name} color={iconColor} />;
   }
 
   static defaultProps = {};

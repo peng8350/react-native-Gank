@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 20:50:06
+ * @Last Modified time: 2018-04-02 21:17:19
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,6 +11,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { globalStyles } from '../../constants/styles';
+import IconView from '../view/IconView';
  
  export default class  SettingItem extends Component{
 
@@ -25,7 +26,7 @@ import { globalStyles } from '../../constants/styles';
         return (
             <View style={[globalStyles.itemContainer,{height:50}]}>
             <View style={globalStyles.horizontalLayout}>
-                
+                <IconView/>
                 <Text style={globalStyles.normalText}>{this.props.title}</Text>
             </View>
 

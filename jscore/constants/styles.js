@@ -5,7 +5,7 @@ import { TEXTNORMALCOLOR, TEXTSMALLCOLOR } from "./colors";
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 20:41:01
+ * @Last Modified time: 2018-04-02 21:27:44
  * @Email: peng8350@gmail.com 
  */
 
@@ -20,7 +20,6 @@ export const globalStyles = StyleSheet.create({
   },
   smallText:{
       fontSize:12,
-      backgroundColor: '#232323',
       color: TEXTSMALLCOLOR,
   },
   normalText:{
