@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 22:38:25
+ * @Last Modified time: 2018-04-03 22:53:04
  * @Email: peng8350@gmail.com 
  */
 
@@ -23,7 +23,7 @@ export default class SettingItem extends Component {
   render() {
     return (
       <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={() => {}}>
-        <View style={[globalStyles.itemContainer, { height: 50,backgroundColor: this.props.bac, }]}>
+        <View style={[globalStyles.itemContainer, { height: 50 }]}>
           <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
             <IconView
               radius={6}

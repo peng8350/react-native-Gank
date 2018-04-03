@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 22:49:24
+ * @Last Modified time: 2018-04-03 22:53:52
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -80,7 +80,7 @@ class SettingList extends Component {
             bgColor: "darkseagreen",
             iconName: "md-star",
             title: "收藏",
-            renderRight:this._renderRightArrow()
+            renderRight: this._renderRightArrow()
           }
         ]
       },
