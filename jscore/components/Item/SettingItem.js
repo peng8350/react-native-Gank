@@ -2,44 +2,64 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 21:17:19
+ * @Last Modified time: 2018-04-03 15:51:01
  * @Email: peng8350@gmail.com 
  */
 
- //@flow
+//@flow
 
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { globalStyles } from '../../constants/styles';
-import IconView from '../view/IconView';
- 
- export default class  SettingItem extends Component{
+import React, { Component } from "react";
+import { View, StyleSheet, Text, TouchableHighlight } from "react-native";
+import { globalStyles } from "../../constants/styles";
+import IconView from "../view/IconView";
+import { PRESSEDCOLOR } from "../../constants/colors";
 
-    static defaultProps = {
-        title: '标题',
-        extra: '提示文字',
-        renderRight: undefined,
+export default class SettingItem extends Component {
+  static defaultProps = {
+    title: "标题",
+    extra: "",
+    renderRight: undefined
+  };
 
-    }
+  render() {
+    return (
+      <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={() => {}}>
+        <View style={[globalStyles.itemContainer, { height: 50 }]}>
+          <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
+            <IconView
+              radius={8}
+              size={28}
+              bgColor={this.props.bgColor}
+              iconColor={"#fff"}
+              iconName={this.props.iconName}
+            />
+            <Text style={[globalStyles.normalText, styles.leftText]}>
+              {this.props.title}
+            </Text>
+          </View>
 
-    render(){
-        return (
-            <View style={[globalStyles.itemContainer,{height:50}]}>
-            <View style={globalStyles.horizontalLayout}>
-                <IconView/>
-                <Text style={globalStyles.normalText}>{this.props.title}</Text>
-            </View>
+          <View style={[globalStyles.horizontalLayout, styles.rightContainer]}>
+            <Text style={[globalStyles.smallText,styles.rightText]}>{this.props.extra}</Text>
+            {this.props.renderRight}
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+}
 
-            <View style={globalStyles.horizontalLayout}>
-                <Text style={globalStyles.smallText}>{this.props.extra}</Text>
-                {this.props.renderRight}
-            </View>
-            </View>
-        )
-    }
-
- }
-
- const styles = StyleSheet.create({
-
- })
+const styles = StyleSheet.create({
+  leftText: {
+    marginLeft: 10
+  },
+  rightText:{
+    marginRight: 8,
+  },
+  rightContainer: {
+    justifyContent: "flex-end",
+    paddingRight: 10
+  },
+  leftContainer: {
+    paddingLeft: 10
+  }
+});

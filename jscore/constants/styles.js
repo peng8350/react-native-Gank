@@ -5,7 +5,7 @@ import { TEXTNORMALCOLOR, TEXTSMALLCOLOR } from "./colors";
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 21:27:44
+ * @Last Modified time: 2018-04-03 15:30:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -38,11 +38,11 @@ export const globalStyles = StyleSheet.create({
   horizontalLayout:{
     flex:1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   verticalLayout:{
     flex:1,
-    alignItems: 'center',
+    justifyContent: 'center',
   },
   verCenLayout:{
     flex:1,
