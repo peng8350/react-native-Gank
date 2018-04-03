@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 20:42:01
+ * @Last Modified time: 2018-04-04 00:13:58
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -30,7 +30,7 @@ class SettingPage extends Component {
   _renderHeader() {
     return (
         <ImageBackground
-          style={[styles.header, { height: 120+this.props.headerHeight}]}
+          style={[styles.header, { height: 150+this.props.headerHeight}]}
           source={require("../../resources/setbg.jpeg")}
         >
           <Image

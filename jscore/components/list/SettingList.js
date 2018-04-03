@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 22:53:52
+ * @Last Modified time: 2018-04-04 00:13:48
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -21,6 +21,7 @@ import {
   THEMECOLOR
 } from "../../constants/colors";
 import ItemSeparater from "../other/ItemSeparater";
+import DbUtils from "../../utils/DbUtils";
 
 class SettingList extends Component {
   _renderRightSwitch = (state1, onValueChange1) => {
@@ -55,6 +56,7 @@ class SettingList extends Component {
             title: "夜间模式",
             renderRight: this._renderRightSwitch(this.props.isNight, value => {
               this.props.actions.setNight(value);
+              DbUtils.update("Setting", { id: 1, isNight: value });
             })
           },
           {
@@ -62,9 +64,13 @@ class SettingList extends Component {
             bgColor: "coral",
             iconName: "ios-jet",
             title: "间隔刷新数据",
-            renderRight: this._renderRightSwitch(this.props.autoRefresh, value => {
-              this.props.actions.setAutoRefresh(value);
-            })
+            renderRight: this._renderRightSwitch(
+              this.props.autoRefresh,
+              value => {
+                this.props.actions.setAutoRefresh(value);
+                DbUtils.update("Setting", { id: 1, autoRefresh: value });
+              }
+            )
           },
           {
             key: "3",
@@ -110,8 +116,9 @@ class SettingList extends Component {
 
     return (
       <SectionList
-        style={{ marginTop: 120 }}
+        style={{ marginTop: 150 }}
         sections={dataSource}
+        showsVerticalScrollIndicator ={false}
         onScroll={event => {
           let y = -event.nativeEvent.contentOffset.y;
           if (y > 0)
@@ -133,6 +140,14 @@ class SettingList extends Component {
         )}
       />
     );
+  }
+
+  componentDidMount() {
+    let settingInfo = DbUtils.queryFirst("Setting", "id==1");
+    let { actions } = this.props;
+    actions.setNight(settingInfo.isNight);
+    actions.setAutoRefresh(settingInfo.autoRefresh);
+    actions.setPicPosition(settingInfo.picPos);
   }
 }
 
