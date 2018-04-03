@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 17:30:38
+ * @Last Modified time: 2018-04-03 18:15:13
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -15,12 +15,15 @@ import { SectionList, View, Switch, StyleSheet } from "react-native";
 import SettingItem from "../Item/SettingItem";
 import EmptyView from "../other/EmptyView";
 import Icon from "react-native-vector-icons/Ionicons";
-import { TEXTSELECTEDCOLOR, TEXTSMALLCOLOR, THEMECOLOR } from "../../constants/colors";
+import {
+  TEXTSELECTEDCOLOR,
+  TEXTSMALLCOLOR,
+  THEMECOLOR
+} from "../../constants/colors";
 
 class SettingList extends Component {
- 
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     console.disableYellowBox = true;
     this.dataSource = [
       {
@@ -31,7 +34,12 @@ class SettingList extends Component {
             title: "夜间模式",
             renderRight: this._renderRightSwitch(true)
           },
-          { bgColor: "#ff0", iconName: "md-home", title: "下载图片位置" ,renderRight: this._renderRightSwitch(true)},
+          {
+            bgColor: "#ff0",
+            iconName: "md-home",
+            title: "下载图片位置",
+            renderRight: this._renderRightSwitch(true)
+          },
           { bgColor: "#ff0", iconName: "md-home", title: "收藏" }
         ]
       },
@@ -49,25 +57,41 @@ class SettingList extends Component {
     ];
   }
 
-
-  _renderRightSwitch(state){
-    return <Switch  onValueChange={() => {}} value={state} thumbTintColor={'#f00'} onTintColor={'#00f'}/>
+  _renderRightSwitch(state) {
+    return (
+      <Switch
+        onValueChange={() => {}}
+        value={state}
+        thumbTintColor={"#f00"}
+        onTintColor={"#00f"}
+      />
+    );
   }
 
   _renderRightArrow() {
-    return <Icon name={'ios-arrow-forward-outline'} size={24} color={TEXTSMALLCOLOR} />;
+    return (
+      <Icon
+        name={"ios-arrow-forward-outline"}
+        size={24}
+        color={TEXTSMALLCOLOR}
+      />
+    );
   }
-
 
   render() {
     return (
       <SectionList
+        style={{marginTop:120}}
         sections={this.dataSource}
-        onScroll= {(event) => this.props.actions.changeHeight(-event.nativeEvent.contentOffset.y)}
+        onScroll={event => {
+          let y = -event.nativeEvent.contentOffset.y;
+          if(y>0)
+          this.props.actions.changeHeight(-event.nativeEvent.contentOffset.y);
+        }}
         renderSectionHeader={({ section }) => <EmptyView />}
         renderItem={({ item }) => (
           <SettingItem
-            extra= {item.extra}
+            extra={item.extra}
             title={item.title}
             bgColor={item.bgColor}
             iconName={item.iconName}
@@ -79,11 +103,8 @@ class SettingList extends Component {
   }
 }
 
-
 export const stateToprops = state => {
-  return {
-    
-  };
+  return {};
 };
 
 export const dispatchToActions = dispatch => {
@@ -92,4 +113,4 @@ export const dispatchToActions = dispatch => {
   };
 };
 
-export default connect(stateToprops, dispatchToActions)(SettingList)
+export default connect(stateToprops, dispatchToActions)(SettingList);

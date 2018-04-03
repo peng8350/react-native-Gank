@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 17:56:37
+ * @Last Modified time: 2018-04-03 18:15:31
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -29,7 +29,7 @@ class SettingPage extends Component {
   _renderHeader() {
     return (
         <ImageBackground
-          style={[styles.header, { height: 120+this.props.headerHeight*2}]}
+          style={[styles.header, { height: 120+this.props.headerHeight}]}
           source={require("../../resources/setbg.jpeg")}
         >
           <Image
@@ -56,14 +56,17 @@ class SettingPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    position: 'absolute',
-    justifyContent: "flex-start"
+      flex:1,
   },
   header: {
     width: getWidth(),
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    position: 'absolute',//相对父元素进行绝对定位
+    left:0,
+    top:0,
+    right:0,
+    bottom:0
   },
   headerIcon: {
     width: 60,
