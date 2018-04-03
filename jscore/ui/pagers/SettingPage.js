@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 18:15:31
+ * @Last Modified time: 2018-04-03 20:42:01
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -13,7 +13,8 @@ import {
   StyleSheet,
   Image,
   ImageBackground,
-  Modal
+  Modal,
+  Switch
 } from "react-native";
 import SettingList from "../../components/list/SettingList";
 import { THEMECOLOR } from "../../constants/colors";
@@ -46,9 +47,8 @@ class SettingPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
         {this._renderHeader()}
-        <SettingList />
+        { <SettingList /> }
       </View>
     );
   }
@@ -78,8 +78,9 @@ const styles = StyleSheet.create({
 
 export const stateToprops = state => {
   return {
-    headerHeight: state.SettingReducer.headerHeight
+    headerHeight: state.SettingReducer.headerHeight,
   };
 };
+
 
 export default connect(stateToprops)(SettingPage);

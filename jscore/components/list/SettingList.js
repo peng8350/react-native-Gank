@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 18:45:57
+ * @Last Modified time: 2018-04-03 22:49:24
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -23,9 +23,29 @@ import {
 import ItemSeparater from "../other/ItemSeparater";
 
 class SettingList extends Component {
-  constructor(props) {
-    super(props);
-    this.dataSource = [
+  _renderRightSwitch = (state1, onValueChange1) => {
+    return (
+      <Switch
+        onValueChange={onValueChange1}
+        value={state1}
+        thumbTintColor={"whitesmoke"}
+        onTintColor={THEMECOLOR}
+      />
+    );
+  };
+
+  _renderRightArrow() {
+    return (
+      <Icon
+        name={"ios-arrow-forward-outline"}
+        size={24}
+        color={TEXTSMALLCOLOR}
+      />
+    );
+  }
+
+  render() {
+    let dataSource = [
       {
         data: [
           {
@@ -33,21 +53,25 @@ class SettingList extends Component {
             bgColor: "darkgray",
             iconName: "ios-bulb",
             title: "夜间模式",
-            renderRight: this._renderRightSwitch(true)
+            renderRight: this._renderRightSwitch(this.props.isNight, value => {
+              this.props.actions.setNight(value);
+            })
           },
           {
             key: "2",
             bgColor: "coral",
             iconName: "ios-jet",
             title: "间隔刷新数据",
-            renderRight: this._renderRightSwitch(true)
+            renderRight: this._renderRightSwitch(this.props.autoRefresh, value => {
+              this.props.actions.setAutoRefresh(value);
+            })
           },
           {
             key: "3",
             bgColor: "cornflowerblue",
             iconName: "ios-albums",
             title: "下载图片位置",
-            extra: "users/wwwww",
+            extra: this.props.picPos,
             renderRight: this._renderRightArrow()
           },
 
@@ -56,7 +80,7 @@ class SettingList extends Component {
             bgColor: "darkseagreen",
             iconName: "md-star",
             title: "收藏",
-            renderRight: this._renderRightArrow()
+            renderRight:this._renderRightArrow()
           }
         ]
       },
@@ -83,40 +107,19 @@ class SettingList extends Component {
         ]
       }
     ];
-  }
 
-  _renderRightSwitch(state) {
-    return (
-      <Switch
-        onValueChange={() => {}}
-        value={state}
-        thumbTintColor={"whitesmoke"}
-        onTintColor={THEMECOLOR}
-      />
-    );
-  }
-
-  _renderRightArrow() {
-    return (
-      <Icon
-        name={"ios-arrow-forward-outline"}
-        size={24}
-        color={TEXTSMALLCOLOR}
-      />
-    );
-  }
-
-  render() {
     return (
       <SectionList
         style={{ marginTop: 120 }}
-        sections={this.dataSource}
+        sections={dataSource}
         onScroll={event => {
           let y = -event.nativeEvent.contentOffset.y;
           if (y > 0)
             this.props.actions.changeHeight(-event.nativeEvent.contentOffset.y);
         }}
-        SectionSeparatorComponent= {() => <ItemSeparater height={1} color ={'snow'} />}
+        SectionSeparatorComponent={() => (
+          <ItemSeparater height={1} color={"snow"} />
+        )}
         ItemSeparatorComponent={() => <ItemSeparater />}
         renderSectionHeader={({ section }) => <EmptyView />}
         renderItem={({ item }) => (
@@ -134,7 +137,11 @@ class SettingList extends Component {
 }
 
 export const stateToprops = state => {
-  return {};
+  return {
+    isNight: state.SettingReducer.isNight,
+    picPos: state.SettingReducer.picPos,
+    autoRefresh: state.SettingReducer.autoRefresh
+  };
 };
 
 export const dispatchToActions = dispatch => {

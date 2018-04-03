@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 23:47:01
+ * @Last Modified time: 2018-04-03 19:47:48
  * @Email: peng8350@gmail.com 
  */
 
@@ -77,7 +77,6 @@ export default class HomeGirdView extends Component {
         title: itemTitles[i],
         img: images[i].iconName,
         bgColor: images[i].bgColor,
-        iconColor: images[i].iconColor,
         iconType: images[i].iconType
       });
     }

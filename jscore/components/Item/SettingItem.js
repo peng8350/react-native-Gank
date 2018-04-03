@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 18:33:54
+ * @Last Modified time: 2018-04-03 22:38:25
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,13 +18,12 @@ export default class SettingItem extends Component {
   static defaultProps = {
     title: "标题",
     extra: "",
-    renderRight: undefined
   };
 
   render() {
     return (
       <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={() => {}}>
-        <View style={[globalStyles.itemContainer, { height: 50 }]}>
+        <View style={[globalStyles.itemContainer, { height: 50,backgroundColor: this.props.bac, }]}>
           <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
             <IconView
               radius={6}
@@ -41,7 +40,7 @@ export default class SettingItem extends Component {
 
           <View style={[globalStyles.horizontalLayout, styles.rightContainer]}>
             <Text style={[globalStyles.smallText,styles.rightText]}>{this.props.extra}</Text>
-            {this.props.renderRight}
+            { this.props.renderRight}
           </View>
         </View>
       </TouchableHighlight>
