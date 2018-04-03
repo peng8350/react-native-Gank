@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 15:51:01
+ * @Last Modified time: 2018-04-03 18:33:54
  * @Email: peng8350@gmail.com 
  */
 
@@ -27,8 +27,9 @@ export default class SettingItem extends Component {
         <View style={[globalStyles.itemContainer, { height: 50 }]}>
           <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
             <IconView
-              radius={8}
-              size={28}
+              radius={6}
+              size={25}
+              iconSize={16}
               bgColor={this.props.bgColor}
               iconColor={"#fff"}
               iconName={this.props.iconName}
