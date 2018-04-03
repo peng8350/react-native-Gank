@@ -1,19 +1,18 @@
-import { StyleSheet } from "react-native";
-import { TEXTNORMALCOLOR, TEXTSMALLCOLOR } from "./colors";
-
 /*
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 15:30:24
+ * @Last Modified time: 2018-04-03 16:48:16
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
+import { StyleSheet } from "react-native";
+import { TEXTNORMALCOLOR, TEXTSMALLCOLOR, THEMECOLOR } from "./colors";
 
 export const globalStyles = StyleSheet.create({
   navStyle: {
-    backgroundColor: "#2fa3e4"
+    backgroundColor: THEMECOLOR
   },
   navTitle: {
     fontWeight: "bold"
@@ -25,6 +24,10 @@ export const globalStyles = StyleSheet.create({
   normalText:{
       fontSize: 14,
       color: TEXTNORMALCOLOR,
+  },
+  BigText:{
+    fontSize:16,
+    color: TEXTNORMALCOLOR,
   },
   itemContainer:{
       backgroundColor: '#fff',

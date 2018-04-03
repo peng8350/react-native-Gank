@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 00:02:13
+ * @Last Modified time: 2018-04-03 16:30:21
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -24,6 +24,7 @@ import ReadPage from "../../ui/pagers/ReadPage";
 import SettingPage from "../../ui/pagers/SettingPage";
 import GirlPage from "../../ui/pagers/GirlPage";
 import Icon from 'react-native-vector-icons/Ionicons'
+import { THEMECOLOR } from "../../constants/colors";
 
 //@flow
 class TabBar extends Component {
@@ -34,28 +35,28 @@ class TabBar extends Component {
           0,
           TAB1_TITLE,
           this._renderTabIcon({name:'ios-home-outline',iconColor:'#979797'}),
-          this._renderTabIcon({name:'ios-home',iconColor:'#2fa3e4'}),
+          this._renderTabIcon({name:'ios-home',iconColor:THEMECOLOR}),
           <HomePage navigation={this.props.navigation} />
         )}
         {this._renderTabBarItem(
           1,
           TAB2_TITLE,
           this._renderTabIcon({name:'ios-cafe-outline',iconColor:'#979797'}),
-          this._renderTabIcon({name:'ios-cafe',iconColor:'#2fa3e4'}),
+          this._renderTabIcon({name:'ios-cafe',iconColor:THEMECOLOR}),
           <ReadPage />
         )}
         {this._renderTabBarItem(
           2,
           TAB3_TITLE,
           this._renderTabIcon({name:'ios-compass-outline',iconColor:'#979797'}),
-          this._renderTabIcon({name:'ios-compass',iconColor:'#2fa3e4'}),
+          this._renderTabIcon({name:'ios-compass',iconColor:THEMECOLOR}),
           <GirlPage />
         )}
         {this._renderTabBarItem(
           3,
           TAB4_TITLE,
           this._renderTabIcon({name:'ios-settings-outline',iconColor:'#979797'}),
-          this._renderTabIcon({name:'ios-settings',iconColor:'#2fa3e4'}),
+          this._renderTabIcon({name:'ios-settings',iconColor:THEMECOLOR}),
           <SettingPage />
         )}
       </TabNavigator>
