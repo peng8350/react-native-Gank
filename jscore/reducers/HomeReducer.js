@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:21:13 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 15:00:54
+ * @Last Modified time: 2018-04-04 15:08:26
  * @Email: peng8350@gmail.com 
  */
 
@@ -25,7 +25,7 @@ export default function HomeReducer(state=initState,action){
             ...state,
             loading: false,
             error: true,
-            dataSource: action.data.results.Android
+            dataSource: action.data
         }
         case Types.FETCH_HOME_GANK_REQUSTING:
         return {

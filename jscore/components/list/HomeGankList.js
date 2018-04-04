@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:19:35 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 15:04:23
+ * @Last Modified time: 2018-04-04 15:32:58
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,26 +12,32 @@ import * as Action from "../../actions/fetchHomeAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
-import HomeGankItem from '../Item/HomeGankItem'
+import HomeGankItem from "../Item/HomeGankItem";
 
 class HomeGankList extends Component {
+  _extraUniqueKey(item, index) {
+    return "index" + index + item;
+  }
+
   render() {
-      
     return (
       <FlatList
         ListHeaderComponent={this.props.header}
         data={this.props.dataSource}
-        renderItem={({ item }) => (
-          <HomeGankItem
-            type={item.type}
-            ctn={item.desc}
-            author={item.who}
-            time={item.publishedAt}
-            onItemSelect={() => {
-              this.props.navigation.navigate("Web", { url: item.url });
-            }}
-          />
-        )}
+        keyExtractor={this._extraUniqueKey}
+        renderItem={({ item, index }) => {
+          return (
+            <HomeGankItem
+              type={item.type}
+              ctn={item.desc}
+              author={item.who}
+              time={item.publishedAt}
+              onItemSelect={() => {
+                this.props.navigation.navigate("Web", { url: item.url });
+              }}
+            />
+          );
+        }}
       />
     );
   }
