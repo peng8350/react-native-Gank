@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:04 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 14:26:22
+ * @Last Modified time: 2018-04-04 16:01:05
  * @Email: peng8350@gmail.com 
  */
 // @flow
@@ -17,7 +17,7 @@ export default class HomePage extends Component {
     return (
       <View style={styles.container}>
       
-        <HomeGankList header = { <HomeGridView navigation={this.props.navigation}></HomeGridView>}></HomeGankList>
+        <HomeGankList navigation={this.props.navigation} header = { <HomeGridView navigation={this.props.navigation}></HomeGridView>}></HomeGankList>
       </View>
     );
   }

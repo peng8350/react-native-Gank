@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-01 20:31:22
+ * @Last Modified time: 2018-04-04 16:18:23
  */
 
 //@flow
@@ -18,6 +18,24 @@ import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 
 
 export default class GankItem extends Component {
+
+  _renderIconText(iconName, text) {
+    return (
+      <View style={{flexDirection: 'row',
+      alignItems: 'center',marginLeft:10}}>
+        <Icon name={iconName} color={TEXTSMALLCOLOR} size={16} />
+        <Text
+          style={[
+            globalStyles.smallText,
+            { textAlign: "right", marginLeft: 2 }
+          ]}
+        >
+          {" " + text}
+        </Text>
+      </View>
+    );
+  }
+
   render() {
     return (
       <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={this.props.onItemSelect}>
@@ -36,22 +54,8 @@ export default class GankItem extends Component {
                 }
               ]}
             >
-              <Text style={[globalStyles.smallText, { textAlign: "right" }]}>
-                <Icon
-                  name="ios-person-outline"
-                  color={TEXTSMALLCOLOR}
-                  size={16}
-                />
-                {" " + this.props.author}
-              </Text>
-              <Text style={[globalStyles.smallText, { textAlign: "right" }]}>
-                <Icon
-                  name="ios-clock-outline"
-                  color={TEXTSMALLCOLOR}
-                  size={14}
-                />
-                {" " + DateUtils.parseString(this.props.time, "YYYY年MM月DD日")}
-              </Text>
+              {this._renderIconText('ios-person-outline',this.props.author)}
+              {this._renderIconText('ios-clock-outline',DateUtils.parseString(this.props.time, "YYYY年MM月DD日"))}
             </View>
           </View>
         </View>
