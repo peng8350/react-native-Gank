@@ -1,0 +1,58 @@
+/*
+ * @Author: Jpeng 
+ * @Date: 2018-04-04 14:19:35 
+ * @Last Modified by: Jpeng
+ * @Last Modified time: 2018-04-04 15:04:23
+ * @Email: peng8350@gmail.com 
+ */
+
+//@flow
+import React, { Component } from "react";
+import * as Action from "../../actions/fetchHomeAction";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { FlatList } from "react-native";
+import HomeGankItem from '../Item/HomeGankItem'
+
+class HomeGankList extends Component {
+  render() {
+      
+    return (
+      <FlatList
+        ListHeaderComponent={this.props.header}
+        data={this.props.dataSource}
+        renderItem={({ item }) => (
+          <HomeGankItem
+            type={item.type}
+            ctn={item.desc}
+            author={item.who}
+            time={item.publishedAt}
+            onItemSelect={() => {
+              this.props.navigation.navigate("Web", { url: item.url });
+            }}
+          />
+        )}
+      />
+    );
+  }
+
+  componentDidMount() {
+    this.props.actions.fetchData();
+  }
+}
+
+const stateToprops = state => {
+  return {
+    dataSource: state.HomeReducer.dataSource,
+    loading: state.HomeReducer.loading,
+    error: state.HomeReducer.error
+  };
+};
+
+const dispatchToAction = dispatch => {
+  return {
+    actions: bindActionCreators(Action, dispatch)
+  };
+};
+
+export default connect(stateToprops, dispatchToAction)(HomeGankList);
