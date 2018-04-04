@@ -2,19 +2,22 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 19:47:48
+ * @Last Modified time: 2018-04-04 17:18:21
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import ItemSeparater from "../other/ItemSeparater";
 import { StackNavigator } from "react-navigation";
 import HomeGridItem from "../Item/HomeGridItem";
+import { globalStyles } from "../../constants/styles";
+import IconText from "../view/IconText";
+import { connect } from "react-redux";
 
-export default class HomeGirdView extends Component {
+class HomeGirdView extends Component {
   dataSource = [];
 
   componentWillMount() {
@@ -54,12 +57,36 @@ export default class HomeGirdView extends Component {
     this._initData(itemTitles, images);
   }
 
+  _renderFooter() {
+    return (
+      <View>
+        <ItemSeparater height={1} />
+        <View
+          style={[
+            globalStyles.itemContainer,
+            { marginTop: 10, height: 40, alignItems: "center" }
+          ]}
+        >
+          <IconText
+            name="ios-aperture"
+            color={"cornflowerblue"}
+            text={"最新干货"}
+            size={20}
+            textStyle={[globalStyles.BigText, { marginLeft: 5 }]}
+          />
+          <Text style={globalStyles.smallText}>{this.props.newDate}</Text>
+        </View>
+        <ItemSeparater height={1} />
+      </View>
+    );
+  }
+
   render() {
     return (
       <FlatList
         style={styles.container}
-        ListFooterComponent={() => <ItemSeparater />}
-        ListHeaderComponent={() => <ItemSeparater />}
+        ListFooterComponent={() => this._renderFooter()}
+        ListHeaderComponent={() => <ItemSeparater height={1} />}
         data={this.dataSource}
         numColumns={3}
         renderItem={({ item }) => this._renderGridItem(item)}
@@ -101,3 +128,11 @@ const styles = StyleSheet.create({
     marginTop: 5
   }
 });
+
+export const stateToProps = state => {
+  return {
+    newDate: state.HomeReducer.newDate
+  };
+};
+
+export default connect(stateToProps)(HomeGirdView);

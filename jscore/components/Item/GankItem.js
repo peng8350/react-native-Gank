@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-04 16:18:23
+ * @Last Modified time: 2018-04-04 16:54:56
  */
 
 //@flow
@@ -14,29 +14,9 @@ import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateUtils from "../../utils/DateUtils";
 import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
+import IconText from "../view/IconText";
 
 export default class GankItem extends Component {
-  _renderIconText(iconName, text) {
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: 10
-        }}
-      >
-        <Icon name={iconName} color={TEXTSMALLCOLOR} size={16} />
-        <Text
-          style={[
-            globalStyles.smallText,
-            { textAlign: "right", marginLeft: 2 }
-          ]}
-        >
-          {" " + text}
-        </Text>
-      </View>
-    );
-  }
 
   render() {
     return (
@@ -59,11 +39,8 @@ export default class GankItem extends Component {
                 }
               ]}
             >
-              {this._renderIconText("ios-person-outline", this.props.author)}
-              {this._renderIconText(
-                "ios-clock-outline",
-                DateUtils.parseString(this.props.time, "YYYY年MM月DD日")
-              )}
+            <IconText name= 'ios-person-outline' text ={this.props.author}/>
+            <IconText name = 'ios-clock-outline' text ={DateUtils.parseString(this.props.time, "YYYY年MM月DD日")} />
             </View>
           </View>
         </View>

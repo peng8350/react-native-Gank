@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:26:25
+ * @Last Modified time: 2018-04-04 16:56:10
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,35 +10,16 @@
 
 import React, { Component } from "react";
 import { globalStyles } from "../../constants/styles";
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight, Platform } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateUtils from "../../utils/DateUtils";
 import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 import ItemSeparater from "../other/ItemSeparater";
 import { getWidth } from "../../utils/ScreenUtils";
+import IconText from "../view/IconText";
 
 export default class GankItem extends Component {
-  _renderIconText(iconName, text) {
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: 10
-        }}
-      >
-        <Icon name={iconName} color={TEXTSMALLCOLOR} size={16} />
-        <Text
-          style={[
-            globalStyles.smallText,
-            { textAlign: "right", marginLeft: 2 }
-          ]}
-        >
-          {" " + text}
-        </Text>
-      </View>
-    );
-  }
+  
   render() {
     return (
       <TouchableHighlight
@@ -56,8 +37,8 @@ export default class GankItem extends Component {
             direction={"flex-end"}
           />
           <View style={styles.bottomContainer}>
-            {this._renderIconText("ios-color-filter-outline", this.props.type)}
-            {this._renderIconText("ios-person-outline", this.props.author)}
+            <IconText name ='ios-color-filter-outline' text={this.props.type}/>
+            <IconText name ='ios-person-outline' text={this.props.author}/>
           </View>
         </View>
       </TouchableHighlight>
@@ -73,7 +54,7 @@ const styles = StyleSheet.create({
     shadowColor: "#333",
     shadowOffset: { height: 5, width: 5 },
     shadowOpacity: 0.3,
-    padding: 5
+    padding: 5,
   },
   topContainer: {
     flex: 1
