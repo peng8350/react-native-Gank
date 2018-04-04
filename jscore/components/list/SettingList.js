@@ -118,7 +118,7 @@ class SettingList extends Component {
       <SectionList
         style={{ marginTop: 150 }}
         sections={dataSource}
-        showsVerticalScrollIndicator ={false}
+        showsVerticalScrollIndicator={false}
         onScroll={event => {
           let y = -event.nativeEvent.contentOffset.y;
           if (y > 0)

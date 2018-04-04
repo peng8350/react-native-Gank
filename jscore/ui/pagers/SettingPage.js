@@ -29,18 +29,18 @@ class SettingPage extends Component {
 
   _renderHeader() {
     return (
-        <ImageBackground
-          style={[styles.header, { height: 150+this.props.headerHeight}]}
-          source={require("../../resources/setbg.jpeg")}
-        >
-          <Image
-            style={[styles.headerIcon]}
-            resizeMode="contain"
-            source={require("../../resources/gank.jpg")}
-          />
-          <Text style={globalStyles.BigText}>干货集中营</Text>
-          <Text style={globalStyles.normalText}>版本号</Text>
-        </ImageBackground>
+      <ImageBackground
+        style={[styles.header, { height: 150 + this.props.headerHeight }]}
+        source={require("../../resources/setbg.jpeg")}
+      >
+        <Image
+          style={[styles.headerIcon]}
+          resizeMode="contain"
+          source={require("../../resources/gank.jpg")}
+        />
+        <Text style={globalStyles.BigText}>干货集中营</Text>
+        <Text style={globalStyles.normalText}>版本号</Text>
+      </ImageBackground>
     );
   }
 
@@ -48,7 +48,7 @@ class SettingPage extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        { <SettingList /> }
+        {<SettingList />}
       </View>
     );
   }
@@ -56,17 +56,17 @@ class SettingPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-      flex:1,
+    flex: 1
   },
   header: {
     width: getWidth(),
     justifyContent: "center",
     alignItems: "center",
-    position: 'absolute',//相对父元素进行绝对定位
-    left:0,
-    top:0,
-    right:0,
-    bottom:0
+    position: "absolute", //相对父元素进行绝对定位
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0
   },
   headerIcon: {
     width: 60,
@@ -78,9 +78,8 @@ const styles = StyleSheet.create({
 
 export const stateToprops = state => {
   return {
-    headerHeight: state.SettingReducer.headerHeight,
+    headerHeight: state.SettingReducer.headerHeight
   };
 };
-
 
 export default connect(stateToprops)(SettingPage);

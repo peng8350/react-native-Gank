@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 22:53:04
+ * @Last Modified time: 2018-04-04 16:26:29
  * @Email: peng8350@gmail.com 
  */
 
@@ -17,7 +17,7 @@ import { PRESSEDCOLOR } from "../../constants/colors";
 export default class SettingItem extends Component {
   static defaultProps = {
     title: "标题",
-    extra: "",
+    extra: ""
   };
 
   render() {
@@ -39,8 +39,10 @@ export default class SettingItem extends Component {
           </View>
 
           <View style={[globalStyles.horizontalLayout, styles.rightContainer]}>
-            <Text style={[globalStyles.smallText,styles.rightText]}>{this.props.extra}</Text>
-            { this.props.renderRight}
+            <Text style={[globalStyles.smallText, styles.rightText]}>
+              {this.props.extra}
+            </Text>
+            {this.props.renderRight}
           </View>
         </View>
       </TouchableHighlight>
@@ -52,8 +54,8 @@ const styles = StyleSheet.create({
   leftText: {
     marginLeft: 10
   },
-  rightText:{
-    marginRight: 8,
+  rightText: {
+    marginRight: 8
   },
   rightContainer: {
     justifyContent: "flex-end",

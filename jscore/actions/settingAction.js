@@ -6,34 +6,34 @@
  * @Email: peng8350@gmail.com 
  */
 
- //@flow 
- 
- import * as Types from './ActionType.js'
- 
-export function setPicPosition(position){
-    return {
-        type: Types.SETTING_CHANGEPOSITION,
-        data:position
-    }   
+//@flow
+
+import * as Types from "./ActionType.js";
+
+export function setPicPosition(position) {
+  return {
+    type: Types.SETTING_CHANGEPOSITION,
+    data: position
+  };
 }
 
-export function setAutoRefresh(refresh){
-    return {
-        type: Types.SETTING_CHANGEAUTOREFRESH,
-        data:refresh
-    }   
+export function setAutoRefresh(refresh) {
+  return {
+    type: Types.SETTING_CHANGEAUTOREFRESH,
+    data: refresh
+  };
 }
 
-export function setNight(isNight){
-    return {
-        type: Types.SETTING_CHANGENIGHT,
-        data:isNight
-    }   
+export function setNight(isNight) {
+  return {
+    type: Types.SETTING_CHANGENIGHT,
+    data: isNight
+  };
 }
 
- export function changeHeight(height){
-     return {
-         type: Types.SETTING_CHANGEHEIGHT,
-         headerHeight: height
-     }
- }
+export function changeHeight(height) {
+  return {
+    type: Types.SETTING_CHANGEHEIGHT,
+    headerHeight: height
+  };
+}

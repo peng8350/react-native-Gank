@@ -15,14 +15,16 @@ import Icon from "react-native-vector-icons/Ionicons";
 import DateUtils from "../../utils/DateUtils";
 import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 
-
-
 export default class GankItem extends Component {
-
   _renderIconText(iconName, text) {
     return (
-      <View style={{flexDirection: 'row',
-      alignItems: 'center',marginLeft:10}}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: 10
+        }}
+      >
         <Icon name={iconName} color={TEXTSMALLCOLOR} size={16} />
         <Text
           style={[
@@ -38,7 +40,10 @@ export default class GankItem extends Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={this.props.onItemSelect}>
+      <TouchableHighlight
+        underlayColor={PRESSEDCOLOR}
+        onPress={this.props.onItemSelect}
+      >
         <View style={globalStyles.itemContainer}>
           <View style={styles.leftContainer}>
             <Text style={globalStyles.normalText}>{this.props.ctn}</Text>
@@ -54,8 +59,11 @@ export default class GankItem extends Component {
                 }
               ]}
             >
-              {this._renderIconText('ios-person-outline',this.props.author)}
-              {this._renderIconText('ios-clock-outline',DateUtils.parseString(this.props.time, "YYYY年MM月DD日"))}
+              {this._renderIconText("ios-person-outline", this.props.author)}
+              {this._renderIconText(
+                "ios-clock-outline",
+                DateUtils.parseString(this.props.time, "YYYY年MM月DD日")
+              )}
             </View>
           </View>
         </View>
@@ -66,9 +74,9 @@ export default class GankItem extends Component {
 
 const styles = StyleSheet.create({
   rightContainer: {
-    width:120
+    width: 120
   },
   leftContainer: {
-    flex:1
+    flex: 1
   }
 });

@@ -8,16 +8,14 @@
 
 //flow
 import React, { Component } from "react";
-import Moment from 'moment';
+import Moment from "moment";
 
 export default class DateUtils extends Component {
-  
-  static parseString(string,formatter){
-    if(string){
-       Moment.locale('en')
-        
-        return Moment(string).format(formatter)
+  static parseString(string, formatter) {
+    if (string) {
+      Moment.locale("en");
+
+      return Moment(string).format(formatter);
     }
   }
-
 }

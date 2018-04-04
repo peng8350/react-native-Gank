@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-01 20:17:05 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-01 20:46:32
+ * @Last Modified time: 2018-04-04 16:27:47
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -20,9 +20,8 @@ export default class WebActivity extends Component {
     return (
       <WebView
         source={{ uri: this.props.navigation.state.params.url }}
-        renderLoading={() => <LoadingBar />
-        }
-        startInLoadingState ={true}
+        renderLoading={() => <LoadingBar />}
+        startInLoadingState={true}
       />
     );
   }

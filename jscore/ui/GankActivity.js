@@ -6,30 +6,25 @@
  * @Email: peng8350@gmail.com 
  */
 
- //@flow
+//@flow
 
- import React, { Component } from 'react';
-import { View } from 'react-native';
-import { globalStyles } from '../constants/styles';
-import GankList from '../components/list/GankList';
-import { FETCHGANK_URL } from '../constants/strings';
- 
+import React, { Component } from "react";
+import { View } from "react-native";
+import { globalStyles } from "../constants/styles";
+import GankList from "../components/list/GankList";
+import { FETCHGANK_URL } from "../constants/strings";
 
- export default class GankActivity extends Component{
+export default class GankActivity extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: navigation.state.params.GankType
+  });
 
-
-
-    static navigationOptions = ({navigation}) => ({
-        headerTitle: navigation.state.params.GankType,
-    })
-
-
-    render(){
-        return (
-                <GankList gankType= {this.props.navigation.state.params.GankType}  navigation ={this.props.navigation}/>
-        )
-    }
-
-
- }
-
+  render() {
+    return (
+      <GankList
+        gankType={this.props.navigation.state.params.GankType}
+        navigation={this.props.navigation}
+      />
+    );
+  }
+}

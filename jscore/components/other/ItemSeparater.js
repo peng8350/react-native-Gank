@@ -14,12 +14,12 @@ import { SEPERATERCOLOR } from "../../constants/colors";
 import { getWidth } from "../../utils/ScreenUtils";
 
 export default class ItemSeparater extends Component {
-  static defaultProps ={
+  static defaultProps = {
     width: getWidth(),
-    height:0.5,
-    direction: 'flex-start',
-    color:SEPERATERCOLOR
-  }
+    height: 0.5,
+    direction: "flex-start",
+    color: SEPERATERCOLOR
+  };
   render() {
     return (
       <View

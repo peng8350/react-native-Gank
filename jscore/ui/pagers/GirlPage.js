@@ -17,9 +17,8 @@ export default class GirlPage extends Component {
   render() {
     return (
       <View>
-        
-        { <GirlList /> }
-        { <ZoomPicView /> }
+        {<GirlList />}
+        {<ZoomPicView />}
       </View>
     );
   }

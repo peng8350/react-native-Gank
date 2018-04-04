@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:21:53
+ * @Last Modified time: 2018-04-04 16:26:25
  * @Email: peng8350@gmail.com 
  */
 
@@ -20,8 +20,13 @@ import { getWidth } from "../../utils/ScreenUtils";
 export default class GankItem extends Component {
   _renderIconText(iconName, text) {
     return (
-      <View style={{flexDirection: 'row',
-      alignItems: 'center',marginLeft:10}}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: 10
+        }}
+      >
         <Icon name={iconName} color={TEXTSMALLCOLOR} size={16} />
         <Text
           style={[
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     height: 150,
     shadowRadius: 2,
     shadowColor: "#333",
-    shadowOffset:{height:5,width:5},
+    shadowOffset: { height: 5, width: 5 },
     shadowOpacity: 0.3,
     padding: 5
   },

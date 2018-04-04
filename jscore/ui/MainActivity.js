@@ -2,22 +2,14 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-01 20:32:11
+ * @Last Modified time: 2018-04-04 16:27:43
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component } from "react";
-import {
-  Button,
-  Platform,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-
-} from "react-native";
+import { Button, Platform, StyleSheet, Text, Image, View } from "react-native";
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from "react-native-tab-navigator";
 import HomePage from "./pagers/HomePage";
@@ -41,21 +33,18 @@ const instructions = Platform.select({
 });
 
 class MainActivity extends Component {
-    static navigationOptions = ({navigation}) => ({
-        headerTitle: navigation.state.params?navigation.state.params.navTitle:'',
-    })
-    
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: navigation.state.params ? navigation.state.params.navTitle : ""
+  });
+
   render() {
-    return (
-        <TabBar navigation={this.props.navigation} />
-    )
+    return <TabBar navigation={this.props.navigation} />;
   }
 
-  componentDidMount(){
-      this.props.navigation.setParams({navTitle: TAB1_TITLE})
+  componentDidMount() {
+    this.props.navigation.setParams({ navTitle: TAB1_TITLE });
   }
 }
-
 
 const stateToprops = state => {
   return {
@@ -64,4 +53,3 @@ const stateToprops = state => {
 };
 
 export default connect(stateToprops)(MainActivity);
-

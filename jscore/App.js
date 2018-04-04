@@ -16,23 +16,25 @@ import GankActivity from "./ui/GankActivity";
 import { globalStyles } from "./constants/styles";
 import WebActivity from "./ui/WebActivity";
 
-const Screens = StackNavigator({
-  Main: { screen: MainActivity },
-  Gank: {screen: GankActivity},
-  Web: {screen: WebActivity}
-},{
-  navigationOptions:{
-    headerStyle: globalStyles.navStyle,
-    headerTintColor: 'white',
-    headerTitleStyle: globalStyles.navTitle
+const Screens = StackNavigator(
+  {
+    Main: { screen: MainActivity },
+    Gank: { screen: GankActivity },
+    Web: { screen: WebActivity }
   },
-  mode: 'modal'
-});
+  {
+    navigationOptions: {
+      headerStyle: globalStyles.navStyle,
+      headerTintColor: "white",
+      headerTitleStyle: globalStyles.navTitle
+    },
+    mode: "modal"
+  }
+);
 
 export default class App extends Component {
   render() {
     return (
-      
       <Provider store={store}>
         <Screens />
       </Provider>

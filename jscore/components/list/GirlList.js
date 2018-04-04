@@ -44,7 +44,7 @@ class GirlList extends Component {
     return (
       <FlatList
         data={this.props.dataSource}
-        renderItem={(info) => this._renderItem(info)}
+        renderItem={info => this._renderItem(info)}
         numColumns={2}
         keyExtractor={this._extraUniqueKey}
         refreshing={this.props.fetching}
@@ -54,7 +54,11 @@ class GirlList extends Component {
         }}
         onEndReachedThreshold={0.5}
         ListFooterComponent={
-          this.props.dataSource.length != 0&&Platform.OS==='ios' ? <GirlFooter /> : undefined
+          this.props.dataSource.length != 0 && Platform.OS === "ios" ? (
+            <GirlFooter />
+          ) : (
+            undefined
+          )
         }
       />
     );
