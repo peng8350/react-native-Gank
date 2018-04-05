@@ -11,6 +11,7 @@
     "moment": "^2.22.0",
     "react": "16.3.0-alpha.2",
     "react-native": "0.54.2",
+    "react-native-actionsheet": "^2.4.0",
     "react-native-image-zoom-viewer": "^2.1.0",
     "react-native-search-header": "^0.2.6",
     "react-native-swipeout": "^2.3.3",

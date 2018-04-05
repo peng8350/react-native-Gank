@@ -2,14 +2,23 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 16:39:35
+ * @Last Modified time: 2018-04-05 21:57:32
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component } from "react";
-import { Button, Platform, StyleSheet, Text, Image, View } from "react-native";
+import {
+  TouchableOpacity,
+  Button,
+  Platform,
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  BackHandler
+} from "react-native";
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from "react-native-tab-navigator";
 import HomePage from "./pagers/HomePage";
@@ -24,6 +33,8 @@ import {
   TAB4_TITLE
 } from "../constants/strings";
 import { globalStyles } from "../constants/styles";
+import Icon from "react-native-vector-icons/Ionicons";
+import ActionSheet from "react-native-actionsheet";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -34,17 +45,83 @@ const instructions = Platform.select({
 
 class MainActivity extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: navigation.state.params ? navigation.state.params.navTitle : ""
+    headerTitle: navigation.state.params
+      ? navigation.state.params.navTitle
+      : "",
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.state.params.pressRight()}>
+        <Icon
+          suppressHighlighting={true}
+          style={{ marginRight: 12 }}
+          color="#fff"
+          size={28}
+          name="ios-menu"
+        />
+      </TouchableOpacity>
+    )
   });
 
-
-  
-  render() {
-    return <TabBar navigation={this.props.navigation} />;
+  _renderActionSheet() {
+    let actionArr =
+      Platform.OS === "ios"
+        ? ["分享", "反馈", "关于作者", "关闭"]
+        : ["分享", "反馈", "关于作者", "退出程序", "关闭"];
+    if (Platform.OS === "ios") {
+      return (
+        <ActionSheet
+          ref={"actionSheet"}
+          title={"你想要做什么?"}
+          options={actionArr}
+          cancelButtonIndex={3}
+          onPress={index => {
+            switch (actionArr[index]) {
+            }
+          }}
+        />
+      );
+    }
+    return (
+      <ActionSheet
+        ref={"actionSheet"}
+        title={"你想要做什么?"}
+        options={actionArr}
+        destructiveButtonIndex={3}
+        cancelButtonIndex={4}
+        onPress={index => {
+          switch (actionArr[index]) {
+            case "退出程序":
+              if (Platform.OS === "Android") {
+                this._pressExit();
+              }
+            break;
+          }
+        }}
+      />
+    );
   }
 
+  render() {
+    return (
+      <View style={globalStyles.verticalLayout}>
+      {this._renderActionSheet()}
+        <TabBar navigation={this.props.navigation} />
+      </View>
+    );
+  }
+
+  _pressExit(int) {
+    BackHandler.exitApp();
+  }
+
+  _pressRight = () => {
+    this.refs.actionSheet.show();
+  };
+
   componentDidMount() {
-    this.props.navigation.setParams({ navTitle: TAB1_TITLE });
+    this.props.navigation.setParams({
+      navTitle: TAB1_TITLE,
+      pressRight: this._pressRight
+    });
   }
 }
 
