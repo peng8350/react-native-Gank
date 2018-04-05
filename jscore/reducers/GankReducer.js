@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 21:30:48 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 14:51:11
+ * @Last Modified time: 2018-04-05 15:13:32
  * @Email: peng8350@gmail.com 
  */
 
@@ -35,6 +35,11 @@ export default function GankReducer(state = initStyles, action) {
         ...state,
         fetching: true
       };
+      case Types.GANK_CLEARLIST:
+      return {
+        ...state,
+        dataSource: []
+      }
     default:
       return state;
   }

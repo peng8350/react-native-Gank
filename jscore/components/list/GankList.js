@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 14:56:18
+ * @Last Modified time: 2018-04-05 15:17:09
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { FlatList } from "react-native";
 import GankItem from "../Item/GankItem";
 import { bindActionCreators } from "redux";
-import * as Actions from "../../actions/fetchGankAction";
+import * as Action from "../../actions/fetchGankAction";
 import ItemSeparater from "../other/ItemSeparater";
 import { FETCHGANK_URL, FETCHGIRL_URL } from "../../constants/strings";
 import { connect } from "react-redux";
@@ -43,11 +43,16 @@ class GankList extends Component {
     );
   }
 
+  componentWillUnmount() {
+    this.props.actions.clearList()
+  }
+
   componentDidMount() {
+   
     this.props.dataSource = [];
     const url =
       FETCHGANK_URL + (this.props.gankType==='IOS'?'iOS':this.props.gankType) + "/40/" + this.props.pageIndex;
-    this.props.acations.fetchGank(url);
+    this.props.actions.fetchGank(url);
   }
 }
 
@@ -61,7 +66,7 @@ const stateToprops = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    acations: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(Action, dispatch)
   };
 };
 

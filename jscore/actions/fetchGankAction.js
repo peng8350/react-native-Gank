@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 21:32:13 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 14:50:58
+ * @Last Modified time: 2018-04-05 15:15:16
  * @Email: peng8350@gmail.com 
  */
 
@@ -46,3 +46,8 @@ export function fetchGank(url) {
   };
 }
 
+export function clearList() {
+  return {
+    type: Types.GANK_CLEARLIST
+  };
+}
