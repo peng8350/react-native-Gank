@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 15:17:09
+ * @Last Modified time: 2018-04-05 16:53:13
  * @Email: peng8350@gmail.com 
  */
 
@@ -43,16 +43,17 @@ class GankList extends Component {
     );
   }
 
-  componentWillUnmount() {
-    this.props.actions.clearList()
-  }
 
-  componentDidMount() {
-   
-    this.props.dataSource = [];
-    const url =
-      FETCHGANK_URL + (this.props.gankType==='IOS'?'iOS':this.props.gankType) + "/40/" + this.props.pageIndex;
-    this.props.actions.fetchGank(url);
+  componentWillMount() {
+    this.props.actions.clearList();
+    if (!this.props.fetching) {
+      const url =
+        FETCHGANK_URL +
+        (this.props.gankType === "IOS" ? "iOS" : this.props.gankType) +
+        "/40/" +
+        this.props.pageIndex;
+      this.props.actions.fetchGank(url);
+    }
   }
 }
 

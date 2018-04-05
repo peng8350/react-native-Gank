@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:27:43
+ * @Last Modified time: 2018-04-05 16:39:35
  * @Email: peng8350@gmail.com 
  */
 
@@ -37,6 +37,8 @@ class MainActivity extends Component {
     headerTitle: navigation.state.params ? navigation.state.params.navTitle : ""
   });
 
+
+  
   render() {
     return <TabBar navigation={this.props.navigation} />;
   }

@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-05 14:57:04
+ * @Last Modified time: 2018-04-05 16:59:04
  */
 
 //@flow
@@ -17,6 +17,7 @@ import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 import Swipeout from "react-native-swipeout";
 import IconText from "../view/IconText";
 import { connect } from "react-redux";
+import CallOnceInInterval from "../../utils/CallOnceInInterval";
 
 export default class GankItem extends Component {
 
@@ -46,7 +47,7 @@ export default class GankItem extends Component {
       <Swipeout right={this.swipeBtns} buttonWidth={80} autoClose ={true}>
         <TouchableHighlight
           underlayColor={PRESSEDCOLOR}
-          onPress={this.props.onItemSelect}
+          onPress={ () => CallOnceInInterval( this.props.onItemSelect) }
         >
           <View style={globalStyles.itemContainer}>
             <View style={styles.leftContainer}>

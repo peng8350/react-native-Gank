@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 14:16:20
+ * @Last Modified time: 2018-04-05 16:56:47
  * @Email: peng8350@gmail.com 
  */
 
@@ -17,6 +17,7 @@ import { TEXTSMALLCOLOR, PRESSEDCOLOR } from "../../constants/colors";
 import ItemSeparater from "../other/ItemSeparater";
 import { getWidth } from "../../utils/ScreenUtils";
 import IconText from "../view/IconText";
+import CallOnceInInterval from "../../utils/CallOnceInInterval";
 
 export default class HomeGankItem extends Component {
   
@@ -25,7 +26,7 @@ export default class HomeGankItem extends Component {
       <TouchableHighlight
         style={{ margin: 5 }}
         underlayColor={PRESSEDCOLOR}
-        onPress={this.props.onItemSelect}
+        onPress={() => CallOnceInInterval(this.props.onItemSelect) }
       >
         <View style={[globalStyles.verticalLayout, styles.container]}>
           <View style={styles.topContainer}>

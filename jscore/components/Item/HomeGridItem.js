@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-02 23:47:16
+ * @Last Modified time: 2018-04-05 16:58:22
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import { PRESSEDCOLOR } from "../../constants/colors";
 import IconView from "../view/IconView";
+import CallOnceInInterval from "../../utils/CallOnceInInterval";
 
 class HomeGridItem extends Component {
   render() {
@@ -24,7 +25,7 @@ class HomeGridItem extends Component {
       <TouchableHighlight
         style={{ flex: 1 }}
         underlayColor={PRESSEDCOLOR}
-        onPress={() => this.props.onItemPress(this.props.title)}
+        onPress={() => CallOnceInInterval( () => this.props.onItemPress(this.props.title))}
       >
         <View style={styles.itemContainer}>
           <IconView
