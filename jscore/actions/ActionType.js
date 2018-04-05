@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 14:42:43
+ * @Last Modified time: 2018-04-05 14:37:36
  * @Email: peng8350@gmail.com 
  * @flow
  */
@@ -38,3 +38,5 @@ export const FETCH_HOME_GANK_REQUSTING = "FETCH_HOME_GANK_REQUSTING";
 export const FETCH_HOME_GANK_SUCCESS = "FETCH_HOME_GANK_SUCCESS";
 
 export const FETCH_HOME_GANK_FAILED = "FETCH_HOME_GANK_FAILED";
+
+export const GANK_CLOSESWIPEBTN = "GANK_CLOSESWIPEBTN"

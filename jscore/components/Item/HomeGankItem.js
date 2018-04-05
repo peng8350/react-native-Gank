@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:56:10
+ * @Last Modified time: 2018-04-05 14:16:20
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,7 +18,7 @@ import ItemSeparater from "../other/ItemSeparater";
 import { getWidth } from "../../utils/ScreenUtils";
 import IconText from "../view/IconText";
 
-export default class GankItem extends Component {
+export default class HomeGankItem extends Component {
   
   render() {
     return (
@@ -38,7 +38,7 @@ export default class GankItem extends Component {
           />
           <View style={styles.bottomContainer}>
             <IconText name ='ios-color-filter-outline' text={this.props.type}/>
-            <IconText name ='ios-person-outline' text={this.props.author}/>
+            <IconText style={{marginLeft: 10}} name ='ios-person-outline' text={this.props.author}/>
           </View>
         </View>
       </TouchableHighlight>

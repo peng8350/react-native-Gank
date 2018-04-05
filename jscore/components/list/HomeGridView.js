@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 17:18:21
+ * @Last Modified time: 2018-04-05 14:51:59
  * @Email: peng8350@gmail.com 
  */
 
@@ -68,13 +68,14 @@ class HomeGirdView extends Component {
           ]}
         >
           <IconText
+            style={{marginLeft: 10}}
             name="ios-aperture"
             color={"cornflowerblue"}
             text={"最新干货"}
             size={20}
             textStyle={[globalStyles.BigText, { marginLeft: 5 }]}
           />
-          <Text style={globalStyles.smallText}>{this.props.newDate}</Text>
+          <Text style={[globalStyles.smallText,{marginRight:10}]}>{this.props.newDate}</Text>
         </View>
         <ItemSeparater height={1} />
       </View>
