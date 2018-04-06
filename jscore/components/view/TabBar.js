@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:26:58
+ * @Last Modified time: 2018-04-06 19:04:06
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -17,10 +17,8 @@ import {
   TAB1_TITLE,
   TAB2_TITLE,
   TAB3_TITLE,
-  TAB4_TITLE
 } from "../../constants/strings";
 import HomePage from "../../ui/pagers/HomePage";
-import ReadPage from "../../ui/pagers/ReadPage";
 import SettingPage from "../../ui/pagers/SettingPage";
 import GirlPage from "../../ui/pagers/GirlPage";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -45,16 +43,6 @@ class TabBar extends Component {
           1,
           TAB2_TITLE,
           this._renderTabIcon({
-            name: "ios-cafe-outline",
-            iconColor: "#979797"
-          }),
-          this._renderTabIcon({ name: "ios-cafe", iconColor: THEMECOLOR }),
-          <ReadPage />
-        )}
-        {this._renderTabBarItem(
-          2,
-          TAB3_TITLE,
-          this._renderTabIcon({
             name: "ios-compass-outline",
             iconColor: "#979797"
           }),
@@ -62,8 +50,8 @@ class TabBar extends Component {
           <GirlPage />
         )}
         {this._renderTabBarItem(
-          3,
-          TAB4_TITLE,
+          2,
+          TAB3_TITLE,
           this._renderTabIcon({
             name: "ios-settings-outline",
             iconColor: "#979797"
@@ -89,7 +77,7 @@ class TabBar extends Component {
                 ? TAB1_TITLE
                 : index === 1
                   ? TAB2_TITLE
-                  : index === 2 ? TAB3_TITLE : TAB4_TITLE
+                  : index === 2 ? TAB2_TITLE : TAB3_TITLE
           });
           this.props.actions.updateTab(index);
         }}

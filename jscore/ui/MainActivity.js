@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 21:57:32
+ * @Last Modified time: 2018-04-06 19:03:11
  * @Email: peng8350@gmail.com 
  */
 
@@ -22,7 +22,6 @@ import {
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from "react-native-tab-navigator";
 import HomePage from "./pagers/HomePage";
-import ReadPage from "./pagers/ReadPage";
 import GirlPage from "./pagers/GirlPage";
 import TabBar from "../components/view/TabBar";
 import { connect } from "react-redux";
