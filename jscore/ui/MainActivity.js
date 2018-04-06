@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 19:03:11
+ * @Last Modified time: 2018-04-06 21:03:07
  * @Email: peng8350@gmail.com 
  */
 
@@ -34,6 +34,7 @@ import {
 import { globalStyles } from "../constants/styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import ActionSheet from "react-native-actionsheet";
+
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",

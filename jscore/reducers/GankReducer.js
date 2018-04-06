@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 21:30:48 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 15:13:32
+ * @Last Modified time: 2018-04-06 22:34:09
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,7 +11,10 @@ import * as Types from "../actions/ActionType";
 const initStyles = {
   fetching: false,
   dataSource: [],
-  error: false
+  error: false,
+  enterSearch: false,
+  searching: false,
+  searchList: []
 };
 
 export default function GankReducer(state = initStyles, action) {
@@ -40,6 +43,35 @@ export default function GankReducer(state = initStyles, action) {
         ...state,
         dataSource: []
       }
+      case Types.SEARCH_GANK_REQUESTING:
+      return {
+        ...state,
+        searching : true
+      }
+      case Types.SEARCH_GANK_SCCUESS:
+      return {
+        ...state,
+        searching : false,
+        searchList: [].concat(action.data)
+        
+      }
+      case Types.SEARCH_GANK_FAILED:
+      return {
+        ...state,
+        searching: false
+      }
+      case Types.ENTER_SEARCH:
+      return {
+        ...state,
+        enterSearch:true
+      }
+      case Types.EXIT_SEARCH:
+      return {
+        ...state,
+        enterSearch:false,
+        searchList: []
+      }
+
     default:
       return state;
   }

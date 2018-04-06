@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-06 20:55:14
+ * @Last Modified time: 2018-04-06 21:46:46
  */
 
 //@flow
@@ -65,7 +65,7 @@ export default class GankItem extends Component {
     else{
       return   <PicImage
       style={styles.image}
-      url={{uri:this.props.images[0]}}
+      url={{uri:this.props.images[0]+'?imageView2/0/w/200'}}
       placeholder={require("../../resources/empty.png")
     }
       />

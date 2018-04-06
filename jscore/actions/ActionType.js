@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 15:12:56
+ * @Last Modified time: 2018-04-06 21:58:23
  * @Email: peng8350@gmail.com 
  * @flow
  */
@@ -40,3 +40,15 @@ export const FETCH_HOME_GANK_SUCCESS = "FETCH_HOME_GANK_SUCCESS";
 export const FETCH_HOME_GANK_FAILED = "FETCH_HOME_GANK_FAILED";
 
 export const GANK_CLEARLIST = "GANK_CLEARLIST"
+
+export const FETCH_SEARCHGANK = "FETCH_SEARCHGANK"
+
+export const SEARCH_GANK_SCCUESS = "SEARCH_GANK_SCCUESS"
+
+export const SEARCH_GANK_FAILED = "SEARCH_GANK_FAILED"
+
+export const SEARCH_GANK_REQUESTING = "SEARCH_GANK_REQUESTING"
+
+export const ENTER_SEARCH ="ENTER_SEARCH"
+
+export const EXIT_SEARCH = "EXIT_SEARCH"

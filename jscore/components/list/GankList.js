@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 19:53:20
+ * @Last Modified time: 2018-04-06 21:35:00
  * @Email: peng8350@gmail.com 
  */
 
@@ -24,6 +24,7 @@ class GankList extends Component {
   render() {
     return (
       <FlatList
+        style ={this.props.style}
         data={this.props.dataSource}
         keyExtractor={(item, index) => index + ""}
         renderItem={({ item }) => {
@@ -60,7 +61,6 @@ class GankList extends Component {
 
 const stateToprops = state => {
   return {
-    dataSource: state.GankReducer.dataSource,
     fetching: state.GankReducer.fetching,
     error: state.GankReducer.error
   };
