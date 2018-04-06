@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 16:53:13
+ * @Last Modified time: 2018-04-06 19:53:20
  * @Email: peng8350@gmail.com 
  */
 
@@ -29,6 +29,7 @@ class GankList extends Component {
         renderItem={({ item }) => {
           return (
             <GankItem
+              images={item.images}
               ctn={item.desc}
               author={item.who}
               time={item.publishedAt}

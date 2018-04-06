@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 20:52:24
+ * @Last Modified time: 2018-04-06 19:05:21
  * @Email: peng8350@gmail.com 
  */
 
@@ -34,14 +34,12 @@ export default class GankActivity extends Component {
 
   _pressRight = () => {
     let bar = this.refs.searchBar;
-    // if (bar.isHidden()) bar.show();
-    // else bar.hide();
-    bar.clear()
+    if (bar.isHidden()) bar.show();
+    else bar.hide();
   };
 
   componentDidMount() {
     this.props.navigation.setParams({ pressRight: this._pressRight });
-    this.refs.searchBar.show()
   }
 
   render() {
@@ -51,7 +49,9 @@ export default class GankActivity extends Component {
           ref={"searchBar"}
           entryAnimation={"from-right-side"}
           placeholder={"标题/作者/日期"}
-          onSearch ={ () => {alert('search')} }
+          onSearch={() => {
+            alert("search");
+          }}
           topOffset={0}
         />
         <GankList

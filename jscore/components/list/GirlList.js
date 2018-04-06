@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-03-31 10:49:02
+ * @Last Modified time: 2018-04-06 20:58:43
  * @Email: peng8350@gmail.com 
  */
 
@@ -75,7 +75,7 @@ class GirlList extends Component {
           this.props.actions.startViewPic(info.index);
         }}
       >
-        <PicImage url={info.item.url} />
+        <PicImage url={{uri:info.item.url}} placeholder={require('../../resources/empty.png')} />
       </TouchableHighlight>
     );
   }

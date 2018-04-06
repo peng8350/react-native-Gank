@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 17:03:36
+ * @Last Modified time: 2018-04-06 20:18:30
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,15 +18,15 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold"
   },
   smallText: {
-    fontSize: 12,
+    fontSize: 10,
     color: TEXTSMALLCOLOR
   },
   normalText: {
-    fontSize: 14,
+    fontSize: 12,
     color: TEXTNORMALCOLOR
   },
   BigText: {
-    fontSize: 16,
+    fontSize: 15,
     textAlign:'center',
     color: TEXTNORMALCOLOR
   },
