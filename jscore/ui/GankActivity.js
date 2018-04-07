@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 22:36:32
+ * @Last Modified time: 2018-04-07 17:55:50
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,10 +19,15 @@ import LoadingBar from "../components/view/LoadingBar";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Action from "../actions/fetchGankAction";
+import HttpUtils from "../utils/HttpUtils";
 
 class GankActivity extends Component {
+  pageIndex = 1;
+
   static navigationOptions = ({ navigation }) => ({
     headerTitle: navigation.state.params.GankType,
+    headerBackTitle: '首页',
+    headerBackTitleStyle: {color:'#fff'},
     headerRight: (
       <TouchableOpacity onPress={() => navigation.state.params.pressRight()}>
         <Icon
@@ -38,6 +43,11 @@ class GankActivity extends Component {
 
   constructor() {
     super();
+    this.state = {
+      dataSource: [],
+      fetching: false,
+      error: false
+    };
   }
 
   _pressRight = () => {
@@ -50,7 +60,40 @@ class GankActivity extends Component {
     this.props.action.toggleSearch(false);
   }
 
+  fetchGank(url) {
+    if (!this.state.fetching) {
+      this.setState({
+        fetching: true,
+        error: false
+      });
+      HttpUtils.get(
+        url,
+        responseJson => {
+          this.setState({
+            fetching: false,
+            error: false,
+            dataSource: this.state.dataSource.concat(responseJson.results)
+          });
+        },
+        error => {
+          this.setState({
+            fetching: false,
+            error: true
+          });
+        }
+      );
+    }
+  }
+
   componentDidMount() {
+    const url =
+      FETCHGANK_URL +
+      (this.props.navigation.state.params.GankType === "IOS"
+        ? "iOS"
+        : this.props.navigation.state.params.GankType) +
+      "/40/" +
+      "1";
+    this.fetchGank(url);
     this.props.navigation.setParams({ pressRight: this._pressRight });
   }
 
@@ -58,7 +101,7 @@ class GankActivity extends Component {
     return (
       <View style={globalStyles.verticalLayout}>
         <GankList
-          dataSource={this.props.dataSource}
+          dataSource={this.state.dataSource}
           gankType={this.props.navigation.state.params.GankType}
           navigation={this.props.navigation}
         />
@@ -67,7 +110,6 @@ class GankActivity extends Component {
           entryAnimation={"from-right-side"}
           placeholder={"标题/作者/日期"}
           onSearch={event => {
-            // http://gank.io/api/search/query/listview/category/Android/count/10/page/1
             this.props.action.searchGank(
               "http://gank.io/api/search/query/" +
                 event.nativeEvent.text +
@@ -109,7 +151,7 @@ const styles = StyleSheet.create({
   searchList: {
     backgroundColor: "#fff",
     flex: 1,
-    marginTop: 44,
+    paddingTop: 44,
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -120,6 +162,7 @@ const styles = StyleSheet.create({
 
 const stateToprops = state => {
   return {
+    fetching: state.GankReducer.fetching,
     enterSearch: state.GankReducer.enterSearch,
     searching: state.GankReducer.searching,
     dataSource: state.GankReducer.dataSource,
