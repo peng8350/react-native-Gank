@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:19:35 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 16:57:40
+ * @Last Modified time: 2018-04-07 19:40:50
  * @Email: peng8350@gmail.com 
  */
 
@@ -13,6 +13,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
 import HomeGankItem from "../Item/HomeGankItem";
+import LoadingBar from "../view/LoadingBar";
 
 class HomeGankList extends Component {
   _extraUniqueKey(item, index) {
@@ -22,6 +23,7 @@ class HomeGankList extends Component {
   render() {
     return (
       <FlatList
+      ListFooterComponent={ () => this.props.loading?<LoadingBar/>:null }
         ListHeaderComponent={this.props.header}
         data={this.props.dataSource}
         keyExtractor={this._extraUniqueKey}

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 11:47:56 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 20:58:43
+ * @Last Modified time: 2018-04-07 19:43:08
  * @Email: peng8350@gmail.com 
  */
 
@@ -52,7 +52,7 @@ class GirlList extends Component {
         onEndReached={() => {
           if (this.props.dataSource.length != 0) this._onRefresh(false);
         }}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.1}
         ListFooterComponent={
           this.props.dataSource.length != 0 && Platform.OS === "ios" ? (
             <GirlFooter />

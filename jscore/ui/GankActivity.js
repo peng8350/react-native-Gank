@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 18:13:32
+ * @Last Modified time: 2018-04-07 20:17:21
  * @Email: peng8350@gmail.com 
  */
 
@@ -26,8 +26,6 @@ class GankActivity extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: navigation.state.params.GankType,
-    headerBackTitle: "首页1",
-    headerBackTitleStyle: { color: "#fff" },
     headerRight: (
       <TouchableOpacity onPress={() => navigation.state.params.pressRight()}>
         <Icon
@@ -60,8 +58,9 @@ class GankActivity extends Component {
     this.props.action.toggleSearch(false);
   }
 
-  fetchGank(url) {
+  fetchGank(url, down) {
     if (!this.state.fetching) {
+      alert('fetch')
       this.setState({
         fetching: true,
         error: false
@@ -69,11 +68,28 @@ class GankActivity extends Component {
       HttpUtils.get(
         url,
         responseJson => {
+          let arr = responseJson.results;
+          if (down) {
+            //下拉操作
+            if (
+              arr != undefined &&
+              this.state.dataSource != undefined &&this.state.dataSource.length>0&&
+              arr[0].desc === this.state.dataSource[0].desc
+            ) {
+              this.setState(prevState => {
+                return {
+                  fetching: false
+                };
+              });
+              return;
+            }
+          }
+          this.pageIndex++;
           this.setState(prevState => {
             return {
               fetching: false,
               error: false,
-              dataSource: prevState.dataSource.concat(responseJson.results)
+              dataSource: prevState.dataSource.concat(arr)
             };
           });
         },
@@ -87,15 +103,29 @@ class GankActivity extends Component {
     }
   }
 
-  componentDidMount() {
+  _onRefresh() {
     const url =
       FETCHGANK_URL +
       (this.props.navigation.state.params.GankType === "IOS"
         ? "iOS"
         : this.props.navigation.state.params.GankType) +
-      "/40/" +
-      "1";
-    this.fetchGank(url);
+      "/20/" +
+      1;
+    this.fetchGank(url, true);
+  }
+
+  _onLoadMore() {
+    const url =
+      FETCHGANK_URL +
+      (this.props.navigation.state.params.GankType === "IOS"
+        ? "iOS"
+        : this.props.navigation.state.params.GankType) +
+      "/20/" +
+      this.pageIndex;
+    this.fetchGank(url, false);
+  }
+
+  componentDidMount() {
     this.props.navigation.setParams({ pressRight: this._pressRight });
   }
 
@@ -104,6 +134,9 @@ class GankActivity extends Component {
       <View style={globalStyles.verticalLayout}>
         <GankList
           dataSource={this.state.dataSource}
+          fetching={this.state.fetching}
+          onRefresh={() => this._onRefresh()}
+          onLoadMore={() => this._onLoadMore()}
           gankType={this.props.navigation.state.params.GankType}
           navigation={this.props.navigation}
         />
