@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 20:17:21
+ * @Last Modified time: 2018-04-07 23:36:27
  * @Email: peng8350@gmail.com 
  */
 
@@ -23,6 +23,7 @@ import HttpUtils from "../utils/HttpUtils";
 
 class GankActivity extends Component {
   pageIndex = 1;
+  isLoading = false;
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: navigation.state.params.GankType,
@@ -59,21 +60,22 @@ class GankActivity extends Component {
   }
 
   fetchGank(url, down) {
+    this.setState({
+      fetching: true,
+      error: false
+    });
     if (!this.state.fetching) {
-      alert('fetch')
-      this.setState({
-        fetching: true,
-        error: false
-      });
       HttpUtils.get(
         url,
         responseJson => {
+          this.isLoading = false
           let arr = responseJson.results;
           if (down) {
             //下拉操作
             if (
               arr != undefined &&
-              this.state.dataSource != undefined &&this.state.dataSource.length>0&&
+              this.state.dataSource != undefined &&
+              this.state.dataSource.length > 0 &&
               arr[0].desc === this.state.dataSource[0].desc
             ) {
               this.setState(prevState => {
@@ -94,6 +96,7 @@ class GankActivity extends Component {
           });
         },
         error => {
+          this.isLoading = false
           this.setState({
             fetching: false,
             error: true
@@ -115,6 +118,9 @@ class GankActivity extends Component {
   }
 
   _onLoadMore() {
+    if(!this.isLoading){
+    this.isLoading = true;
+    console.log(this.pageIndex);
     const url =
       FETCHGANK_URL +
       (this.props.navigation.state.params.GankType === "IOS"
@@ -123,6 +129,7 @@ class GankActivity extends Component {
       "/20/" +
       this.pageIndex;
     this.fetchGank(url, false);
+    }
   }
 
   componentDidMount() {
@@ -131,7 +138,7 @@ class GankActivity extends Component {
 
   render() {
     return (
-      <View style={globalStyles.verticalLayout}>
+      <View style={[globalStyles.verticalLayout]}>
         <GankList
           dataSource={this.state.dataSource}
           fetching={this.state.fetching}
@@ -197,10 +204,8 @@ const styles = StyleSheet.create({
 
 const stateToprops = state => {
   return {
-    fetching: state.GankReducer.fetching,
     enterSearch: state.GankReducer.enterSearch,
     searching: state.GankReducer.searching,
-    dataSource: state.GankReducer.dataSource,
     searchList: state.GankReducer.searchList
   };
 };

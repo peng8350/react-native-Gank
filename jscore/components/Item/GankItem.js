@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-06 21:46:46
+ * @Last Modified time: 2018-04-07 22:34:52
  */
 
 //@flow
@@ -82,7 +82,7 @@ export default class GankItem extends Component {
           <View style={globalStyles.itemContainer}>
             <View style={styles.leftContainer}>
               {this._renderImage()}
-              <Text style={[globalStyles.normalText,{flex:1}]} numberOfLines={3}>{this.props.ctn}</Text>
+              <Text style={[globalStyles.normalText,{flex:1}]} numberOfLines={4}>{this.props.ctn}</Text>
             </View>
 
             <View style={styles.rightContainer}>

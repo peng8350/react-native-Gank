@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 20:18:30
+ * @Last Modified time: 2018-04-07 20:33:46
  * @Email: peng8350@gmail.com 
  */
 
@@ -45,7 +45,7 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center"
   },
   verticalLayout: {
-    flex: 1,
+    flex:1,
     justifyContent: "center"
   },
   verCenLayout: {

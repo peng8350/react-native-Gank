@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 20:22:11
+ * @Last Modified time: 2018-04-07 23:24:16
  * @Email: peng8350@gmail.com 
  */
 
@@ -22,14 +22,14 @@ export default class GankList extends Component {
   render() {
     return (
       <FlatList
-        style ={this.props.style}
+        style ={[this.props.style]}
         data={this.props.dataSource}
         refreshing={this.props.fetching}
         onRefresh={this.props.onRefresh}
         onEndReached={
           this.props.onLoadMore
         }
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.1}
         ListFooterComponent={ () => !this.props.fetching?<LoadingBar/>:null }
         keyExtractor={(item, index) => index + ""}
         renderItem={({ item }) => {
