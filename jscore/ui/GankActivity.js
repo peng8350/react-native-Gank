@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 17:55:50
+ * @Last Modified time: 2018-04-07 18:13:32
  * @Email: peng8350@gmail.com 
  */
 
@@ -26,8 +26,8 @@ class GankActivity extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: navigation.state.params.GankType,
-    headerBackTitle: '首页',
-    headerBackTitleStyle: {color:'#fff'},
+    headerBackTitle: "首页1",
+    headerBackTitleStyle: { color: "#fff" },
     headerRight: (
       <TouchableOpacity onPress={() => navigation.state.params.pressRight()}>
         <Icon
@@ -69,10 +69,12 @@ class GankActivity extends Component {
       HttpUtils.get(
         url,
         responseJson => {
-          this.setState({
-            fetching: false,
-            error: false,
-            dataSource: this.state.dataSource.concat(responseJson.results)
+          this.setState(prevState => {
+            return {
+              fetching: false,
+              error: false,
+              dataSource: prevState.dataSource.concat(responseJson.results)
+            };
           });
         },
         error => {

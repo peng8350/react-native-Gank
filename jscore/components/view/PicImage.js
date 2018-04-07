@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 12:29:06 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 17:59:30
+ * @Last Modified time: 2018-04-07 18:09:16
  * @Email: peng8350@gmail.com 
  */
 
@@ -39,7 +39,6 @@ export default class PicImage extends Component {
         ]}
         source={this.props.placeholder}
         resizeMethod={"resize"}
-        resizeMode={"cover"}
       />)
     }
   }
