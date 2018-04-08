@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 21:03:07
+ * @Last Modified time: 2018-04-08 12:34:09
  * @Email: peng8350@gmail.com 
  */
 
@@ -16,8 +16,9 @@ import {
   StyleSheet,
   Text,
   Image,
-  View,
-  BackHandler
+  View,Share,
+  BackHandler,
+  ToastAndroid
 } from "react-native";
 import SettingPage from "./pagers/SettingPage";
 import TabNavigator from "react-native-tab-navigator";
@@ -61,6 +62,26 @@ class MainActivity extends Component {
     )
   });
 
+  _shareMessage(){
+      Share.share({
+        message: '这是一个gankio的开源代码',
+        url: 'https://github.com/peng8350/react-native-Gank',
+        title: 'Gank'
+      }, {
+        dialogTitle: 'Share React Native website',
+        excludedActivityTypes: [
+          'com.apple.UIKit.activity.PostToTwitter'
+        ],
+        tintColor: 'green'
+      }).then(this._showResult).catch((error)=>{alert(error)});
+  }
+
+  _showResult(result) {
+    if (result.action === Share.sharedAction) {
+      alert('已经分享')
+    } 
+  }
+
   _renderActionSheet() {
     let actionArr =
       Platform.OS === "ios"
@@ -74,7 +95,10 @@ class MainActivity extends Component {
           options={actionArr}
           cancelButtonIndex={3}
           onPress={index => {
-            switch (actionArr[index]) {
+            switch (index) {
+              case 0:
+                this._shareMessage();
+              break;
             }
           }}
         />
@@ -88,11 +112,11 @@ class MainActivity extends Component {
         destructiveButtonIndex={3}
         cancelButtonIndex={4}
         onPress={index => {
-          switch (actionArr[index]) {
-            case "退出程序":
-              if (Platform.OS === "Android") {
+          switch (index) {
+            case 0:
+            this._shareMessage();
+            case 3:
                 this._pressExit();
-              }
             break;
           }
         }}

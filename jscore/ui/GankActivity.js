@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 23:36:27
+ * @Last Modified time: 2018-04-08 00:06:06
  * @Email: peng8350@gmail.com 
  */
 
@@ -60,6 +60,7 @@ class GankActivity extends Component {
   }
 
   fetchGank(url, down) {
+   
     this.setState({
       fetching: true,
       error: false
@@ -120,7 +121,6 @@ class GankActivity extends Component {
   _onLoadMore() {
     if(!this.isLoading){
     this.isLoading = true;
-    console.log(this.pageIndex);
     const url =
       FETCHGANK_URL +
       (this.props.navigation.state.params.GankType === "IOS"
