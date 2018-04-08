@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 12:29:06 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 18:09:16
+ * @Last Modified time: 2018-04-08 13:11:05
  * @Email: peng8350@gmail.com 
  */
 
@@ -24,6 +24,7 @@ export default class PicImage extends Component {
   }
 
   _renderPlaceHolder(){
+    
     if(this.state.loading&&this.props.placeholder){
       return (<Image
         style={[
@@ -48,7 +49,6 @@ export default class PicImage extends Component {
       <View>
         <Image
           style={[styles.image, this.props.style]}
-          
           source={this.props.url}
           onLoad={() => {
             this.setState({ loading: false, error: false });
