@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 00:22:29
+ * @Last Modified time: 2018-04-09 23:43:55
  * @Email: peng8350@gmail.com 
  */
 
@@ -23,8 +23,23 @@ const SettingSchema = {
   }
 };
 
+const GankSchema = {
+  name: "gank",
+  primaryKey: "_id", // 官方没给出自增长的办法,而且一般不会用到主键,这也解决了重复访问的问题,而且实际开发中我们不需要主键的,让服务端管就是了
+  properties: {
+    _id: "string",
+    type: "string",
+    who: "string",
+    url: 'string',
+    image: "string",
+    desc: "string",
+    time: "string",
+  }
+};
+
+
 var realm;
-Realm.open({ schema: [SettingSchema] })
+Realm.open({ schema: [SettingSchema,GankSchema] })
   .then(realmm => {
     realm = realmm;
 
@@ -68,6 +83,7 @@ export default class DbUtils extends Component {
       realm.create(table, insertObj);
     });
   }
+
 
   /**
    * 只查询唯一一个元素

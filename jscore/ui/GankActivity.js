@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-08 00:06:06
+ * @Last Modified time: 2018-04-09 23:52:39
  * @Email: peng8350@gmail.com 
  */
 
@@ -20,6 +20,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Action from "../actions/fetchGankAction";
 import HttpUtils from "../utils/HttpUtils";
+import DbUtils from "../utils/DbUtils";
+import GankManager from '../utils/GankManager'
 
 class GankActivity extends Component {
   pageIndex = 1;
@@ -40,13 +42,13 @@ class GankActivity extends Component {
     )
   });
 
-  constructor() {
-    super();
-    this.state = {
+  constructor(props){
+    super(props)
+    this.state= {
       dataSource: [],
       fetching: false,
       error: false
-    };
+    }
   }
 
   _pressRight = () => {
@@ -71,6 +73,7 @@ class GankActivity extends Component {
         responseJson => {
           this.isLoading = false
           let arr = responseJson.results;
+          GankManager.insertDb(arr)
           if (down) {
             //下拉操作
             if (
