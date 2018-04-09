@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-09 23:19:41 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-09 23:52:00
+ * @Last Modified time: 2018-04-10 00:23:19
  * @Email: peng8350@gmail.com 
  */
 
@@ -30,5 +30,14 @@ export default class GankManager extends Component {
         image: ganks[i].images? ganks[i].images[0] : ' '
       });
     }
+  }
+
+  static getDataFromDb(pageIndex,type){
+      let objs =DbUtils.queryAll('gank')
+      objs = objs.filtered("type == '"+type+"'")
+      objs = objs.sorted('time',true)
+      objs = objs.slice(pageIndex*20+1,20)
+      
+        return objs;
   }
 }

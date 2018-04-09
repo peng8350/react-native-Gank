@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-08 13:18:01
+ * @Last Modified time: 2018-04-10 00:03:49
  * @Email: peng8350@gmail.com 
  */
 
@@ -38,6 +38,7 @@ import ActionSheet from "react-native-actionsheet";
 import PopupDialog,{ DialogTitle,DialogButton,SlideAnimation } from "react-native-popup-dialog";
 import PicImage from "../components/view/PicImage";
 import { getWidth } from "../utils/ScreenUtils";
+import DbUtils from "../utils/DbUtils";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:54:15 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 23:24:16
+ * @Last Modified time: 2018-04-10 00:19:59
  * @Email: peng8350@gmail.com 
  */
 
@@ -38,7 +38,7 @@ export default class GankList extends Component {
               ctn={item.desc}
               author={item.who}
               // images={item.images}
-              time={item.publishedAt}
+              time={item.time}
               onItemSelect={() => {
                 this.props.navigation.navigate("Web", { url: item.url });
               }}

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-09 23:52:39
+ * @Last Modified time: 2018-04-10 00:17:56
  * @Email: peng8350@gmail.com 
  */
 
@@ -63,51 +63,67 @@ class GankActivity extends Component {
 
   fetchGank(url, down) {
    
+
     this.setState({
       fetching: true,
       error: false
     });
-    if (!this.state.fetching) {
-      HttpUtils.get(
-        url,
-        responseJson => {
-          this.isLoading = false
-          let arr = responseJson.results;
-          GankManager.insertDb(arr)
-          if (down) {
-            //下拉操作
-            if (
-              arr != undefined &&
-              this.state.dataSource != undefined &&
-              this.state.dataSource.length > 0 &&
-              arr[0].desc === this.state.dataSource[0].desc
-            ) {
-              this.setState(prevState => {
-                return {
-                  fetching: false
-                };
-              });
-              return;
-            }
-          }
-          this.pageIndex++;
-          this.setState(prevState => {
-            return {
-              fetching: false,
-              error: false,
-              dataSource: prevState.dataSource.concat(arr)
-            };
-          });
-        },
-        error => {
-          this.isLoading = false
-          this.setState({
+    let query =GankManager.getDataFromDb(this.pageIndex-1,this.props.navigation.state.params.GankType)
+    if(query&&query.length>0){
+      setTimeout(() => {
+        this.setState(prevState => {
+          return {
             fetching: false,
-            error: true
-          });
-        }
-      );
+            error: false,
+            dataSource: prevState.dataSource.concat(query)
+          };
+        });
+      },500)
+      return ;
     }
+    // if (!this.state.fetching) {
+    //   HttpUtils.get(
+    //     url,
+    //     responseJson => {
+    //       this.isLoading = false
+    //       let arr = responseJson.results;
+    //       GankManager.insertDb(arr)
+    //       if (down) {
+    //         //下拉操作
+    //         if (
+    //           arr != undefined &&
+    //           this.state.dataSource != undefined &&
+    //           this.state.dataSource.length > 0 &&
+    //           arr[0].desc === this.state.dataSource[0].desc
+    //         ) {
+    //           this.setState(prevState => {
+    //             return {
+    //               fetching: false
+    //             };
+    //           });
+    //           return;
+    //         }
+    //       }
+    //       this.pageIndex++;
+    //       this.setState(prevState => {
+    //         return {
+    //           fetching: false,
+    //           error: false,
+    //           dataSource: prevState.dataSource.concat(arr)
+    //         };
+    //       });
+    //     },
+    //     error => {
+    //       alert(error)
+    //       this.isLoading = false
+    //       this.setState({
+    //         fetching: false,
+    //         error: true
+    //       });
+    //     }
+    //   );
+    // }
+    
   }
 
   _onRefresh() {

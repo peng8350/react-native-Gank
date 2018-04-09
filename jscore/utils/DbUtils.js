@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-09 23:43:55
+ * @Last Modified time: 2018-04-10 00:11:18
  * @Email: peng8350@gmail.com 
  */
 
@@ -88,7 +88,7 @@ export default class DbUtils extends Component {
   /**
    * 只查询唯一一个元素
    */
-  static queryFirst(table, filter) {
+  static queryFirst(tabl, filter) {
     let objs = realm.objects(table);
     let obj = objs.filtered(filter);
     return obj[0];
@@ -97,9 +97,8 @@ export default class DbUtils extends Component {
   /**
    * 查询满足这些条件的数据
    */
-  static queryAll(table, filter) {
+  static queryAll(table) {
     let objs = realm.objects(table);
-    let obj = objs.filtered(filter);
-    return obj;
+    return objs;
   }
 }
