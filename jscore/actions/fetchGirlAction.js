@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 12:37:42 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 15:13:05
+ * @Last Modified time: 2018-04-10 16:58:04
  * @Email: peng8350@gmail.com 
  */
 
@@ -32,7 +32,7 @@ export function fetchGirlSuccess(dataSource, isUp) {
   };
 }
 
-export function fetchGirl(isUp, pageIndex) {
+export function fetchGirl(isUp, pageIndex,successcall) {
   const fetchGirlUrl = FETCHGIRL_URL + pageIndex;
   return dispatch => {
     dispatch(fetchGirlRequesting());
@@ -40,6 +40,7 @@ export function fetchGirl(isUp, pageIndex) {
       HttpUtils.get(
         fetchGirlUrl,
         responseJson => {
+          successcall()
           dispatch(fetchGirlSuccess(responseJson, isUp));
         },
         error => {
