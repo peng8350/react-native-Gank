@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 16:47:22
+ * @Last Modified time: 2018-04-10 18:17:30
  * @Email: peng8350@gmail.com 
  */
 
@@ -26,6 +26,7 @@ import PullableList from "../components/list/PullableList";
 
 class GankActivity extends Component {
   pageIndex = 1;
+  type = "";
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: navigation.state.params.GankType,
@@ -57,32 +58,52 @@ class GankActivity extends Component {
   };
 
   componentWillUnmount() {
+    GankManager.insertDb(this.state.dataSource);
     this.props.action.toggleSearch(false);
   }
 
   _onRefresh = () => {
-    const url =
-      FETCHGANK_URL +
-      (this.props.navigation.state.params.GankType === "IOS"
-        ? "iOS"
-        : this.props.navigation.state.params.GankType) +
-      "/20/" +
-      1;
+    const url = FETCHGANK_URL + this.type + "/20/" + 1;
     HttpUtils.get(
       url,
       responseJson => {
         let arr = responseJson.results;
-        if (down) {
-          //下拉操作
-          if (
-            arr != undefined &&
-            this.state.dataSource != undefined &&
-            this.state.dataSource.length > 0 &&
-            arr[0].desc === this.state.dataSource[0].desc
-          ) {
-            return;
-          }
+        //下拉操作
+        if (
+          arr != undefined &&
+          this.state.dataSource != undefined &&
+          this.state.dataSource.length > 0 &&
+          arr[0].desc === this.state.dataSource[0].desc
+        ) {
+          return;
         }
+        this.pageIndex++;
+        this.setState(prevState => {
+          return {
+            error: false,
+            dataSource: arr
+          };
+        });
+        this.refs.ganklist.RefreshComplete();
+      },
+      error => {
+        console.log(error);
+        this.refs.ganklist.RefreshComplete();
+        this.setState({
+          error: true
+        });
+      }
+    );
+  };
+
+  _onLoadMore = () => {
+    const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
+
+    HttpUtils.get(
+      url,
+      responseJson => {
+        let arr = responseJson.results;
+
         this.pageIndex++;
         this.setState(prevState => {
           return {
@@ -90,62 +111,30 @@ class GankActivity extends Component {
             dataSource: prevState.dataSource.concat(arr)
           };
         });
-        this.refs.ganklist.RefreshComplete();
-        //GankManager.insertDb(arr);
+        this.refs.ganklist.LoadComplete();
       },
       error => {
-        this.refs.ganklist.RefreshComplete();
         this.setState({
           error: true
         });
+        this.refs.ganklist.LoadComplete();
       }
     );
-  }
-
-  _onLoadMore = () => {
-      const url =
-        FETCHGANK_URL +
-        (this.props.navigation.state.params.GankType === "IOS"
-          ? "iOS"
-          : this.props.navigation.state.params.GankType) +
-        "/20/" +
-        this.pageIndex;
-
-        HttpUtils.get(
-          url,
-          responseJson => {
-            let arr = responseJson.results;
-    
-            this.pageIndex++;
-            this.setState(prevState => {
-              return {
-                error: false,
-                dataSource: prevState.dataSource.concat(arr)
-              };
-            });
-            this.refs.ganklist.LoadComplete();
-            GankManager.insertDb(arr);
-          },
-          error => {
-            this.setState({
-              error: true
-            });
-            this.refs.ganklist.LoadComplete();
-          }
-        );
-  }
+  };
 
   componentDidMount() {
+    this.type =
+      this.props.navigation.state.params.GankType === "IOS"
+        ? "iOS"
+        : this.props.navigation.state.params.GankType;
     this.props.navigation.setParams({ pressRight: this._pressRight });
-    // let queryList = GankManager.getDataFromDb(
-    //   this.props.navigation.state.params.GankType
-    // );
-    // this.setState({
-    //   dataSource: queryList
-    // });
-    // if (queryList.length === 0) {
-    //   this._onRefresh();
-    // }
+    let queryList = GankManager.getDataFromDb(this.type);
+    if (queryList.length > 0)
+      this.setState(previousState => {
+        return {
+          dataSource: queryList
+        };
+      });
   }
 
   render() {

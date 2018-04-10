@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 16:03:02
+ * @Last Modified time: 2018-04-10 18:04:50
  * @Email: peng8350@gmail.com 
  */
 
@@ -25,19 +25,20 @@ const SettingSchema = {
 
 const GankSchema = {
   name: "gank",
+  primaryKey: "_id",
   properties: {
+    _id: "string",
     type: "string",
     who: "string",
-    url: 'string',
+    url: "string",
     image: "string",
     desc: "string",
-    time: "string",
+    time: "string"
   }
 };
 
-
 var realm;
-Realm.open({ schema: [SettingSchema,GankSchema] })
+Realm.open({ schema: [SettingSchema, GankSchema] })
   .then(realmm => {
     realm = realmm;
 
@@ -77,16 +78,29 @@ export default class DbUtils extends Component {
     * 用法和上面一样
     */
   static insert(table, insertObj) {
-    realm.write(() => {
-      realm.create(table, insertObj);
-    });
+    try {
+      realm.write(() => {
+        realm.create(table, insertObj);
+      });
+    } catch (error) {}
   }
 
+  static insertArr(table, insertArr) {
+   
+      realm.write(() => {
+        for (let obj of insertArr) {
+          try {
+          realm.create(table, obj);
+        } catch (error) {}
+        }
+      });
+    
+  }
 
   /**
    * 只查询唯一一个元素
    */
-  static queryFirst(tabl, filter) {
+  static queryFirst(table, filter) {
     let objs = realm.objects(table);
     let obj = objs.filtered(filter);
     return obj[0];
