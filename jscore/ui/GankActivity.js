@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 23:32:45
+ * @Last Modified time: 2018-04-12 00:25:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,7 +19,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Action from "../actions/fetchGankAction";
 import HttpUtils from "../utils/HttpUtils";
-import DbUtils from "../utils/DbUtils";
+import DbUtils, { realm } from "../utils/DbUtils";
 import GankManager from "../utils/GankManager";
 import GankItem from "../components/Item/GankItem";
 import PullableList from "../components/list/PullableList";
@@ -47,7 +47,7 @@ class GankActivity extends Component {
     super();
     this.state = {
       dataSource: [],
-      liked: [false,false,false,false],
+      liked: [false, false, false, false],
       error: false
     };
   }
@@ -59,7 +59,6 @@ class GankActivity extends Component {
   };
 
   componentWillUnmount() {
-    GankManager.insertDb(this.state.dataSource);
     this.props.action.toggleSearch(false);
   }
 
@@ -76,6 +75,7 @@ class GankActivity extends Component {
           this.state.dataSource.length > 0 &&
           arr[0].desc === this.state.dataSource[0].desc
         ) {
+          this.refs.ganklist.RefreshComplete();
           return;
         }
         if (arr.length > 0) {
@@ -84,9 +84,9 @@ class GankActivity extends Component {
           this.setState(prevState => {
             return {
               error: false,
-              dataSource: newArr
+              dataSource: newArr.concat(this.state.dataSource)
             };
-          });
+          },() => GankManager.insertDb(newArr));
         }
         this.refs.ganklist.RefreshComplete();
       },
@@ -99,16 +99,16 @@ class GankActivity extends Component {
     );
   };
 
-  _pressLike=  (index) => {
-    this.state.liked[index] = !this.state.liked[index]
+  _pressLike = index => {
+    let selectRow = this.state.dataSource[index];
+    this.state.liked[index] = !this.state.liked[index];
+    DbUtils.update('gank',{_id:selectRow._id,like:true})
     this.setState({
-        ...this.state
-    })
-  }
+      ...this.state
+    });
+  };
 
-  _pressMore = (index) => {
-    
-  }
+  _pressMore = index => {};
 
   _onLoadMore = call => {
     const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
@@ -126,6 +126,7 @@ class GankActivity extends Component {
               dataSource: this.state.dataSource.concat(newArr)
             },
             () => {
+              GankManager.insertDb(newArr);
               call();
             }
           );
@@ -157,7 +158,11 @@ class GankActivity extends Component {
             dataSource: this.state.dataSource.concat(...queryList)
           };
         },
-        () => {}
+        () => {
+          for(let i =0 ;i<queryList.length;i++){
+            this.state.liked[i] = this.state.dataSource[i].like
+          }
+        }
       );
   }
 
@@ -167,20 +172,20 @@ class GankActivity extends Component {
         <PullableList
           ref={"ganklist"}
           data={this.state.dataSource}
-          extraData={this.state.liked} 
+          extraData={this.state.liked}
           onRefresh={this._onRefresh}
           onLoadMore={this._onLoadMore}
-          renderItem={({ item,index}) => {
+          renderItem={({ item, index }) => {
             return (
               <GankItem
                 index={index}
                 ctn={item.desc}
                 author={item.who}
-                like ={this.state.liked[index]}
+                like={this.state.liked[index]}
                 // images={item.images}
                 time={item.time}
-                clickLike = {this._pressLike}
-                clickMore = {this._pressMore}
+                clickLike={this._pressLike}
+                clickMore={this._pressMore}
                 onItemSelect={() => {
                   this.props.navigation.navigate("Web", { url: item.url });
                 }}

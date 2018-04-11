@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-09 23:19:41 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 22:29:06
+ * @Last Modified time: 2018-04-12 00:06:12
  * @Email: peng8350@gmail.com 
  */
 
@@ -21,6 +21,7 @@ export default class GankManager extends Component {
     for (let item of ganks) {
       newArr.push({
         ...item,
+        like: false,
         who: item.who?item.who:'空',
         time: item.publishedAt,
         image: item.images ? item.images[0] : " "

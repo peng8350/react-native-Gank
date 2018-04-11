@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 22:24:06
+ * @Last Modified time: 2018-04-12 00:20:56
  * @Email: peng8350@gmail.com 
  */
 
@@ -29,7 +29,7 @@ const GankSchema = {
   properties: {
     _id: "string",
     type: {type: 'string', default: 'Web'},
-    like: {type: 'string', default: 'false'},
+    like: {type: 'bool', default: false},
     who: {type: 'string', default: '空'},
     url: {type: 'string', default: ''},
     image: {type: 'string', default: 'null'},
@@ -38,7 +38,9 @@ const GankSchema = {
   }
 };
 
-var realm;
+var realm ;
+
+
 Realm.open({ schema: [SettingSchema, GankSchema] })
   .then(realmm => {
     realm = realmm;
