@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 20:05:32
+ * @Last Modified time: 2018-04-11 22:24:06
  * @Email: peng8350@gmail.com 
  */
 
@@ -84,7 +84,6 @@ export default class DbUtils extends Component {
         realm.create(table, insertObj);
       });
     } catch (error) {
-      alert(error)
     }
   }
 

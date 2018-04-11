@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-10 16:04:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 20:16:39
+ * @Last Modified time: 2018-04-11 22:26:02
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -13,7 +13,7 @@ import LoadingBar from "../view/LoadingBar";
 
 export default class PullableList extends Component {
 
-  onEndReachedCalledDuringMomentum = false
+  loading = false
 
   constructor(props) {
     super(props);
@@ -40,7 +40,6 @@ export default class PullableList extends Component {
       <FlatList
         {...this.props}
         keyExtractor={(item, index) => index + ""}
-        onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
         onRefresh={() => {
           this.setState({
             isRefresh: true
@@ -50,12 +49,20 @@ export default class PullableList extends Component {
         refreshing={this.state.isRefresh}
         onEndReached={() => {
           //之所以判断是不是正在加载,是因为这里存在调用>2上拉回调可能性的bug,并且要有数据才上拉加载
-            if (!this.onEndReachedCalledDuringMomentum &&this.props.data.length > 0) {
+            if (!this.loading ) {
+              this.loading = true;
               this.setState({
                 isLoadMore: true
-              });
-              this.props.onLoadMore()
-              this.onEndReachedCalledDuringMomentum = true;
+              },
+              () => {
+                this.props.onLoadMore(() => {
+                  this.loading =false;
+                  this.LoadComplete()
+                })
+              }
+            ); 
+              
+
             }
         }}
         ListFooterComponent={() =>
@@ -65,7 +72,7 @@ export default class PullableList extends Component {
         ItemSeparatorComponent={() => <ItemSeparater />}
         onEndReachedThreshold={0.01}
        
-        style={[{height:'100%'},this.props.styles]}
+        style={[this.props.styles]}
       />
     );
   }

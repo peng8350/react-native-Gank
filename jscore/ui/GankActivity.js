@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 20:35:28
+ * @Last Modified time: 2018-04-11 22:42:04
  * @Email: peng8350@gmail.com 
  */
 
@@ -43,8 +43,8 @@ class GankActivity extends Component {
     )
   });
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       dataSource: [],
       error: false
@@ -98,49 +98,55 @@ class GankActivity extends Component {
     );
   };
 
-  _onLoadMore = () => {
+  _onLoadMore = call => {
     const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
     HttpUtils.get(
       url,
       responseJson => {
         let arr = responseJson.results;
-        this.pageIndex++;
+
         if (arr.length > 0) {
+          this.pageIndex++;
           let newArr = GankManager.toGankBean(arr);
-          console.log(newArr)
-          this.setState(previous => {
-            return {
+          this.setState(
+            {
               error: false,
-              dataSource: previous.dataSource.concat(newArr)
-            };
-          });
+              dataSource: this.state.dataSource.concat(newArr)
+            },
+            () => {
+              call();
+            }
+          );
         }
-        this.refs.ganklist.LoadComplete();
       },
       error => {
+        call();
         this.setState({
           error: true
         });
-        this.refs.ganklist.LoadComplete();
       }
     );
   };
 
   componentDidMount() {
-    this.aa = true
-    alert(aa)
     this.type =
       this.props.navigation.state.params.GankType === "IOS"
         ? "iOS"
         : this.props.navigation.state.params.GankType;
     this.props.navigation.setParams({ pressRight: this._pressRight });
-    let queryList = GankManager.getDataFromDb(this.type);
-    this.pageIndex = queryList.length / 20 + 1;
 
+    var queryList = GankManager.getDataFromDb(this.type);
+    this.pageIndex = queryList.length / 20 + 1;
     if (queryList.length > 0)
-      this.setState({
-        dataSource: queryList
-      });
+      this.setState(
+        () => {
+          return {
+            error: false,
+            dataSource: this.state.dataSource.concat(...queryList)
+          };
+        },
+        () => {}
+      );
   }
 
   render() {

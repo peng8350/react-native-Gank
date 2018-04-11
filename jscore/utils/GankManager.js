@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-09 23:19:41 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 20:07:23
+ * @Last Modified time: 2018-04-11 22:29:06
  * @Email: peng8350@gmail.com 
  */
 
@@ -30,7 +30,7 @@ export default class GankManager extends Component {
   }
 
   static getDataFromDb(type) {
-    let objs = DbUtils.queryAll("gank");
+    var objs = DbUtils.queryAll("gank");
     objs = objs.filtered("type=='" + type + "'");
     objs = objs.sorted("time", true);
     return objs;
