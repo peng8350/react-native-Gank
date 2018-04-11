@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 18:17:30
+ * @Last Modified time: 2018-04-11 20:35:28
  * @Email: peng8350@gmail.com 
  */
 
@@ -77,17 +77,19 @@ class GankActivity extends Component {
         ) {
           return;
         }
-        this.pageIndex++;
-        this.setState(prevState => {
-          return {
-            error: false,
-            dataSource: arr
-          };
-        });
+        if (arr.length > 0) {
+          this.pageIndex++;
+          let newArr = GankManager.toGankBean(arr);
+          this.setState(prevState => {
+            return {
+              error: false,
+              dataSource: newArr
+            };
+          });
+        }
         this.refs.ganklist.RefreshComplete();
       },
       error => {
-        console.log(error);
         this.refs.ganklist.RefreshComplete();
         this.setState({
           error: true
@@ -98,19 +100,21 @@ class GankActivity extends Component {
 
   _onLoadMore = () => {
     const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
-
     HttpUtils.get(
       url,
       responseJson => {
         let arr = responseJson.results;
-
         this.pageIndex++;
-        this.setState(prevState => {
-          return {
-            error: false,
-            dataSource: prevState.dataSource.concat(arr)
-          };
-        });
+        if (arr.length > 0) {
+          let newArr = GankManager.toGankBean(arr);
+          console.log(newArr)
+          this.setState(previous => {
+            return {
+              error: false,
+              dataSource: previous.dataSource.concat(newArr)
+            };
+          });
+        }
         this.refs.ganklist.LoadComplete();
       },
       error => {
@@ -123,17 +127,19 @@ class GankActivity extends Component {
   };
 
   componentDidMount() {
+    this.aa = true
+    alert(aa)
     this.type =
       this.props.navigation.state.params.GankType === "IOS"
         ? "iOS"
         : this.props.navigation.state.params.GankType;
     this.props.navigation.setParams({ pressRight: this._pressRight });
     let queryList = GankManager.getDataFromDb(this.type);
+    this.pageIndex = queryList.length / 20 + 1;
+
     if (queryList.length > 0)
-      this.setState(previousState => {
-        return {
-          dataSource: queryList
-        };
+      this.setState({
+        dataSource: queryList
       });
   }
 

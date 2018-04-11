@@ -4,7 +4,7 @@ import { Component } from "react";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 18:04:50
+ * @Last Modified time: 2018-04-11 20:05:32
  * @Email: peng8350@gmail.com 
  */
 
@@ -28,12 +28,13 @@ const GankSchema = {
   primaryKey: "_id",
   properties: {
     _id: "string",
-    type: "string",
-    who: "string",
-    url: "string",
-    image: "string",
-    desc: "string",
-    time: "string"
+    type: {type: 'string', default: 'Web'},
+    like: {type: 'string', default: 'false'},
+    who: {type: 'string', default: '空'},
+    url: {type: 'string', default: ''},
+    image: {type: 'string', default: 'null'},
+    desc: {type: 'string', default: 'null'},
+    time: {type: 'string', default: 'null'}
   }
 };
 
@@ -82,7 +83,9 @@ export default class DbUtils extends Component {
       realm.write(() => {
         realm.create(table, insertObj);
       });
-    } catch (error) {}
+    } catch (error) {
+      alert(error)
+    }
   }
 
   static insertArr(table, insertArr) {
@@ -91,7 +94,9 @@ export default class DbUtils extends Component {
         for (let obj of insertArr) {
           try {
           realm.create(table, obj);
-        } catch (error) {}
+        } catch (error) {
+          console.log(error)
+        }
         }
       });
     
