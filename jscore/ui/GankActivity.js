@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 22:42:04
+ * @Last Modified time: 2018-04-11 23:32:45
  * @Email: peng8350@gmail.com 
  */
 
@@ -47,6 +47,7 @@ class GankActivity extends Component {
     super();
     this.state = {
       dataSource: [],
+      liked: [false,false,false,false],
       error: false
     };
   }
@@ -97,6 +98,17 @@ class GankActivity extends Component {
       }
     );
   };
+
+  _pressLike=  (index) => {
+    this.state.liked[index] = !this.state.liked[index]
+    this.setState({
+        ...this.state
+    })
+  }
+
+  _pressMore = (index) => {
+    
+  }
 
   _onLoadMore = call => {
     const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
@@ -155,15 +167,20 @@ class GankActivity extends Component {
         <PullableList
           ref={"ganklist"}
           data={this.state.dataSource}
+          extraData={this.state.liked} 
           onRefresh={this._onRefresh}
           onLoadMore={this._onLoadMore}
-          renderItem={({ item }) => {
+          renderItem={({ item,index}) => {
             return (
               <GankItem
+                index={index}
                 ctn={item.desc}
                 author={item.who}
+                like ={this.state.liked[index]}
                 // images={item.images}
                 time={item.time}
+                clickLike = {this._pressLike}
+                clickMore = {this._pressMore}
                 onItemSelect={() => {
                   this.props.navigation.navigate("Web", { url: item.url });
                 }}

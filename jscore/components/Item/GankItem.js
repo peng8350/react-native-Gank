@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-10 17:51:00
+ * @Last Modified time: 2018-04-11 23:29:57
  */
 
 //@flow
@@ -15,7 +15,8 @@ import {
   Text,
   StyleSheet,
   TouchableHighlight,
-  Image
+  Image,
+  TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateUtils from "../../utils/DateUtils";
@@ -27,16 +28,7 @@ import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import PicImage from "../view/PicImage";
 
 export default class GankItem extends Component {
-  swipeBtns = [
-    {
-      backgroundColor: "deeppink",
-      component: this._renderSwipeBtn("ios-heart", "收藏")
-    },
-    {
-      backgroundColor: "mediumaquamarine",
-      component: this._renderSwipeBtn("ios-paper", "更多")
-    }
-  ];
+
 
   _renderSwipeBtn(iconName, text) {
     return (
@@ -73,8 +65,20 @@ export default class GankItem extends Component {
   }
 
   render() {
+    let swipeBtns = [
+      {
+        backgroundColor: "deeppink",
+        component: this._renderSwipeBtn("ios-heart", !this.props.like?"收藏":"取消收藏"),
+        onPress: () => this.props.clickLike(this.props.index)
+      },
+      {
+        backgroundColor: "mediumaquamarine",
+        component: this._renderSwipeBtn("ios-paper", "更多"),
+        onPress: () => this.props.clickMore(this.props.index)
+      }
+    ];
     return (
-      <Swipeout right={this.swipeBtns} buttonWidth={80} autoClose={true}>
+      <Swipeout right={swipeBtns} buttonWidth={80} autoClose={true}>
         <TouchableHighlight
           underlayColor={PRESSEDCOLOR}
           onPress={() => CallOnceInInterval(this.props.onItemSelect)}
