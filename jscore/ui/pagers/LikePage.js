@@ -2,24 +2,54 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:24:43
+ * @Last Modified time: 2018-04-12 18:22:49
  * @Email: peng8350@gmail.com 
  */
+//@flow
 
- //@flow
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, FlatList } from "react-native";
+import GankItem from "../../components/Item/GankItem";
+import GankManager from "../../utils/GankManager";
 
+export default class LikePage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dataSource: []
+    };
+  }
 
-export default class LikePage extends Component{
+  _renderItem({ item }) {
+    return (
+      <GankItem
+        ctn={item.desc}
+        author={item.who}
+        // images={item.images}
+        time={item.time}
+        clickLike={this._pressLike}
+        clickMore={this._pressMore}
+        onItemSelect={() => {
+          this.props.navigation.navigate("Web", { url: item.url });
+        }}
+      />
+    );
+  }
 
+  render() {
+    return (
+      <FlatList
+        data={this.state.dataSource}
+        keyExtractor={(item, index) => index + ""}
+        renderItem={this._renderItem}
+      />
+    );
+  }
 
-    render(){
-        return (
-        <View>
-            <Text>收藏页面</Text>
-        </View>
-        )
-    }
-
+  componentWillMount() {
+    let queryList = GankManager.getLikeFromDb(this.props.type);
+    this.setState({
+      dataSource: [].concat(...queryList)
+    });
+  }
 }

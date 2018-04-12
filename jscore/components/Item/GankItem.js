@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-11 23:29:57
+ * @Last Modified time: 2018-04-12 18:26:24
  */
 
 //@flow
@@ -29,6 +29,9 @@ import PicImage from "../view/PicImage";
 
 export default class GankItem extends Component {
 
+  static defaultProps={
+    showSwipes: false
+  }
 
   _renderSwipeBtn(iconName, text) {
     return (
@@ -43,6 +46,43 @@ export default class GankItem extends Component {
         />
       </View>
     );
+  }
+
+  _renderIn(){
+    return (
+      <TouchableHighlight
+      underlayColor={PRESSEDCOLOR}
+      onPress={() => CallOnceInInterval(this.props.onItemSelect)}
+    >
+      <View style={globalStyles.itemContainer}>
+        <View style={styles.leftContainer}>
+          {this._renderImage()}
+          <Text style={[globalStyles.normalText,{flex:1}]} numberOfLines={4}>{this.props.ctn}</Text>
+        </View>
+
+        <View style={styles.rightContainer}>
+          <View
+            style={[
+              globalStyles.verticalLayout,
+              {
+                alignItems: "flex-end",
+                justifyContent: "space-between"
+              }
+            ]}
+          >
+            <IconText name="ios-person-outline" text={this.props.author} />
+            <IconText
+              name="ios-clock-outline"
+              text={DateUtils.parseString(
+                this.props.time,
+                "YYYY年MM月DD日"
+              )}
+            />
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    )
   }
 
   _renderImage(){
@@ -77,42 +117,18 @@ export default class GankItem extends Component {
         onPress: () => this.props.clickMore(this.props.index)
       }
     ];
+    if(this.props.showSwipes){
     return (
+      
       <Swipeout right={swipeBtns} buttonWidth={80} autoClose={true}>
-        <TouchableHighlight
-          underlayColor={PRESSEDCOLOR}
-          onPress={() => CallOnceInInterval(this.props.onItemSelect)}
-        >
-          <View style={globalStyles.itemContainer}>
-            <View style={styles.leftContainer}>
-              {this._renderImage()}
-              <Text style={[globalStyles.normalText,{flex:1}]} numberOfLines={4}>{this.props.ctn}</Text>
-            </View>
-
-            <View style={styles.rightContainer}>
-              <View
-                style={[
-                  globalStyles.verticalLayout,
-                  {
-                    alignItems: "flex-end",
-                    justifyContent: "space-between"
-                  }
-                ]}
-              >
-                <IconText name="ios-person-outline" text={this.props.author} />
-                <IconText
-                  name="ios-clock-outline"
-                  text={DateUtils.parseString(
-                    this.props.time,
-                    "YYYY年MM月DD日"
-                  )}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
+       {this._renderIn()}
       </Swipeout>
-    );
+    )}
+    else{
+      return (
+        this._renderIn()
+      )
+    }
   }
 }
 

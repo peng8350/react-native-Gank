@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 00:25:24
+ * @Last Modified time: 2018-04-12 18:25:16
  * @Email: peng8350@gmail.com 
  */
 
@@ -181,6 +181,7 @@ class GankActivity extends Component {
                 index={index}
                 ctn={item.desc}
                 author={item.who}
+                showSwipes= {true}
                 like={this.state.liked[index]}
                 // images={item.images}
                 time={item.time}

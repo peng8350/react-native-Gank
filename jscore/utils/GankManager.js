@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-09 23:19:41 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 00:06:12
+ * @Last Modified time: 2018-04-12 18:20:08
  * @Email: peng8350@gmail.com 
  */
 
@@ -33,6 +33,13 @@ export default class GankManager extends Component {
   static getDataFromDb(type) {
     var objs = DbUtils.queryAll("gank");
     objs = objs.filtered("type=='" + type + "'");
+    objs = objs.sorted("time", true);
+    return objs;
+  }
+
+  static getLikeFromDb(type) {
+    var objs = DbUtils.queryAll("gank");
+    objs = objs.filtered("type=='" + type + "' and like == true");
     objs = objs.sorted("time", true);
     return objs;
   }

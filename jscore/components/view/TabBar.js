@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:30:58
+ * @Last Modified time: 2018-04-12 18:29:05
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -77,7 +77,7 @@ class TabBar extends Component {
                 ? TAB1_TITLE
                 : index === 1
                   ? TAB2_TITLE
-                  : index === 2 ? TAB2_TITLE : TAB3_TITLE
+                  :  TAB3_TITLE
           });
           this.props.actions.updateTab(index);
         }}
