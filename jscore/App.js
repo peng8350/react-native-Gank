@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:57 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 16:31:09
+ * @Last Modified time: 2018-04-12 17:29:34
  * @Email: peng8350@gmail.com 
  */
 import React, { Component } from "react";
@@ -15,11 +15,13 @@ import MainActivity from "./ui/MainActivity";
 import GankActivity from "./ui/GankActivity";
 import { globalStyles } from "./constants/styles";
 import WebActivity from "./ui/WebActivity";
+import LikeActivity from "./ui/LikeActivity";
 
 const Screens = StackNavigator(
   {
     Main: { screen: MainActivity },
     Gank: { screen: GankActivity },
+    Like: {screen: LikeActivity},
     Web: { screen: WebActivity }
   },
   {

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-06 19:04:06
+ * @Last Modified time: 2018-04-12 17:30:58
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -57,7 +57,7 @@ class TabBar extends Component {
             iconColor: "#979797"
           }),
           this._renderTabIcon({ name: "ios-settings", iconColor: THEMECOLOR }),
-          <SettingPage />
+          <SettingPage navigation={this.props.navigation} />
         )}
       </TabNavigator>
     );

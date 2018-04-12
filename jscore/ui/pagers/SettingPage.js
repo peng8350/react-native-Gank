@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 17:11:53
+ * @Last Modified time: 2018-04-12 17:30:22
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -48,7 +48,7 @@ class SettingPage extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        {<SettingList />}
+        {<SettingList navigation = {this.props.navigation} />}
       </View>
     );
   }

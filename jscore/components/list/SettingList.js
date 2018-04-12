@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 17:20:02
+ * @Last Modified time: 2018-04-12 17:33:27
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -35,6 +35,17 @@ class SettingList extends Component {
     );
   };
 
+  _onItemPress = pos => {
+    switch(pos){
+      case 3:
+        this.props.navigation.navigate('Like');
+      break;
+      default:
+
+      break;
+    }
+}
+
   _renderRightArrow() {
     return (
       <Icon
@@ -50,6 +61,7 @@ class SettingList extends Component {
       {
         data: [
           {
+            pos: 0,
             key: "1",
             bgColor: "darkgray",
             iconName: "ios-bulb",
@@ -60,6 +72,7 @@ class SettingList extends Component {
             })
           },
           {
+            pos:1,
             key: "2",
             bgColor: "coral",
             iconName: "ios-jet",
@@ -73,6 +86,7 @@ class SettingList extends Component {
             )
           },
           {
+            pos:2,
             key: "3",
             bgColor: "cornflowerblue",
             iconName: "ios-albums",
@@ -82,6 +96,7 @@ class SettingList extends Component {
           },
 
           {
+            pos:3,
             key: "4",
             bgColor: "darkseagreen",
             iconName: "md-star",
@@ -93,18 +108,21 @@ class SettingList extends Component {
       {
         data: [
           {
+            pos:4,
             key: "5",
             bgColor: "greenyellow",
             iconName: "ios-share",
             title: "分享"
           },
           {
+            pos:5,
             key: "6",
             bgColor: "mediumpurple",
             iconName: "ios-body",
             title: "关于我"
           },
           {
+            pos:6,
             key: "7",
             bgColor: "tomato",
             iconName: "ios-exit",
@@ -131,11 +149,8 @@ class SettingList extends Component {
         renderSectionHeader={({ section }) => <EmptyView />}
         renderItem={({ item }) => (
           <SettingItem
-            extra={item.extra}
-            title={item.title}
-            bgColor={item.bgColor}
-            iconName={item.iconName}
-            renderRight={item.renderRight}
+            {...item}
+            onItemPress={this._onItemPress}
           />
         )}
       />

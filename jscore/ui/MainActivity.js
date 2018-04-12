@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 00:03:49
+ * @Last Modified time: 2018-04-12 17:30:33
  * @Email: peng8350@gmail.com 
  */
 
@@ -21,10 +21,6 @@ import {
   BackHandler,
   ToastAndroid
 } from "react-native";
-import SettingPage from "./pagers/SettingPage";
-import TabNavigator from "react-native-tab-navigator";
-import HomePage from "./pagers/HomePage";
-import GirlPage from "./pagers/GirlPage";
 import TabBar from "../components/view/TabBar";
 import { connect } from "react-redux";
 import {
