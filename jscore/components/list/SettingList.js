@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:33:27
+ * @Last Modified time: 2018-04-15 20:38:52
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -157,13 +157,6 @@ class SettingList extends Component {
     );
   }
 
-  componentDidMount() {
-    let settingInfo = DbUtils.queryFirst("Setting", "id==1");
-    let { actions } = this.props;
-    actions.setNight(settingInfo.isNight);
-    actions.setAutoRefresh(settingInfo.autoRefresh);
-    actions.setPicPosition(settingInfo.picPos);
-  }
 }
 
 export const stateToprops = state => {

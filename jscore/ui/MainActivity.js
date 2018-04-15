@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:30:33
+ * @Last Modified time: 2018-04-15 20:39:01
  * @Email: peng8350@gmail.com 
  */
 
@@ -35,6 +35,8 @@ import PopupDialog,{ DialogTitle,DialogButton,SlideAnimation } from "react-nativ
 import PicImage from "../components/view/PicImage";
 import { getWidth } from "../utils/ScreenUtils";
 import DbUtils from "../utils/DbUtils";
+import * as Action from '../actions/settingAction'
+import {bindActionCreators} from 'redux'
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -67,6 +69,14 @@ class MainActivity extends Component {
 
   constructor() {
     super();
+  }
+
+  componentWillMount(){
+    let settingInfo = DbUtils.queryFirst("Setting", "id==1");
+    let { actions } = this.props;
+    actions.setNight(settingInfo.isNight);
+    actions.setAutoRefresh(settingInfo.autoRefresh);
+    actions.setPicPosition(settingInfo.picPos);
   }
 
   _shareMessage() {
@@ -191,4 +201,10 @@ const stateToprops = state => {
   };
 };
 
-export default connect(stateToprops)(MainActivity);
+const actionDispatch = dispatch => {
+  return {
+    actions: bindActionCreators(Action,dispatch)
+  }
+}
+
+export default connect(stateToprops,actionDispatch)(MainActivity);
