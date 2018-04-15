@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 16:58:22
+ * @Last Modified time: 2018-04-15 22:18:09
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -18,6 +18,7 @@ import {
 import { PRESSEDCOLOR } from "../../constants/colors";
 import IconView from "../view/IconView";
 import CallOnceInInterval from "../../utils/CallOnceInInterval";
+import { globalStyles } from "../../constants/styles";
 
 class HomeGridItem extends Component {
   render() {
@@ -27,7 +28,7 @@ class HomeGridItem extends Component {
         underlayColor={PRESSEDCOLOR}
         onPress={() => CallOnceInInterval( () => this.props.onItemPress(this.props.title))}
       >
-        <View style={styles.itemContainer}>
+        <View style={[globalStyles.verCenLayout,styles.itemContainer]}>
           <IconView
             iconName={this.props.img}
             iconSize={28}
@@ -38,7 +39,7 @@ class HomeGridItem extends Component {
             iconType={this.props.iconType}
           />
 
-          <Text style={styles.textView}>{this.props.title}</Text>
+          <Text style={[globalStyles.BigText,styles.textView]}>{this.props.title}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -48,7 +49,6 @@ class HomeGridItem extends Component {
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
-    backgroundColor: "#fff",
     height: 90,
     justifyContent: "center",
     alignItems: "center"

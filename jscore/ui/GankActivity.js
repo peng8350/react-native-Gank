@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 18:25:16
+ * @Last Modified time: 2018-04-15 22:06:44
  * @Email: peng8350@gmail.com 
  */
 
@@ -168,7 +168,7 @@ class GankActivity extends Component {
 
   render() {
     return (
-      <View style={[globalStyles.verticalLayout]}>
+      <View  style={{backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#f3f3f3'}}>
         <PullableList
           ref={"ganklist"}
           data={this.state.dataSource}

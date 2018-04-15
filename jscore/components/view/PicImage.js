@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 12:29:06 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-08 13:11:05
+ * @Last Modified time: 2018-04-15 22:38:24
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,6 +15,9 @@ import HttpUtils from "../../utils/HttpUtils";
 
 //占位图,error图，渐变流加载
 export default class PicImage extends Component {
+
+  
+  
   constructor(props) {
     super(props);
     this.state = {

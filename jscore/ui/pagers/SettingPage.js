@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:30:22
+ * @Last Modified time: 2018-04-15 22:18:13
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -38,8 +38,6 @@ class SettingPage extends Component {
           resizeMode="contain"
           source={require("../../resources/gank.jpg")}
         />
-        <Text style={globalStyles.BigText}>干货集中营</Text>
-        <Text style={globalStyles.normalText}>版本号</Text>
       </ImageBackground>
     );
   }

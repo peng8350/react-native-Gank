@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 20:38:52
+ * @Last Modified time: 2018-04-15 22:15:23
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -16,9 +16,10 @@ import SettingItem from "../Item/SettingItem";
 import EmptyView from "../other/EmptyView";
 import Icon from "react-native-vector-icons/Ionicons";
 import {
-  TEXTSELECTEDCOLOR,
   TEXTSMALLCOLOR,
-  THEMECOLOR
+  THEMECOLOR,
+  NIGHTTHEMECOLOR,
+  NIGHTSEPERATERCOLOR
 } from "../../constants/colors";
 import ItemSeparater from "../other/ItemSeparater";
 import DbUtils from "../../utils/DbUtils";
@@ -143,7 +144,7 @@ class SettingList extends Component {
             this.props.actions.changeHeight(-event.nativeEvent.contentOffset.y);
         }}
         SectionSeparatorComponent={() => (
-          <ItemSeparater height={1} color={"snow"} />
+          <ItemSeparater height={1} color={this.props.isNight?NIGHTSEPERATERCOLOR:"snow"} />
         )}
         ItemSeparatorComponent={() => <ItemSeparater />}
         renderSectionHeader={({ section }) => <EmptyView />}

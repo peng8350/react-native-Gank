@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-15 20:30:40 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 20:33:51
+ * @Last Modified time: 2018-04-15 21:09:54
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -29,7 +29,7 @@ class MyScreen extends Component{
             },
             {
               navigationOptions: {
-                headerStyle: [globalStyles.navStyle,{backgroundColor: this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR}],
+                headerStyle: globalStyles.navStyle,
                 headerTintColor: "white",
                 headerTitleStyle: globalStyles.navTitle
               },

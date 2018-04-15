@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 18:19:18
+ * @Last Modified time: 2018-04-15 22:21:32
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,12 +12,13 @@ import React, { Component } from "react";
 import { FlatList, View, Text } from "react-native";
 import { TabNavigator } from "react-navigation";
 import LikePage from "./pagers/LikePage";
-import { THEMECOLOR, TEXTNORMALCOLOR } from "../constants/colors";
+import { THEMECOLOR, TEXTNORMALCOLOR, NIGHTTHEMECOLOR, BOTTTOMBGCOLOR, NIGHTBGCOLOR, NIGHTNORMALTEXTCOLOR } from "../constants/colors";
 import ScrollableTabView, {
   ScrollableTabBar
 } from "react-native-scrollable-tab-view";
+import { connect } from "react-redux";
 
-export default class LikeActivity extends Component {
+class LikeActivity extends Component {
   constructor() {
     super();
     this.state = {
@@ -32,11 +33,12 @@ export default class LikeActivity extends Component {
   render() {
     return (
       <ScrollableTabView
-        tabBarBackgroundColor={"white"}
-        tabBarUnderlineStyle={{ backgroundColor: THEMECOLOR }}
-        tabBarInactiveTextColor={TEXTNORMALCOLOR}
+        style={{backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#f3f3f3'}}
+        tabBarBackgroundColor={this.props.isNight?NIGHTBGCOLOR:"white"}
+        tabBarUnderlineStyle={{ backgroundColor: this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR }}
+        tabBarInactiveTextColor={this.props.isNight?NIGHTNORMALTEXTCOLOR:TEXTNORMALCOLOR}
         initialPage={0}
-        tabBarActiveTextColor={THEMECOLOR}
+        tabBarActiveTextColor={this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR}
         renderTabBar={() => <ScrollableTabBar />}
       >
         <LikePage tabLabel="前端" type="前端" />
@@ -49,3 +51,12 @@ export default class LikeActivity extends Component {
     );
   }
 }
+
+
+const stateToProps = state => {
+  return {
+    isNight: state.SettingReducer.isNight
+  }
+}
+
+export default connect(stateToProps)(LikeActivity)

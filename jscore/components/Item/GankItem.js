@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-12 18:26:24
+ * @Last Modified time: 2018-04-15 22:38:45
  */
 
 //@flow
@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import PicImage from "../view/PicImage";
 
-export default class GankItem extends Component {
+class GankItem extends Component {
 
   static defaultProps={
     showSwipes: false
@@ -90,7 +90,7 @@ export default class GankItem extends Component {
       return (
         <PicImage
         style={styles.image}
-        url={require("../../resources/empty.png")}
+        url={require("../../resources/empty_night.png")}
          />
       )
     }
@@ -98,7 +98,7 @@ export default class GankItem extends Component {
       return   <PicImage
       style={styles.image}
       url={{uri:this.props.images[0]+'?imageView2/0/w/200'}}
-      placeholder={require("../../resources/empty.png")
+      placeholder={this.props.isNight?require("../../resources/empty_night.png"):require("../../resources/empty.png")
     }
       />
     }
@@ -131,6 +131,14 @@ export default class GankItem extends Component {
     }
   }
 }
+
+const stateToProps= state => {
+  return {
+    isNight: state.SettingReducer.isNight
+  }
+}
+
+export default connect(stateToProps)(GankItem)
 
 const styles = StyleSheet.create({
   swBtnContainer: {

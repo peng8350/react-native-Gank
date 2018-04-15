@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 22:06:44 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 15:55:09
+ * @Last Modified time: 2018-04-15 21:57:15
  * @Email: peng8350@gmail.com 
  */
 
@@ -10,22 +10,21 @@
 
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { SEPERATERCOLOR } from "../../constants/colors";
+import { SEPERATERCOLOR, NIGHTTHEMECOLOR, NIGHTSEPERATERCOLOR } from "../../constants/colors";
 import { getWidth } from "../../utils/ScreenUtils";
+import { connect } from "react-redux";
 
-export default class ItemSeparater extends Component {
+class ItemSeparater extends Component {
   static defaultProps = {
     width: getWidth(),
     height: 0.5,
-    direction: "flex-start",
-    color: SEPERATERCOLOR
   };
   render() {
     return (
       <View
         style={{
           width: this.props.width,
-          backgroundColor: this.props.color,
+          backgroundColor: this.props.color?this.props.color:this.props.isNight?NIGHTSEPERATERCOLOR:SEPERATERCOLOR,
           alignSelf: this.props.direction,
           height: this.props.height
         }}
@@ -33,3 +32,11 @@ export default class ItemSeparater extends Component {
     );
   }
 }
+
+const stateToProps = state => {
+   return {
+      isNight :state.SettingReducer.isNight
+   }
+}
+
+export default connect(stateToProps)(ItemSeparater)

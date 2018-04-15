@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 16:56:47
+ * @Last Modified time: 2018-04-15 21:11:10
  * @Email: peng8350@gmail.com 
  */
 
@@ -49,7 +49,6 @@ export default class HomeGankItem extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     height: 150,
     shadowRadius: 2,
     shadowColor: "#333",

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 18:29:05
+ * @Last Modified time: 2018-04-15 22:05:00
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -22,13 +22,13 @@ import HomePage from "../../ui/pagers/HomePage";
 import SettingPage from "../../ui/pagers/SettingPage";
 import GirlPage from "../../ui/pagers/GirlPage";
 import Icon from "react-native-vector-icons/Ionicons";
-import { THEMECOLOR } from "../../constants/colors";
+import { THEMECOLOR, NIGHTTHEMECOLOR, NIGHTBGCOLOR, BOTTTOMBGCOLOR } from "../../constants/colors";
 
 //@flow
 class TabBar extends Component {
   render() {
     return (
-      <TabNavigator sceneStyle={styles.screen} tabBarStyle={styles.tabBar}>
+      <TabNavigator sceneStyle={{ backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:"#f3f3f3"}} tabBarStyle={[styles.tabBar,{ backgroundColor: this.props.isNight?NIGHTBGCOLOR:"#f3f3f3"}]}>
         {this._renderTabBarItem(
           0,
           TAB1_TITLE,
@@ -36,7 +36,7 @@ class TabBar extends Component {
             name: "ios-home-outline",
             iconColor: "#979797"
           }),
-          this._renderTabIcon({ name: "ios-home", iconColor: THEMECOLOR }),
+          this._renderTabIcon({ name: "ios-home", iconColor: this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR }),
           <HomePage navigation={this.props.navigation} />
         )}
         {this._renderTabBarItem(
@@ -46,7 +46,7 @@ class TabBar extends Component {
             name: "ios-compass-outline",
             iconColor: "#979797"
           }),
-          this._renderTabIcon({ name: "ios-compass", iconColor: THEMECOLOR }),
+          this._renderTabIcon({ name: "ios-compass", iconColor: this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR }),
           <GirlPage />
         )}
         {this._renderTabBarItem(
@@ -56,7 +56,7 @@ class TabBar extends Component {
             name: "ios-settings-outline",
             iconColor: "#979797"
           }),
-          this._renderTabIcon({ name: "ios-settings", iconColor: THEMECOLOR }),
+          this._renderTabIcon({ name: "ios-settings", iconColor: this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR }),
           <SettingPage navigation={this.props.navigation} />
         )}
       </TabNavigator>
@@ -95,9 +95,6 @@ class TabBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: "#f3f3f3"
-  },
   tabBar: {
     alignItems: "center",
     height: 52
@@ -110,7 +107,8 @@ const styles = StyleSheet.create({
 
 const mapStatetoProps = state => {
   return {
-    selectedTab: state.TabReducer.selectedTab
+    selectedTab: state.TabReducer.selectedTab,
+    isNight: state.SettingReducer.isNight
   };
 };
 
