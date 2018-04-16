@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-10 16:04:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-11 22:26:02
+ * @Last Modified time: 2018-04-16 23:20:44
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -44,19 +44,23 @@ export default class PullableList extends Component {
           this.setState({
             isRefresh: true
           });
+          if(this.props.onRefresh)
           this.props.onRefresh();
         }}
         refreshing={this.state.isRefresh}
         onEndReached={() => {
           //之所以判断是不是正在加载,是因为这里存在调用>2上拉回调可能性的bug,并且要有数据才上拉加载
+          if(!this.props.onLoadMore)return;
             if (!this.loading ) {
               this.loading = true;
               this.setState({
                 isLoadMore: true
               },
               () => {
+                
                 this.props.onLoadMore(() => {
                   this.loading =false;
+                
                   this.LoadComplete()
                 })
               }
@@ -72,7 +76,7 @@ export default class PullableList extends Component {
         ItemSeparatorComponent={() => <ItemSeparater />}
         onEndReachedThreshold={0.01}
        
-        style={[this.props.styles]}
+        style={[this.props.style]}
       />
     );
   }

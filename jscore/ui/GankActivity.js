@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:06:44
+ * @Last Modified time: 2018-04-16 23:39:17
  * @Email: peng8350@gmail.com 
  */
 
@@ -23,6 +23,7 @@ import DbUtils, { realm } from "../utils/DbUtils";
 import GankManager from "../utils/GankManager";
 import GankItem from "../components/Item/GankItem";
 import PullableList from "../components/list/PullableList";
+import { BOTTTOMBGCOLOR, NIGHTBGCOLOR } from "../constants/colors";
 
 class GankActivity extends Component {
   pageIndex = 1;
@@ -81,12 +82,15 @@ class GankActivity extends Component {
         if (arr.length > 0) {
           this.pageIndex++;
           let newArr = GankManager.toGankBean(arr);
-          this.setState(prevState => {
-            return {
-              error: false,
-              dataSource: newArr.concat(this.state.dataSource)
-            };
-          },() => GankManager.insertDb(newArr));
+          this.setState(
+            prevState => {
+              return {
+                error: false,
+                dataSource: newArr.concat(this.state.dataSource)
+              };
+            },
+            () => GankManager.insertDb(newArr)
+          );
         }
         this.refs.ganklist.RefreshComplete();
       },
@@ -102,7 +106,7 @@ class GankActivity extends Component {
   _pressLike = index => {
     let selectRow = this.state.dataSource[index];
     this.state.liked[index] = !this.state.liked[index];
-    DbUtils.update('gank',{_id:selectRow._id,like:true})
+    DbUtils.update("gank", { _id: selectRow._id, like: true });
     this.setState({
       ...this.state
     });
@@ -141,7 +145,37 @@ class GankActivity extends Component {
     );
   };
 
-  componentDidMount() {
+  _renderSearchList() {
+    return this.props.enterSearch ? (
+      <PullableList
+        style={[
+          styles.searchList,
+          { backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3" }
+        ]}
+        data={this.props.searchList}
+        renderItem={({ item, index }) => {
+          return (
+            <GankItem
+              index={index}
+              ctn={item.desc}
+              author={item.who}
+              showSwipes={false}
+              like={this.state.liked[index]}
+              // images={item.images}
+              time={item.time}
+              clickLike={this._pressLike}
+              clickMore={this._pressMore}
+              onItemSelect={() => {
+                this.props.navigation.navigate("Web", { url: item.url });
+              }}
+            />
+          );
+        }}
+      />
+    ) : null;
+  }
+
+  componentWillMount() {
     this.type =
       this.props.navigation.state.params.GankType === "IOS"
         ? "iOS"
@@ -159,8 +193,8 @@ class GankActivity extends Component {
           };
         },
         () => {
-          for(let i =0 ;i<queryList.length;i++){
-            this.state.liked[i] = this.state.dataSource[i].like
+          for (let i = 0; i < queryList.length; i++) {
+            this.state.liked[i] = this.state.dataSource[i].like;
           }
         }
       );
@@ -168,7 +202,11 @@ class GankActivity extends Component {
 
   render() {
     return (
-      <View  style={{backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#f3f3f3'}}>
+      <View
+        style={{
+          backgroundColor: this.props.isNight ? BOTTTOMBGCOLOR : "#f3f3f3"
+        }}
+      >
         <PullableList
           ref={"ganklist"}
           data={this.state.dataSource}
@@ -181,7 +219,7 @@ class GankActivity extends Component {
                 index={index}
                 ctn={item.desc}
                 author={item.who}
-                showSwipes= {true}
+                showSwipes={true}
                 like={this.state.liked[index]}
                 // images={item.images}
                 time={item.time}
@@ -211,20 +249,19 @@ class GankActivity extends Component {
           onShow={() => this.props.action.toggleSearch(true)}
           onHide={() => this.props.action.toggleSearch(false)}
         />
-        {/* {this.props.enterSearch ? (
-          <PullableList
-          />
-        ) : null} */}
+        {this._renderSearchList()}
         <Modal visible={this.props.searching} transparent={true}>
           <View
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
               justifyContent: "center",
+              alignItems: "center",
               flex: 1,
-              alignItems: "center"
+              backgroundColor: "rgba(0,0,0,0.5)"
             }}
           >
-            <LoadingBar title={"搜索中..."} />
+            <View style={{ width: 100, height: 100, backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#fff',borderRadius:6,borderWidth:12,borderColor:this.props.isNight?BOTTTOMBGCOLOR:'#fff' }}>
+              <LoadingBar title={"搜索中..."} />
+            </View>
           </View>
         </Modal>
       </View>
@@ -247,6 +284,7 @@ const styles = StyleSheet.create({
 
 const stateToprops = state => {
   return {
+    isNight: state.SettingReducer.isNight,
     enterSearch: state.GankReducer.enterSearch,
     searching: state.GankReducer.searching,
     searchList: state.GankReducer.searchList
