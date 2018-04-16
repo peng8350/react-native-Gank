@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:15:23
+ * @Last Modified time: 2018-04-16 22:15:57
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -23,6 +23,7 @@ import {
 } from "../../constants/colors";
 import ItemSeparater from "../other/ItemSeparater";
 import DbUtils from "../../utils/DbUtils";
+import ShareUtils from "../../utils/ShareUtils";
 
 class SettingList extends Component {
   _renderRightSwitch = (state1, onValueChange1) => {
@@ -41,6 +42,15 @@ class SettingList extends Component {
       case 3:
         this.props.navigation.navigate('Like');
       break;
+
+      case 4:
+        ShareUtils.shareMessage()
+      break;
+      case 5:
+
+      break;
+
+      
       default:
 
       break;
@@ -122,13 +132,7 @@ class SettingList extends Component {
             iconName: "ios-body",
             title: "关于我"
           },
-          {
-            pos:6,
-            key: "7",
-            bgColor: "tomato",
-            iconName: "ios-exit",
-            title: "退出程序"
-          }
+
         ]
       }
     ];

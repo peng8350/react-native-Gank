@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 20:39:01
+ * @Last Modified time: 2018-04-16 22:14:42
  * @Email: peng8350@gmail.com 
  */
 
@@ -17,7 +17,6 @@ import {
   Text,
   Image,
   View,
-  Share,
   BackHandler,
   ToastAndroid
 } from "react-native";
@@ -79,30 +78,8 @@ class MainActivity extends Component {
     actions.setPicPosition(settingInfo.picPos);
   }
 
-  _shareMessage() {
-    Share.share(
-      {
-        message: "这是一个gankio的开源代码",
-        url: "https://github.com/peng8350/react-native-Gank",
-        title: "Gank"
-      },
-      {
-        dialogTitle: "Share React Native website",
-        excludedActivityTypes: ["com.apple.UIKit.activity.PostToTwitter"],
-        tintColor: "green"
-      }
-    )
-      .then(this._showResult)
-      .catch(error => {
-        alert(error);
-      });
-  }
 
-  _showResult(result) {
-    if (result.action === Share.sharedAction) {
-      alert("已经分享");
-    }
-  }
+
 
   _renderActionSheet() {
     let actionArr =

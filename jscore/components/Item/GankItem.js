@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-15 22:38:45
+ * @Last Modified time: 2018-04-16 22:09:54
  */
 
 //@flow
@@ -90,7 +90,7 @@ class GankItem extends Component {
       return (
         <PicImage
         style={styles.image}
-        url={require("../../resources/empty_night.png")}
+        url={require("../../resources/empty.png")}
          />
       )
     }
