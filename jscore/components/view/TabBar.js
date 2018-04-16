@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-25 11:03:54 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:05:00
+ * @Last Modified time: 2018-04-16 22:22:11
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { StyleSheet, Image } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as Actions from "../../actions/TabAction";
+import * as Actions from "../../actions/MainAction";
 import TabNavigator from "react-native-tab-navigator";
 import {
   TAB1_TITLE,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
 const mapStatetoProps = state => {
   return {
-    selectedTab: state.TabReducer.selectedTab,
+    selectedTab: state.MainReducer.selectedTab,
     isNight: state.SettingReducer.isNight
   };
 };

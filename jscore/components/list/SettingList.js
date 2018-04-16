@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 22:15:57
+ * @Last Modified time: 2018-04-16 22:36:07
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -10,7 +10,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as Action from "../../actions/settingAction";
+import * as Action from "../../actions";
 import { SectionList, View, Switch, StyleSheet } from "react-native";
 import SettingItem from "../Item/SettingItem";
 import EmptyView from "../other/EmptyView";
@@ -47,7 +47,7 @@ class SettingList extends Component {
         ShareUtils.shareMessage()
       break;
       case 5:
-
+        this.props.actions.toggleAboutDlg(true)
       break;
 
       
@@ -169,12 +169,14 @@ export const stateToprops = state => {
     isNight: state.SettingReducer.isNight,
     picPos: state.SettingReducer.picPos,
     autoRefresh: state.SettingReducer.autoRefresh
+    
   };
 };
 
 export const dispatchToActions = dispatch => {
   return {
     actions: bindActionCreators(Action, dispatch)
+   
   };
 };
 
