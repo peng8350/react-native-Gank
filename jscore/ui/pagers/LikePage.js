@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-18 21:36:44
+ * @Last Modified time: 2018-04-18 22:27:55
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -18,48 +18,67 @@ export default class LikePage extends Component {
     super();
     this.state = {
       dataSource: [],
-      selected : false
+      selectList: []
     };
   }
 
-  _renderItem = ({ item }) =>  {
+  _renderItem = ({ item,index}) => {
     return (
-      
-
-      <GankItem
-        ctn={item.desc}
-        author={item.who}
-        // images={item.images}
-        time={item.time}
-        clickLike={this._pressLike}
-        clickMore={this._pressMore}
-        onItemSelect={() => {
-          this.props.navigation.navigate("Web", { url: item.url });
-        }}
-      />
+      <View stlye={{ flex: 1, flexDirection: "row" }}>
+        <GankItem
+          ctn={item.desc}
+          author={item.who}
+          // images={item.images}
+          time={item.time}
+          clickLike={this._pressLike}
+          clickMore={this._pressMore}
+          onItemSelect={() => {
+            this.props.navigation.navigate("Web", { url: item.url });
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            padding: 5,
+            position: "absolute",
+            alignItems: "flex-end",
+            bottom: 0,
+            top: 0,
+            right: 0,
+            left: 0
+          }}
+        >
+          <MyCheckBox selected={this.state.selectList[index]} onChecked={(selected) => {
+            this.state.selectList[index] = selected
+            this.setState({
+              selectList: [].concat(this.state.selectList)
+            })
+          }}/>
+        </View>
+      </View>
     );
-  }
+  };
 
   render() {
-    
     return (
-      <MyCheckBox selected={this.state.selected} onChecked={ (selected) => {
-        this.setState({selected:selected})
-      }}/>
-      /*
       <FlatList
         data={this.state.dataSource}
-        extraData={}
         keyExtractor={(item, index) => index + ""}
+        extraData={this.state.selectList}
         renderItem={this._renderItem}
-      />*/
+      />
     );
   }
 
   componentWillMount() {
     let queryList = GankManager.getLikeFromDb(this.props.type);
+    let selectList = [];
+    for (const item of queryList) {
+      selectList.push(false);
+    }
     this.setState({
-      dataSource: [].concat(...queryList)
+      dataSource: [].concat(...queryList),
+      selectList: selectList
     });
   }
 }
