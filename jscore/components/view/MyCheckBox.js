@@ -2,13 +2,13 @@
  * @Author: Jpeng 
  * @Date: 2018-04-18 20:59:46 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-18 21:20:35
+ * @Last Modified time: 2018-04-18 21:40:16
  * @Email: peng8350@gmail.com 
  */
 //@flow
 
 import React, { Component } from "react";
-import { THEMECOLOR } from "../../constants/colors";
+import { THEMECOLOR, PRESSEDCOLOR } from "../../constants/colors";
 import IconView from "react-native-vector-icons/Ionicons";
 import { View, TouchableHighlight, StyleSheet } from "react-native";
 
@@ -21,7 +21,7 @@ export default class MyCheckBox extends Component {
   };
 
   _renderTick() {
-    // if (!this.props.selected) return null;
+    if (!this.props.selected) return null;
     return (
       <IconView
         stlye={{backgroundColor: 'transparent'}}
@@ -35,12 +35,13 @@ export default class MyCheckBox extends Component {
   render() {
     return (
       <TouchableHighlight
-        underlayColor={"transparent"}
+        style={{width:30,height:30}}
+        underlayColor={PRESSEDCOLOR}
         onPress={() => {
           if (this.props.onChecked) this.props.onChecked(!this.props.selected);
         }}
       >
-        <View style={[this.props.style,styles.container,{backgroundColor: this.props.selected?this.props.bgColor:'transparent',borderColor:this.props.bgColor}]}>{this._renderTick()}</View>
+        <View style={[this.props.style,styles.container,{backgroundColor: this.props.selected?this.props.bgColor:'white',borderColor:this.props.bgColor}]}>{this._renderTick()}</View>
       </TouchableHighlight>
     );
   }
