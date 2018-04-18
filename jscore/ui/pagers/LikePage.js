@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 18:22:49
+ * @Last Modified time: 2018-04-18 21:09:15
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -11,6 +11,7 @@ import React, { Component } from "react";
 import { View, Text, FlatList } from "react-native";
 import GankItem from "../../components/Item/GankItem";
 import GankManager from "../../utils/GankManager";
+import MyCheckBox from "../../components/view/MyCheckBox";
 
 export default class LikePage extends Component {
   constructor() {
@@ -22,7 +23,9 @@ export default class LikePage extends Component {
 
   _renderItem({ item }) {
     return (
-      <GankItem
+      
+      <MyCheckBox />
+      /*<GankItem
         ctn={item.desc}
         author={item.who}
         // images={item.images}
@@ -32,7 +35,7 @@ export default class LikePage extends Component {
         onItemSelect={() => {
           this.props.navigation.navigate("Web", { url: item.url });
         }}
-      />
+      />*/
     );
   }
 

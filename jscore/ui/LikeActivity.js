@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:21:32
+ * @Last Modified time: 2018-04-18 20:54:17
  * @Email: peng8350@gmail.com 
  */
 
@@ -22,10 +22,12 @@ class LikeActivity extends Component {
   constructor() {
     super();
     this.state = {
-      selectTab: 0
+      selectTab: 0,
+      isDeleting: false
     };
   }
 
+  //md-checkmark
   static navigationOptions = {
     headerTitle: "收藏"
   };
@@ -41,12 +43,12 @@ class LikeActivity extends Component {
         tabBarActiveTextColor={this.props.isNight?NIGHTTHEMECOLOR:THEMECOLOR}
         renderTabBar={() => <ScrollableTabBar />}
       >
-        <LikePage tabLabel="前端" type="前端" />
-        <LikePage tabLabel="Android" type="Android" />
-        <LikePage tabLabel="IOS" type="iOS" />
-        <LikePage tabLabel="App" type="App" />
-        <LikePage tabLabel="瞎推荐" type="瞎推荐" />
-        <LikePage tabLabel="拓展资源" type="拓展资源" />
+        <LikePage tabLabel="前端" type="前端" isDeleting ={this.state.isDeleting}/>
+        <LikePage tabLabel="Android" type="Android" isDeleting ={this.state.isDeleting} />
+        <LikePage tabLabel="IOS" type="iOS" isDeleting ={this.state.isDeleting} />
+        <LikePage tabLabel="App" type="App" isDeleting ={this.state.isDeleting} />
+        <LikePage tabLabel="瞎推荐" type="瞎推荐" isDeleting ={this.state.isDeleting} />
+        <LikePage tabLabel="拓展资源" type="拓展资源" isDeleting ={this.state.isDeleting} />
       </ScrollableTabView>
     );
   }

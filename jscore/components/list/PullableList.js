@@ -2,12 +2,12 @@
  * @Author: Jpeng 
  * @Date: 2018-04-10 16:04:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 23:20:44
+ * @Last Modified time: 2018-04-17 23:04:56
  * @Email: peng8350@gmail.com 
  */
 //@flow
 import React, { Component } from "react";
-import { FlatList } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import ItemSeparater from "../other/ItemSeparater";
 import LoadingBar from "../view/LoadingBar";
 
@@ -50,6 +50,7 @@ export default class PullableList extends Component {
         refreshing={this.state.isRefresh}
         onEndReached={() => {
           //之所以判断是不是正在加载,是因为这里存在调用>2上拉回调可能性的bug,并且要有数据才上拉加载
+          if(this.props.data.length===0)return;
           if(!this.props.onLoadMore)return;
             if (!this.loading ) {
               this.loading = true;
@@ -72,11 +73,14 @@ export default class PullableList extends Component {
         ListFooterComponent={() =>
           this.state.isLoadMore ? <LoadingBar /> : null
         }
+        ListEmptyComponent={ <View  style={{flex:-1}}>
+          <Text style={{backgroundColor: '#000',alignSelf:'center'}}>asd</Text>
+        </View>
+        }
         renderItem={this.props.renderItem}
         ItemSeparatorComponent={() => <ItemSeparater />}
         onEndReachedThreshold={0.01}
-       
-        style={[this.props.style]}
+    
       />
     );
   }
