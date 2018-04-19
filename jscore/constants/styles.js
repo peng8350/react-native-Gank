@@ -2,13 +2,13 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:09:12
+ * @Last Modified time: 2018-04-19 23:30:16
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 import { StyleSheet } from "react-native";
-import { TEXTNORMALCOLOR, TEXTSMALLCOLOR, THEMECOLOR, NIGHTBGCOLOR, NIGHTTHEMECOLOR, NIGHTNORMALTEXTCOLOR } from "./colors";
+import { TEXTNORMALCOLOR, TEXTSMALLCOLOR, THEMECOLOR, NIGHTBGCOLOR, NIGHTTHEMECOLOR, NIGHTNORMALTEXTCOLOR, BOTTTOMBGCOLOR } from "./colors";
 import { store } from "../Store";
 
 var state;
@@ -33,7 +33,7 @@ export var globalStyles= StyleSheet.create({
     color: TEXTNORMALCOLOR
   },
   itemContainer: {
-    backgroundColor: state?"#fff":'#000',
+    backgroundColor: state?"#fff":BOTTTOMBGCOLOR,
     height: 100,
     flex: 1,
     flexDirection: "row",
@@ -47,6 +47,7 @@ export var globalStyles= StyleSheet.create({
     alignItems: "center"
   },
   verticalLayout: {
+    
     flex:1,
     justifyContent: "center"
   },

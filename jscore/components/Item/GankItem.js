@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-16 22:09:54
+ * @Last Modified time: 2018-04-19 23:31:35
  */
 
 //@flow
@@ -65,6 +65,7 @@ class GankItem extends Component {
             style={[
               globalStyles.verticalLayout,
               {
+                backgroundColor: 'transparent',
                 alignItems: "flex-end",
                 justifyContent: "space-between"
               }

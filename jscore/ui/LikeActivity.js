@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 20:41:05
+ * @Last Modified time: 2018-04-19 23:09:46
  * @Email: peng8350@gmail.com 
  */
 
@@ -119,7 +119,7 @@ class LikeActivity extends Component {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.navigation.setParams({
       rightText: this.state.rightBtnText,
       pressRight: this._onPressRight
@@ -150,6 +150,7 @@ class LikeActivity extends Component {
           key={1}
           {...this.state}
           tabLabel="前端"
+          navigation ={this.props.navigation}
           change={this.changeRightText}
           type="前端"
         />
@@ -157,6 +158,7 @@ class LikeActivity extends Component {
           ref="like2"
           key={2}
           tabLabel="Android"
+          navigation ={this.props.navigation}
           {...this.state}
           change={this.changeRightText}
           type="Android"
@@ -173,6 +175,7 @@ class LikeActivity extends Component {
           ref="like4"
           key={4}
           tabLabel="App"
+          navigation ={this.props.navigation}
           {...this.state}
           change={this.changeRightText}
           type="App"
@@ -181,6 +184,7 @@ class LikeActivity extends Component {
           ref="like5"
           key={5}
           tabLabel="瞎推荐"
+          navigation ={this.props.navigation}
           {...this.state}
           change={this.changeRightText}
           type="瞎推荐"
@@ -189,6 +193,7 @@ class LikeActivity extends Component {
           ref="like6"
           key={6}
           tabLabel="拓展资源"
+          navigation ={this.props.navigation}
           {...this.state}
           change={this.changeRightText}
           type="拓展资源"

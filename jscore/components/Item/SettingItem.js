@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 17:33:47
+ * @Last Modified time: 2018-04-19 23:30:53
  * @Email: peng8350@gmail.com 
  */
 
@@ -22,8 +22,8 @@ export default class SettingItem extends Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor={PRESSEDCOLOR} onPress={() => this.props.onItemPress(this.props.pos)}>
-        <View style={[globalStyles.itemContainer, { height: 50 }]}>
+      <TouchableHighlight  underlayColor={PRESSEDCOLOR} onPress={() => this.props.onItemPress(this.props.pos)}>
+        <View style={[globalStyles.itemContainer, { height: 50}]}>
           <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
             <IconView
               radius={6}
@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   rightContainer: {
+    backgroundColor: 'transparent',
     justifyContent: "flex-end",
     paddingRight: 10
   },
   leftContainer: {
+    backgroundColor: 'transparent',
     paddingLeft: 10
   }
 });
