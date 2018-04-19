@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-06 22:21:10 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 22:54:37
+ * @Last Modified time: 2018-04-20 00:18:33
  * @Email: peng8350@gmail.com 
  */
 
@@ -31,10 +31,10 @@ export function downPic(uri, path) {
   if (!uri) return null;
   return new Promise((resolve, reject) => {
     const formUrl = uri;
+    const downloadDest = (path?path:getDefaultDir())+ `${(Math.random() * 10000000) | 0}.jpg`
     const options = {
       fromUrl: formUrl,
-      toFile:
-        (path ? path : downloadDest) + `${(Math.random() * 10000000) | 0}.jpg`,
+      toFile: downloadDest ,
       background: true,
       begin: res => {
         console.log("begin", res);

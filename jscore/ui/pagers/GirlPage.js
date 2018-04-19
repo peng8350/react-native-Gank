@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 22:14:18
+ * @Last Modified time: 2018-04-20 00:17:37
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,7 +12,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,TouchableHighlight,
+  TouchableOpacity,
+  TouchableHighlight,
   Modal,
   CameraRoll
 } from "react-native";
@@ -30,7 +31,7 @@ import ActionSheet from "react-native-actionsheet";
 
 class GirlPage extends Component {
   pageSize = 0;
-  _onRefresh(isUp) {
+  _onRefresh(isUp,call) {
     if (isUp) {
       this.pageSize = 1;
     } else {
@@ -40,11 +41,11 @@ class GirlPage extends Component {
       if (isUp) {
         this.refs.girllist.RefreshComplete();
       } else {
-        this.refs.girllist.LoadComplete();
+        call()
+        // this.refs.girllist.LoadComplete();
       }
     });
   }
-
 
   _renderItem(info) {
     return (
@@ -65,34 +66,31 @@ class GirlPage extends Component {
     );
   }
 
-  _saveToPath(){
-    downPic(this.props.dataSource[this.props.viewIndex].url)
+  _saveToPath() {
+    downPic(this.props.dataSource[this.props.viewIndex].url,'/Users/peng/Pictures');
   }
 
   _renderActionSheet() {
-    let actionArr =
-      ['收藏','下载到本地手机','关闭']
-      return (
-        <ActionSheet
-          ref={'actionSheet'}
-          title={"你想要做什么?"}
-          options={actionArr}
-          cancelButtonIndex={2}
-          onPress={index => {
-            switch (index) {
-              case 0:
-                break;
-              case 1:
-                //下载图片保存到本地
-                this._saveToPath()
-                break;
-              
-            }
-          }}
-        />
-      );
-    }
-  
+    let actionArr = ["收藏", "下载到本地手机", "关闭"];
+    return (
+      <ActionSheet
+        ref={"actionSheet"}
+        title={"你想要做什么?"}
+        options={actionArr}
+        cancelButtonIndex={2}
+        onPress={index => {
+          switch (index) {
+            case 0:
+              break;
+            case 1:
+              //下载图片保存到本地
+              this._saveToPath();
+              break;
+          }
+        }}
+      />
+    );
+  }
 
   componentDidMount() {
     this.props.actions.fetchGirl(true, ++this.pageSize, () => {
@@ -102,34 +100,39 @@ class GirlPage extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex:1}}>
         <PullableList
           ref={"girllist"}
           data={this.props.dataSource}
           renderItem={info => this._renderItem(info)}
           numColumns={2}
-          refreshing={this.props.fetching}
           onRefresh={() => this._onRefresh(true)}
-          onLoadMore={() => {
-            this._onRefresh(false);
+          onLoadMore={(call) => {
+            this._onRefresh(false,call);
           }}
         />
         <Modal visible={this.props.viewing}>
-          <TouchableHighlight onLongPress={() => this.refs.actionSheet.show()} style={[globalStyles.verCenLayout,{backgroundColor: '#000'}]}>
-          <View >
-            <PhotoView
-              source={{ uri: this.props.dataSource.length>0?this.props.dataSource[this.props.viewIndex].url:'http://baidu.com' }}
-              minimumZoomScale={0.5}
-              maximumZoomScale={3}
-              androidScaleType="center"
-              onViewTap={ () => this.props.actions.stopViewPic() }
-              style={{ width: getWidth(), height: getHeight() }}
-            />
-                   {this._renderActionSheet()}
-          </View>
-   
+          <TouchableHighlight
+            onLongPress={() => this.refs.actionSheet.show()}
+            style={[globalStyles.verCenLayout, { backgroundColor: "#000" }]}
+          >
+            <View>
+              <PhotoView
+                source={{
+                  uri:
+                    this.props.dataSource.length > 0
+                      ? this.props.dataSource[this.props.viewIndex].url
+                      : "http://baidu.com"
+                }}
+                minimumZoomScale={0.5}
+                maximumZoomScale={3}
+                androidScaleType="center"
+                onViewTap={() => this.props.actions.stopViewPic()}
+                style={{ width: getWidth(), height: getHeight() }}
+              />
+              {this._renderActionSheet()}
+            </View>
           </TouchableHighlight>
-          
         </Modal>
       </View>
     );

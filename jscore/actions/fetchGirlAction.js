@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-27 12:37:42 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-10 17:11:53
+ * @Last Modified time: 2018-04-20 00:02:18
  * @Email: peng8350@gmail.com 
  */
 
@@ -44,6 +44,7 @@ export function fetchGirl(isUp, pageIndex,successcall) {
           dispatch(fetchGirlSuccess(responseJson, isUp));
         },
         error => {
+          successcall()
           dispatch(fetchGirlFailed());
         }
       );
