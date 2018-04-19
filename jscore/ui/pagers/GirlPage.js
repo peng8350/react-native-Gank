@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 20:21:48
+ * @Last Modified time: 2018-04-19 22:14:18
  * @Email: peng8350@gmail.com 
  */
 
@@ -12,8 +12,9 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
-  Modal
+  TouchableOpacity,TouchableHighlight,
+  Modal,
+  CameraRoll
 } from "react-native";
 import * as Actions from "../../actions/fetchGirlAction";
 import PullableList from "../../components/list/PullableList";
@@ -24,6 +25,8 @@ import PicImage from "../../components/view/PicImage";
 import PhotoView from "react-native-photo-view";
 import { getWidth, getHeight } from "../../utils/ScreenUtils";
 import { globalStyles } from "../../constants/styles";
+import { isIOS, _Download, downPic } from "../../utils/SystemUtils";
+import ActionSheet from "react-native-actionsheet";
 
 class GirlPage extends Component {
   pageSize = 0;
@@ -41,6 +44,7 @@ class GirlPage extends Component {
       }
     });
   }
+
 
   _renderItem(info) {
     return (
@@ -60,6 +64,35 @@ class GirlPage extends Component {
       </TouchableHighlight>
     );
   }
+
+  _saveToPath(){
+    downPic(this.props.dataSource[this.props.viewIndex].url)
+  }
+
+  _renderActionSheet() {
+    let actionArr =
+      ['收藏','下载到本地手机','关闭']
+      return (
+        <ActionSheet
+          ref={'actionSheet'}
+          title={"你想要做什么?"}
+          options={actionArr}
+          cancelButtonIndex={2}
+          onPress={index => {
+            switch (index) {
+              case 0:
+                break;
+              case 1:
+                //下载图片保存到本地
+                this._saveToPath()
+                break;
+              
+            }
+          }}
+        />
+      );
+    }
+  
 
   componentDidMount() {
     this.props.actions.fetchGirl(true, ++this.pageSize, () => {
@@ -82,17 +115,21 @@ class GirlPage extends Component {
           }}
         />
         <Modal visible={this.props.viewing}>
-          <View style={[globalStyles.verCenLayout,{backgroundColor: '#000'}]}>
+          <TouchableHighlight onLongPress={() => this.refs.actionSheet.show()} style={[globalStyles.verCenLayout,{backgroundColor: '#000'}]}>
+          <View >
             <PhotoView
               source={{ uri: this.props.dataSource.length>0?this.props.dataSource[this.props.viewIndex].url:'http://baidu.com' }}
               minimumZoomScale={0.5}
               maximumZoomScale={3}
               androidScaleType="center"
-              onTap={ () => this.props.actions.stopViewPic() }
               onViewTap={ () => this.props.actions.stopViewPic() }
               style={{ width: getWidth(), height: getHeight() }}
             />
+                   {this._renderActionSheet()}
           </View>
+   
+          </TouchableHighlight>
+          
         </Modal>
       </View>
     );
@@ -105,7 +142,8 @@ const stateToProps = state => {
     fetching: state.GirlReducer.fetching,
     dataSource: state.GirlReducer.dataSource,
     viewing: state.GirlReducer.viewing,
-    viewIndex: state.GirlReducer.viewIndex
+    viewIndex: state.GirlReducer.viewIndex,
+    picPos: state.SettingReducer.picPos
   };
 };
 

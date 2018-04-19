@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 20:16:52 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 21:17:25
+ * @Last Modified time: 2018-04-19 21:06:02
  * @Email: peng8350@gmail.com 
  */
 
@@ -14,7 +14,7 @@ const initState = {
   headerHeight: 0,
   isNight: false,
   autoRefresh: false,
-  picPos: ".."
+  picPos: "file:///sdcard/img.png"
 };
 
 export default function SettingReducer(state = initState, action) {
