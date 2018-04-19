@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 00:00:02
+ * @Last Modified time: 2018-04-19 20:35:17
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -121,7 +121,7 @@ export default class LikePage extends Component {
   componentWillMount() {
     let queryList = GankManager.getLikeFromDb(this.props.type);
     let selectList = [];
-    for (const item of queryList) {
+    for (let i= 0;i<queryList.length;i++) {
       selectList.push(false);
     }
     this.setState({

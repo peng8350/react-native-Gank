@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-18 23:49:02
+ * @Last Modified time: 2018-04-19 20:41:05
  * @Email: peng8350@gmail.com 
  */
 
@@ -24,6 +24,7 @@ import ScrollableTabView, {
   ScrollableTabBar
 } from "react-native-scrollable-tab-view";
 import { connect } from "react-redux";
+import { isAndroid } from "../utils/SystemUtils";
 
 class LikeActivity extends Component {
   constructor() {
@@ -35,9 +36,11 @@ class LikeActivity extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: "收藏",
-    headerRight: (
+    headerRight: 
+
+      isAndroid()?
       <Button
-        color="#fff"
+        color='transparent'
         title={
           navigation.state.params ? navigation.state.params.rightText : "删除"
         }
@@ -46,8 +49,18 @@ class LikeActivity extends Component {
             ? navigation.state.params.pressRight
             : () => {}
         }
-      />
-    )
+      />:<Button
+      color="#fff"
+      title={
+        navigation.state.params ? navigation.state.params.rightText : "删除"
+      }
+      onPress={
+        navigation.state.params
+          ? navigation.state.params.pressRight
+          : () => {}
+      }
+    />
+    
   });
 
   changeRightText = state => {
