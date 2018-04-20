@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 11:48:13
+ * @Last Modified time: 2018-04-20 13:55:46
  * @Email: peng8350@gmail.com 
  */
 
@@ -22,8 +22,11 @@ export default class SettingItem extends Component {
 
   render() {
     return (
-      <TouchableHighlight  underlayColor={PRESSEDCOLOR} onPress={() => this.props.onItemPress(this.props.pos)}>
-        <View style={[globalStyles.itemContainer, { height: 50}]}>
+      <TouchableHighlight
+        underlayColor={PRESSEDCOLOR}
+        onPress={() => this.props.onItemPress(this.props.pos)}
+      >
+        <View style={[globalStyles.itemContainer, { height: 50 }]}>
           <View style={[globalStyles.horizontalLayout, styles.leftContainer]}>
             <IconView
               radius={6}
@@ -39,7 +42,10 @@ export default class SettingItem extends Component {
           </View>
 
           <View style={[globalStyles.horizontalLayout, styles.rightContainer]}>
-            <Text style={[globalStyles.smallText, styles.rightText]}   numberOfLines={1}>
+            <Text
+              style={[globalStyles.smallText, styles.rightText]}
+              numberOfLines={1}
+            >
               {this.props.extra}
             </Text>
             {this.props.renderRight}
@@ -58,12 +64,12 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   rightContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     justifyContent: "flex-end",
     paddingRight: 10
   },
   leftContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     paddingLeft: 10
   }
 });

@@ -2,17 +2,25 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 10:40:47
+ * @Last Modified time: 2018-04-20 13:55:22
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 import { StyleSheet } from "react-native";
-import { TEXTNORMALCOLOR, TEXTSMALLCOLOR, THEMECOLOR, NIGHTBGCOLOR, NIGHTTHEMECOLOR, NIGHTNORMALTEXTCOLOR, BOTTTOMBGCOLOR } from "./colors";
+import {
+  TEXTNORMALCOLOR,
+  TEXTSMALLCOLOR,
+  THEMECOLOR,
+  NIGHTBGCOLOR,
+  NIGHTTHEMECOLOR,
+  NIGHTNORMALTEXTCOLOR,
+  BOTTTOMBGCOLOR
+} from "./colors";
 import { store } from "../Store";
 
 var state;
-export var globalStyles= StyleSheet.create({
+export var globalStyles = StyleSheet.create({
   navStyle: {
     backgroundColor: THEMECOLOR
   },
@@ -29,11 +37,11 @@ export var globalStyles= StyleSheet.create({
   },
   BigText: {
     fontSize: 15,
-    textAlign:'center',
+    textAlign: "center",
     color: TEXTNORMALCOLOR
   },
   itemContainer: {
-    backgroundColor: state?"#fff":BOTTTOMBGCOLOR,
+    backgroundColor: state ? "#fff" : BOTTTOMBGCOLOR,
     height: 100,
     flex: 1,
     flexDirection: "row",
@@ -47,8 +55,7 @@ export var globalStyles= StyleSheet.create({
     alignItems: "center"
   },
   verticalLayout: {
-    
-    flex:1,
+    flex: 1,
     justifyContent: "center"
   },
   verCenLayout: {
@@ -56,12 +63,14 @@ export var globalStyles= StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   }
-});;
+});
 store.subscribe(() => {
   state = store.getState();
   globalStyles = StyleSheet.create({
     navStyle: {
-      backgroundColor: state.SettingReducer.isNight?NIGHTTHEMECOLOR:THEMECOLOR
+      backgroundColor: state.SettingReducer.isNight
+        ? NIGHTTHEMECOLOR
+        : THEMECOLOR
     },
     navTitle: {
       fontWeight: "bold"
@@ -72,15 +81,19 @@ store.subscribe(() => {
     },
     normalText: {
       fontSize: 12,
-      color: state.SettingReducer.isNight?NIGHTNORMALTEXTCOLOR:TEXTNORMALCOLOR
+      color: state.SettingReducer.isNight
+        ? NIGHTNORMALTEXTCOLOR
+        : TEXTNORMALCOLOR
     },
     BigText: {
       fontSize: 15,
-      textAlign:'center',
-      color: state.SettingReducer.isNight?NIGHTNORMALTEXTCOLOR:TEXTNORMALCOLOR
+      textAlign: "center",
+      color: state.SettingReducer.isNight
+        ? NIGHTNORMALTEXTCOLOR
+        : TEXTNORMALCOLOR
     },
     itemContainer: {
-      backgroundColor: state.SettingReducer.isNight?NIGHTBGCOLOR:'#fff',
+      backgroundColor: state.SettingReducer.isNight ? NIGHTBGCOLOR : "#fff",
       height: 100,
       flex: 1,
       flexDirection: "row",
@@ -89,24 +102,21 @@ store.subscribe(() => {
       paddingHorizontal: 5
     },
     horizontalLayout: {
-      backgroundColor: state.SettingReducer.isNight?NIGHTBGCOLOR:'#fff',
+      backgroundColor: state.SettingReducer.isNight ? NIGHTBGCOLOR : "#fff",
       flex: 1,
       flexDirection: "row",
       alignItems: "center"
     },
     verticalLayout: {
-      backgroundColor: state.SettingReducer.isNight?NIGHTBGCOLOR:'#fff',
-      flex:1,
+      backgroundColor: state.SettingReducer.isNight ? NIGHTBGCOLOR : "#fff",
+      flex: 1,
       justifyContent: "center"
     },
     verCenLayout: {
-      backgroundColor: state.SettingReducer.isNight?NIGHTBGCOLOR:'#fff',
+      backgroundColor: state.SettingReducer.isNight ? NIGHTBGCOLOR : "#fff",
       flex: 1,
       justifyContent: "center",
       alignItems: "center"
     }
   });
-  
-  
 });
-

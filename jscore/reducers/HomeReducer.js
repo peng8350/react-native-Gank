@@ -12,7 +12,7 @@ import * as Types from "../actions/ActionType";
 
 const initState = {
   dataSource: [],
-  newDate: '暂无',
+  newDate: "暂无",
   loading: false,
   error: false
 };

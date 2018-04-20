@@ -38,28 +38,25 @@ class SettingList extends Component {
   };
 
   _onItemPress = pos => {
-    switch(pos){
-
+    switch (pos) {
       case 2:
-        this.props.actions.editDir(true)
-      break;
+        this.props.actions.editDir(true);
+        break;
       case 3:
-        this.props.navigation.navigate('Like');
-      break;
+        this.props.navigation.navigate("Like");
+        break;
 
       case 4:
-        ShareUtils.shareMessage()
-      break;
+        ShareUtils.shareMessage();
+        break;
       case 5:
-        this.props.actions.toggleAboutDlg(true)
-      break;
+        this.props.actions.toggleAboutDlg(true);
+        break;
 
-      
       default:
-
-      break;
+        break;
     }
-}
+  };
 
   _renderRightArrow() {
     return (
@@ -87,7 +84,7 @@ class SettingList extends Component {
             })
           },
           {
-            pos:1,
+            pos: 1,
             key: "2",
             bgColor: "coral",
             iconName: "ios-jet",
@@ -101,7 +98,7 @@ class SettingList extends Component {
             )
           },
           {
-            pos:2,
+            pos: 2,
             key: "3",
             bgColor: "cornflowerblue",
             iconName: "ios-albums",
@@ -111,7 +108,7 @@ class SettingList extends Component {
           },
 
           {
-            pos:3,
+            pos: 3,
             key: "4",
             bgColor: "darkseagreen",
             iconName: "md-star",
@@ -123,20 +120,19 @@ class SettingList extends Component {
       {
         data: [
           {
-            pos:4,
+            pos: 4,
             key: "5",
             bgColor: "greenyellow",
             iconName: "ios-share",
             title: "分享"
           },
           {
-            pos:5,
+            pos: 5,
             key: "6",
             bgColor: "mediumpurple",
             iconName: "ios-body",
             title: "关于我"
-          },
-
+          }
         ]
       }
     ];
@@ -152,20 +148,19 @@ class SettingList extends Component {
             this.props.actions.changeHeight(-event.nativeEvent.contentOffset.y);
         }}
         SectionSeparatorComponent={() => (
-          <ItemSeparater height={1} color={this.props.isNight?NIGHTSEPERATERCOLOR:"snow"} />
+          <ItemSeparater
+            height={1}
+            color={this.props.isNight ? NIGHTSEPERATERCOLOR : "snow"}
+          />
         )}
         ItemSeparatorComponent={() => <ItemSeparater />}
         renderSectionHeader={({ section }) => <EmptyView />}
         renderItem={({ item }) => (
-          <SettingItem
-            {...item}
-            onItemPress={this._onItemPress}
-          />
+          <SettingItem {...item} onItemPress={this._onItemPress} />
         )}
       />
     );
   }
-
 }
 
 export const stateToprops = state => {
@@ -173,14 +168,12 @@ export const stateToprops = state => {
     isNight: state.SettingReducer.isNight,
     picPos: state.SettingReducer.picPos,
     autoRefresh: state.SettingReducer.autoRefresh
-    
   };
 };
 
 export const dispatchToActions = dispatch => {
   return {
     actions: bindActionCreators(Action, dispatch)
-   
   };
 };
 

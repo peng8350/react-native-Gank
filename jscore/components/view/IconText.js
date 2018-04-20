@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 16:50:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-05 14:14:55
+ * @Last Modified time: 2018-04-20 13:55:37
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,17 +19,20 @@ export default class IconText extends Component {
     color: TEXTSMALLCOLOR,
     size: 16,
     text: "文字",
-    direction: 'row',
+    direction: "row",
     textStyle: [globalStyles.smallText, { textAlign: "right", marginLeft: 2 }]
   };
 
   render() {
     return (
       <View
-        style={[this.props.style,{
-          flexDirection: this.props.direction,
-          alignItems: "center",
-        }]}
+        style={[
+          this.props.style,
+          {
+            flexDirection: this.props.direction,
+            alignItems: "center"
+          }
+        ]}
       >
         <Icon
           name={this.props.name}

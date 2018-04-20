@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:50:56
+ * @Last Modified time: 2018-04-20 13:53:54
  * @Email: peng8350@gmail.com 
  */
 
@@ -69,18 +69,19 @@ class GankActivity extends Component {
       <PopupDialog
         show={this.props.showMore}
         width={getWidth() * 0.75}
-        dialogStyle={{backgroundColor:this.props.isNight?BOTTTOMBGCOLOR:'#fff' }}
+        dialogStyle={{
+          backgroundColor: this.props.isNight ? BOTTTOMBGCOLOR : "#fff"
+        }}
         dialogAnimation={slideAnimation}
-        onDismissed={ () =>  this.props.action.showMore(false) }
+        onDismissed={() => this.props.action.showMore(false)}
         dialogTitle={
           <DialogTitle
             title="更多信息"
             titleStyle={{
-              backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#fff',
+              backgroundColor: this.props.isNight ? BOTTTOMBGCOLOR : "#fff",
               borderTopLeftRadius: 0,
               borderTopRightRadius: 0
             }}
-
           />
         }
         actions={[
@@ -96,11 +97,26 @@ class GankActivity extends Component {
         ]}
       >
         <View style={globalStyles.verticalLayout}>
-          <Text style={[globalStyles.normalText,{margin: 3}]}>描述:{'\n'}{this.state.dataSource[this.state.selectPos].desc}</Text>
-          <Text style={[globalStyles.normalText,{margin: 3}]}>类型:{'\n'}{this.state.dataSource[this.state.selectPos].type}</Text>
-          <Text style={[globalStyles.normalText,{margin: 3}]}>时间:{'\n'}{this.state.dataSource[this.state.selectPos].time}</Text>
-          <Text style={[globalStyles.normalText,{margin: 3}]}>作者:{'\n'}{this.state.dataSource[this.state.selectPos].who}</Text>
-          <Text style={[globalStyles.normalText,{margin: 3}]}>地址:{'\n'}{this.state.dataSource[this.state.selectPos].url}</Text>
+          <Text style={[globalStyles.normalText, { margin: 3 }]}>
+            描述:{"\n"}
+            {this.state.dataSource[this.state.selectPos].desc}
+          </Text>
+          <Text style={[globalStyles.normalText, { margin: 3 }]}>
+            类型:{"\n"}
+            {this.state.dataSource[this.state.selectPos].type}
+          </Text>
+          <Text style={[globalStyles.normalText, { margin: 3 }]}>
+            时间:{"\n"}
+            {this.state.dataSource[this.state.selectPos].time}
+          </Text>
+          <Text style={[globalStyles.normalText, { margin: 3 }]}>
+            作者:{"\n"}
+            {this.state.dataSource[this.state.selectPos].who}
+          </Text>
+          <Text style={[globalStyles.normalText, { margin: 3 }]}>
+            地址:{"\n"}
+            {this.state.dataSource[this.state.selectPos].url}
+          </Text>
         </View>
       </PopupDialog>
     );
@@ -166,10 +182,12 @@ class GankActivity extends Component {
   };
 
   _pressMore = index => {
-    this.setState({
-      selectPos: index
-    },() =>  this.props.action.showMore(true))
-   
+    this.setState(
+      {
+        selectPos: index
+      },
+      () => this.props.action.showMore(true)
+    );
   };
 
   _onLoadMore = call => {
@@ -203,32 +221,32 @@ class GankActivity extends Component {
     );
   };
 
-  _renderSearchingBar(){
+  _renderSearchingBar() {
     return (
       <Modal visible={this.props.searching} transparent={true}>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
-          backgroundColor: "rgba(0,0,0,0.5)"
-        }}
-      >
         <View
           style={{
-            width: 100,
-            height: 100,
-            backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3",
-            borderRadius: 6,
-            borderWidth: 12,
-            borderColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3"
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1,
+            backgroundColor: "rgba(0,0,0,0.5)"
           }}
         >
-          <LoadingBar title={"搜索中"} />
+          <View
+            style={{
+              width: 100,
+              height: 100,
+              backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#fff",
+              borderRadius: 6,
+              borderWidth: 12,
+              borderColor: this.props.isNight ? NIGHTBGCOLOR : "#fff"
+            }}
+          >
+            <LoadingBar title={"搜索中"} />
+          </View>
         </View>
-      </View>
-    </Modal>
-    )
+      </Modal>
+    );
   }
 
   _renderSearchList() {
@@ -248,7 +266,7 @@ class GankActivity extends Component {
               showSwipes={false}
               like={this.state.liked[index]}
               // images={item.images}
-              time={item.time}
+              time={item.publishedAt}
               clickLike={this._pressLike}
               clickMore={this._pressMore}
               onItemSelect={() => {

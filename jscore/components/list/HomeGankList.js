@@ -23,7 +23,7 @@ class HomeGankList extends Component {
   render() {
     return (
       <FlatList
-      ListFooterComponent={ () => this.props.loading?<LoadingBar/>:null }
+        ListFooterComponent={() => (this.props.loading ? <LoadingBar /> : null)}
         ListHeaderComponent={this.props.header}
         data={this.props.dataSource}
         keyExtractor={this._extraUniqueKey}

@@ -9,12 +9,7 @@
 //@flow
 
 import * as Types from "./ActionType";
-import {
-  TAB1_TITLE,
-  TAB2_TITLE,
-  TAB3_TITLE,
-} from "../constants/strings";
-
+import { TAB1_TITLE, TAB2_TITLE, TAB3_TITLE } from "../constants/strings";
 
 export function updateTab(pos: number) {
   return {
@@ -23,9 +18,9 @@ export function updateTab(pos: number) {
   };
 }
 
-export function toggleAboutDlg(open){
+export function toggleAboutDlg(open) {
   return {
     type: Types.TOGGLEABOUTDLG,
     data: open
-  }
+  };
 }

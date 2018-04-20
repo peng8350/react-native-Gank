@@ -29,18 +29,17 @@ const GankSchema = {
   primaryKey: "_id",
   properties: {
     _id: "string",
-    type: {type: 'string', default: 'Web'},
-    like: {type: 'bool', default: false},
-    who: {type: 'string', default: '空'},
-    url: {type: 'string', default: ''},
-    image: {type: 'string', default: 'null'},
-    desc: {type: 'string', default: 'null'},
-    time: {type: 'string', default: 'null'}
+    type: { type: "string", default: "Web" },
+    like: { type: "bool", default: false },
+    who: { type: "string", default: "空" },
+    url: { type: "string", default: "" },
+    image: { type: "string", default: "null" },
+    desc: { type: "string", default: "null" },
+    time: { type: "string", default: "null" }
   }
 };
 
-var realm ;
-
+var realm;
 
 Realm.open({ schema: [SettingSchema, GankSchema] })
   .then(realmm => {
@@ -86,22 +85,19 @@ export default class DbUtils extends Component {
       realm.write(() => {
         realm.create(table, insertObj);
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 
   static insertArr(table, insertArr) {
-   
-      realm.write(() => {
-        for (let obj of insertArr) {
-          try {
+    realm.write(() => {
+      for (let obj of insertArr) {
+        try {
           realm.create(table, obj);
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
-        }
-      });
-    
+      }
+    });
   }
 
   /**

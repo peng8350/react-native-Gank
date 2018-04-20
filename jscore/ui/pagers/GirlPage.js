@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:27:45
+ * @Last Modified time: 2018-04-20 13:54:23
  * @Email: peng8350@gmail.com 
  */
 
@@ -31,7 +31,7 @@ import ActionSheet from "react-native-actionsheet";
 
 class GirlPage extends Component {
   pageSize = 0;
-  _onRefresh(isUp,call) {
+  _onRefresh(isUp, call) {
     if (isUp) {
       this.pageSize = 1;
     } else {
@@ -41,14 +41,17 @@ class GirlPage extends Component {
       if (isUp) {
         this.refs.girllist.RefreshComplete();
       } else {
-        call()
+        call();
         // this.refs.girllist.LoadComplete();
       }
     });
   }
 
   _renderItem(info) {
-    const marginStyle  = info.index&1?{marginLeft: 5,marginBottom: 3}:{marginRight: 2,marginBottom: 1}
+    const marginStyle =
+      info.index & 1
+        ? { marginLeft: 5, marginBottom: 3 }
+        : { marginRight: 2, marginBottom: 1 };
     return (
       <TouchableHighlight
         onPress={() => {
@@ -69,7 +72,10 @@ class GirlPage extends Component {
   }
 
   _saveToPath() {
-    downPic(this.props.dataSource[this.props.viewIndex].url,'/Users/peng/Pictures');
+    downPic(
+      this.props.dataSource[this.props.viewIndex].url,
+      "/Users/peng/Pictures"
+    );
   }
 
   _renderActionSheet() {
@@ -95,23 +101,23 @@ class GirlPage extends Component {
   }
 
   componentDidMount() {
-    if(this.props.autoRefresh)
-    this.props.actions.fetchGirl(true, ++this.pageSize, () => {
-      this.refs.girllist.RefreshComplete();
-    });
+    if (this.props.autoRefresh)
+      this.props.actions.fetchGirl(true, ++this.pageSize, () => {
+        this.refs.girllist.RefreshComplete();
+      });
   }
 
   render() {
     return (
-      <View style={{flex:1}}>
+      <View style={{ flex: 1 }}>
         <PullableList
           ref={"girllist"}
           data={this.props.dataSource}
           renderItem={info => this._renderItem(info)}
           numColumns={2}
           onRefresh={() => this._onRefresh(true)}
-          onLoadMore={(call) => {
-            this._onRefresh(false,call);
+          onLoadMore={call => {
+            this._onRefresh(false, call);
           }}
         />
         <Modal visible={this.props.viewing}>

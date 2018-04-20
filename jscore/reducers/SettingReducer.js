@@ -15,7 +15,7 @@ const initState = {
   headerHeight: 0,
   isNight: false,
   autoRefresh: false,
-  editing : false,
+  editing: false,
   picPos: getDefaultDir()
 };
 
@@ -42,12 +42,11 @@ export default function SettingReducer(state = initState, action) {
         isNight: action.data
       });
 
-     case Types.SETTING_EDITING:
+    case Types.SETTING_EDITING:
       return {
         ...state,
         editing: action.data
-      }
-     
+      };
 
     default:
       return state;

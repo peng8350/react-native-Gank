@@ -13,7 +13,6 @@ export const TAB2_TITLE = "福利";
 
 export const TAB3_TITLE = "设置";
 
-
 export const FETCHGIRL_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/20/";
 
 export const FETCHGANK_URL = "http://gank.io/api/data/";

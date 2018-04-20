@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-01 20:17:05 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:06:35
+ * @Last Modified time: 2018-04-20 13:54:32
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -19,7 +19,9 @@ export default class WebActivity extends Component {
   render() {
     return (
       <WebView
-      style={{backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#f3f3f3'}}
+        style={{
+          backgroundColor: this.props.isNight ? BOTTTOMBGCOLOR : "#f3f3f3"
+        }}
         source={{ uri: this.props.navigation.state.params.url }}
         renderLoading={() => <LoadingBar />}
         startInLoadingState={true}

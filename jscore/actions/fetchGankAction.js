@@ -12,33 +12,32 @@ import HttpUtils from "../utils/HttpUtils";
 import { ToastAndroid } from "react-native";
 import { isIOS, isAndroid } from "../utils/SystemUtils";
 
-
-export function toggleSearch(searching){
+export function toggleSearch(searching) {
   return {
-    type: (searching?Types.ENTER_SEARCH:Types.EXIT_SEARCH),
-  }
+    type: searching ? Types.ENTER_SEARCH : Types.EXIT_SEARCH
+  };
 }
 
-export function searchRequesting(){
+export function searchRequesting() {
   return {
     type: Types.SEARCH_GANK_REQUESTING
-  }
+  };
 }
 
-export function searchSuccess(list){
+export function searchSuccess(list) {
   return {
-    type:Types.SEARCH_GANK_SCCUESS,
+    type: Types.SEARCH_GANK_SCCUESS,
     data: list
-  }
+  };
 }
 
-export function searchFailed(){
+export function searchFailed() {
   return {
-    type:Types.SEARCH_GANK_FAILED
-  }
+    type: Types.SEARCH_GANK_FAILED
+  };
 }
 
-export function searchGank(url){
+export function searchGank(url) {
   return dispatch => {
     dispatch(searchRequesting());
     setTimeout(() => {
@@ -48,19 +47,17 @@ export function searchGank(url){
           dispatch(searchSuccess(responseJson.results));
         },
         error => {
-          if(isAndroid())
-          ToastAndroid.show('搜索失败,检查网络!!!',0);
-          dispatch(searchFailed())
+          if (isAndroid()) ToastAndroid.show("搜索失败,检查网络!!!", 0);
+          dispatch(searchFailed());
         }
       );
     }, 500);
   };
-
 }
 
-export function showMore(flag){
+export function showMore(flag) {
   return {
     type: Types.GANK_SHOWITEMMORE,
     showMore: flag
-  }
+  };
 }

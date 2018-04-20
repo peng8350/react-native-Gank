@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-01 20:23:52 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 10:43:28
+ * @Last Modified time: 2018-04-20 13:55:33
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -12,28 +12,23 @@ import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import { globalStyles } from "../../constants/styles";
 
 export default class LoadingBar extends Component {
-
-  constructor(){
-    super()
-    this.state ={
-      timer : 1
-    }
-
+  constructor() {
+    super();
+    this.state = {
+      timer: 1
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.timer = setInterval(() => {
-
-      this.setState( {
-        counter: this.state.timer>3?1:++this.state.timer
-        
-      })
-    },300)
-    
+      this.setState({
+        counter: this.state.timer > 3 ? 1 : ++this.state.timer
+      });
+    }, 300);
   }
 
-  componentWillUnmount(){
-    clearInterval(this.timer)
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   static defaultProps = {
@@ -42,15 +37,15 @@ export default class LoadingBar extends Component {
 
   render() {
     //实现加载中动效
-    let append = ''
-    for(let i=1;i<=this.state.counter;i++){
-      append+='.'
+    let append = "";
+    for (let i = 1; i <= this.state.counter; i++) {
+      append += ".";
     }
     return (
       <View style={globalStyles.verCenLayout}>
         <ActivityIndicator size={"large"} />
-        <Text style={[globalStyles.normalText, { marginTop:8}]}>
-          {this.props.title+append}
+        <Text style={[globalStyles.normalText, { marginTop: 8 }]}>
+          {this.props.title + append}
         </Text>
       </View>
     );

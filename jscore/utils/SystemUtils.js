@@ -31,10 +31,11 @@ export function downPic(uri, path) {
   if (!uri) return null;
   return new Promise((resolve, reject) => {
     const formUrl = uri;
-    const downloadDest = (path?path:getDefaultDir())+ `${(Math.random() * 10000000) | 0}.jpg`
+    const downloadDest =
+      (path ? path : getDefaultDir()) + `${(Math.random() * 10000000) | 0}.jpg`;
     const options = {
       fromUrl: formUrl,
-      toFile: downloadDest ,
+      toFile: downloadDest,
       background: true,
       begin: res => {
         console.log("begin", res);

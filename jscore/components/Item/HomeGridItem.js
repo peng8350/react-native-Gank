@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:18:09
+ * @Last Modified time: 2018-04-20 13:55:48
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -26,9 +26,11 @@ class HomeGridItem extends Component {
       <TouchableHighlight
         style={{ flex: 1 }}
         underlayColor={PRESSEDCOLOR}
-        onPress={() => CallOnceInInterval( () => this.props.onItemPress(this.props.title))}
+        onPress={() =>
+          CallOnceInInterval(() => this.props.onItemPress(this.props.title))
+        }
       >
-        <View style={[globalStyles.verCenLayout,styles.itemContainer]}>
+        <View style={[globalStyles.verCenLayout, styles.itemContainer]}>
           <IconView
             iconName={this.props.img}
             iconSize={28}
@@ -39,7 +41,9 @@ class HomeGridItem extends Component {
             iconType={this.props.iconType}
           />
 
-          <Text style={[globalStyles.BigText,styles.textView]}>{this.props.title}</Text>
+          <Text style={[globalStyles.BigText, styles.textView]}>
+            {this.props.title}
+          </Text>
         </View>
       </TouchableHighlight>
     );

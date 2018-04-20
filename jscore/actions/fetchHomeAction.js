@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:22:13 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-04 17:13:18
+ * @Last Modified time: 2018-04-20 13:56:05
  * @Email: peng8350@gmail.com 
  */
 
@@ -19,7 +19,7 @@ export function fetchRequesing() {
   };
 }
 
-export function fetchSuccess(data,date) {
+export function fetchSuccess(data, date) {
   let dt = [];
   dt.push(...data.results.前端);
   dt.push(...data.results.Android);
@@ -31,7 +31,7 @@ export function fetchSuccess(data,date) {
   return {
     type: Types.FETCH_HOME_GANK_SUCCESS,
     data: dt,
-    date:date
+    date: date
   };
 }
 
@@ -47,11 +47,11 @@ export function fetchData() {
     HttpUtils.get(
       FETCHALLDATE_URL,
       responseJson => {
-        let date= responseJson.results[0].split("-").join("/")
+        let date = responseJson.results[0].split("-").join("/");
         HttpUtils.get(
           FETCHGANKBYDAY_URL + date,
           responseJson => {
-            dispatch(fetchSuccess(responseJson,date));
+            dispatch(fetchSuccess(responseJson, date));
           },
           error => {
             alert(error);

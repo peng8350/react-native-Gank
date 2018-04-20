@@ -32,7 +32,7 @@ export function fetchGirlSuccess(dataSource, isUp) {
   };
 }
 
-export function fetchGirl(isUp, pageIndex,successcall) {
+export function fetchGirl(isUp, pageIndex, successcall) {
   const fetchGirlUrl = FETCHGIRL_URL + pageIndex;
   return dispatch => {
     dispatch(fetchGirlRequesting());
@@ -40,11 +40,11 @@ export function fetchGirl(isUp, pageIndex,successcall) {
       HttpUtils.get(
         fetchGirlUrl,
         responseJson => {
-          successcall()
+          successcall();
           dispatch(fetchGirlSuccess(responseJson, isUp));
         },
         error => {
-          successcall()
+          successcall();
           dispatch(fetchGirlFailed());
         }
       );

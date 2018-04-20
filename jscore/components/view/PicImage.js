@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 12:29:06 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 22:38:24
+ * @Last Modified time: 2018-04-20 13:55:28
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,9 +15,6 @@ import HttpUtils from "../../utils/HttpUtils";
 
 //占位图,error图，渐变流加载
 export default class PicImage extends Component {
-
-  
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -26,24 +23,25 @@ export default class PicImage extends Component {
     };
   }
 
-  _renderPlaceHolder(){
-    
-    if(this.state.loading&&this.props.placeholder){
-      return (<Image
-        style={[
-          styles.image,
-          {
-            position: "absolute",
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0
-          },
-          this.props.style
-        ]}
-        source={this.props.placeholder}
-        resizeMethod={"resize"}
-      />)
+  _renderPlaceHolder() {
+    if (this.state.loading && this.props.placeholder) {
+      return (
+        <Image
+          style={[
+            styles.image,
+            {
+              position: "absolute",
+              top: 0,
+              right: 0,
+              left: 0,
+              bottom: 0
+            },
+            this.props.style
+          ]}
+          source={this.props.placeholder}
+          resizeMethod={"resize"}
+        />
+      );
     }
   }
 
@@ -58,7 +56,7 @@ export default class PicImage extends Component {
           }}
           resizeMethod={"resize"}
         />
-        
+
         {this._renderPlaceHolder()}
       </View>
     );

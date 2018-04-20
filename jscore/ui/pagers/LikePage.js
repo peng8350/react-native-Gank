@@ -60,33 +60,31 @@ export default class LikePage extends Component {
   }
 
   deleteData() {
-    let arr1 = []
-    for (let i = 0;i<this.state.selectList.length;i++) {
+    let arr1 = [];
+    for (let i = 0; i < this.state.selectList.length; i++) {
       if (!this.state.selectList[i]) {
         arr1.push(this.state.dataSource[i]);
-        
-      }
-      else{
-        let bean = this.state.dataSource[i]
-        DbUtils.update('gank',{_id:bean._id,like:false})
+      } else {
+        let bean = this.state.dataSource[i];
+        DbUtils.update("gank", { _id: bean._id, like: false });
       }
     }
-    this.setState({
-      dataSource: [].concat(arr1)
-    },() => {
-      let arr2 = [];
-      for (const item of this.state.dataSource) {
-        
-        arr2.push(false);
+    this.setState(
+      {
+        dataSource: [].concat(arr1)
+      },
+      () => {
+        let arr2 = [];
+        for (const item of this.state.dataSource) {
+          arr2.push(false);
+        }
+        this.setState({
+          selectList: [].concat(arr2)
+        });
+        this.selectCount = 0;
       }
-      this.setState({
-        selectList: [].concat(arr2)
-      });
-      this.selectCount = 0;
-    });
-   
+    );
   }
-
 
   _renderItem = ({ item, index }) => {
     return (
@@ -121,7 +119,7 @@ export default class LikePage extends Component {
   componentWillMount() {
     let queryList = GankManager.getLikeFromDb(this.props.type);
     let selectList = [];
-    for (let i= 0;i<queryList.length;i++) {
+    for (let i = 0; i < queryList.length; i++) {
       selectList.push(false);
     }
     this.setState({

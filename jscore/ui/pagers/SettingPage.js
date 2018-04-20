@@ -49,7 +49,7 @@ class SettingPage extends Component {
       <PopupDialog
         show={this.props.editing}
         width={getWidth() * 0.75}
-        height={isAndroid()?180:150}
+        height={isAndroid() ? 180 : 150}
         dialogStyle={{
           backgroundColor: "#000"
         }}
@@ -77,7 +77,10 @@ class SettingPage extends Component {
             onPress={() => {
               //修改完成后
               if (this.state.inputText !== "") {
-                DbUtils.update("Setting", { id: 1, picPos: this.state.inputText });
+                DbUtils.update("Setting", {
+                  id: 1,
+                  picPos: this.state.inputText
+                });
                 this.props.actions.setPicPosition(this.state.inputText);
               }
               this.props.actions.editDir(false);

@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:48 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 22:23:12
+ * @Last Modified time: 2018-04-20 13:55:10
  * @Email: peng8350@gmail.com 
  */
 
@@ -11,7 +11,7 @@ import * as Types from "../actions/ActionType";
 
 const initState = {
   selectedTab: 0,
-  isShowAbout: false,
+  isShowAbout: false
 };
 
 export default function TabReducer(state = initState, action) {
@@ -21,11 +21,11 @@ export default function TabReducer(state = initState, action) {
         ...state,
         selectedTab: action.selectedTab
       };
-      case Types.TOGGLEABOUTDLG:
+    case Types.TOGGLEABOUTDLG:
       return {
         ...state,
         isShowAbout: action.data
-      }
+      };
 
     default:
       return state;
