@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 23:30:53
+ * @Last Modified time: 2018-04-20 11:48:13
  * @Email: peng8350@gmail.com 
  */
 
@@ -39,7 +39,7 @@ export default class SettingItem extends Component {
           </View>
 
           <View style={[globalStyles.horizontalLayout, styles.rightContainer]}>
-            <Text style={[globalStyles.smallText, styles.rightText]}>
+            <Text style={[globalStyles.smallText, styles.rightText]}   numberOfLines={1}>
               {this.props.extra}
             </Text>
             {this.props.renderRight}

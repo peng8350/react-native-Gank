@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 22:49:07
+ * @Last Modified time: 2018-04-20 11:05:47
  * @Email: peng8350@gmail.com 
  */
 
@@ -142,6 +142,7 @@ class MainActivity extends Component {
         }}
         dialogStyle={{backgroundColor:this.props.isNight?BOTTTOMBGCOLOR:'#fff' }}
         dialogAnimation={slideAnimation}
+        onDismissed={ () =>  this.props.actions.toggleAboutDlg(false) }
         dialogTitle={
           <DialogTitle
             title="作者"

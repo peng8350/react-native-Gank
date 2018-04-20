@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:36 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 22:20:34
+ * @Last Modified time: 2018-04-20 10:58:24
  * @Email: peng8350@gmail.com 
  * @flow
  */
@@ -54,3 +54,5 @@ export const ENTER_SEARCH ="ENTER_SEARCH"
 export const EXIT_SEARCH = "EXIT_SEARCH"
 
 export const TOGGLEABOUTDLG="TOGGLEABOUTDLG"
+
+export const SETTING_EDITING ="SETTING_EDITING"

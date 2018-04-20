@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 20:16:26 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-03 22:54:28
+ * @Last Modified time: 2018-04-20 11:09:51
  * @Email: peng8350@gmail.com 
  */
 
@@ -35,5 +35,12 @@ export function changeHeight(height) {
   return {
     type: Types.SETTING_CHANGEHEIGHT,
     headerHeight: height
+  };
+}
+
+export function editDir(edit) {
+  return {
+    type: Types.SETTING_EDITING,
+    data: edit
   };
 }

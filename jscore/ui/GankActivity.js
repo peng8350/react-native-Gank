@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 23:52:29
+ * @Last Modified time: 2018-04-20 10:36:35
  * @Email: peng8350@gmail.com 
  */
 
@@ -183,6 +183,7 @@ class GankActivity extends Component {
     this.props.navigation.setParams({ pressRight: this._pressRight });
 
     var queryList = GankManager.getDataFromDb(this.type);
+
     this.pageIndex = queryList.length / 20 + 1;
     if (queryList.length > 0)
       this.setState(
@@ -198,6 +199,9 @@ class GankActivity extends Component {
           }
         }
       );
+    else {
+      if (this.props.autoRefresh) this._onRefresh();
+    }
   }
 
   render() {
@@ -208,7 +212,9 @@ class GankActivity extends Component {
         }}
       >
         <PullableList
-          style ={{backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#f3f3f3'}}
+          style={{
+            backgroundColor: this.props.isNight ? BOTTTOMBGCOLOR : "#f3f3f3"
+          }}
           ref={"ganklist"}
           data={this.state.dataSource}
           extraData={this.state.liked}
@@ -260,7 +266,16 @@ class GankActivity extends Component {
               backgroundColor: "rgba(0,0,0,0.5)"
             }}
           >
-            <View style={{ width: 100, height: 100, backgroundColor: this.props.isNight?NIGHTBGCOLOR:'#f3f3f3',borderRadius:6,borderWidth:12,borderColor:this.props.isNight?NIGHTBGCOLOR:'#f3f3f3' }}>
+            <View
+              style={{
+                width: 100,
+                height: 100,
+                backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3",
+                borderRadius: 6,
+                borderWidth: 12,
+                borderColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3"
+              }}
+            >
               <LoadingBar title={"搜索中"} />
             </View>
           </View>

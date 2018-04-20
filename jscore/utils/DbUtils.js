@@ -1,10 +1,11 @@
 import { Component } from "react";
+import { getDefaultDir } from "./SystemUtils";
 
 /*
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-12 00:20:56
+ * @Last Modified time: 2018-04-20 11:39:26
  * @Email: peng8350@gmail.com 
  */
 
@@ -49,7 +50,7 @@ Realm.open({ schema: [SettingSchema, GankSchema] })
       id: 1,
       isNight: false,
       autoRefresh: false,
-      picPos: ".."
+      picPos: getDefaultDir()
     });
   })
   .catch(error => {});

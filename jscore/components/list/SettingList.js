@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-16 22:36:07
+ * @Last Modified time: 2018-04-20 11:42:18
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -39,6 +39,10 @@ class SettingList extends Component {
 
   _onItemPress = pos => {
     switch(pos){
+
+      case 2:
+        this.props.actions.editDir(true)
+      break;
       case 3:
         this.props.navigation.navigate('Like');
       break;
@@ -87,7 +91,7 @@ class SettingList extends Component {
             key: "2",
             bgColor: "coral",
             iconName: "ios-jet",
-            title: "间隔刷新数据",
+            title: "进入刷新数据",
             renderRight: this._renderRightSwitch(
               this.props.autoRefresh,
               value => {

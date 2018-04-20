@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 00:17:37
+ * @Last Modified time: 2018-04-20 10:33:36
  * @Email: peng8350@gmail.com 
  */
 
@@ -93,6 +93,7 @@ class GirlPage extends Component {
   }
 
   componentDidMount() {
+    if(this.props.autoRefresh)
     this.props.actions.fetchGirl(true, ++this.pageSize, () => {
       this.refs.girllist.RefreshComplete();
     });
@@ -146,7 +147,8 @@ const stateToProps = state => {
     dataSource: state.GirlReducer.dataSource,
     viewing: state.GirlReducer.viewing,
     viewIndex: state.GirlReducer.viewIndex,
-    picPos: state.SettingReducer.picPos
+    picPos: state.SettingReducer.picPos,
+    autoRefresh: state.SettingReducer.autoRefresh
   };
 };
 

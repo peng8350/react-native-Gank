@@ -2,19 +2,21 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 20:16:52 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 21:06:02
+ * @Last Modified time: 2018-04-20 11:39:41
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import * as Types from "../actions/ActionType";
+import { getDefaultDir } from "../utils/SystemUtils";
 
 const initState = {
   headerHeight: 0,
   isNight: false,
   autoRefresh: false,
-  picPos: "file:///sdcard/img.png"
+  editing : false,
+  picPos: getDefaultDir()
 };
 
 export default function SettingReducer(state = initState, action) {
@@ -39,6 +41,13 @@ export default function SettingReducer(state = initState, action) {
         ...state,
         isNight: action.data
       });
+
+     case Types.SETTING_EDITING:
+      return {
+        ...state,
+        editing: action.data
+      }
+     
 
     default:
       return state;
