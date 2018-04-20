@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-10 16:04:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 00:05:57
+ * @Last Modified time: 2018-04-20 13:20:33
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -74,7 +74,7 @@ export default class PullableList extends Component {
           this.state.isLoadMore ? <LoadingBar /> : null
         }
         ListEmptyComponent={ <View  style={{height:getHeight(),width:getWidth(),justifyContent:'center',alignItems:'center'}}>
-          <Image style={{width:getWidth()/2,height:getWidth()/2}} source={require('../../resources/none.jpg')}></Image>
+          <Image  resizeMode={'contain'} style={{width:getWidth()/2,height:getWidth()/2}} source={require('../../resources/none.png')}></Image>
         </View>
         }
         renderItem={this.props.renderItem}

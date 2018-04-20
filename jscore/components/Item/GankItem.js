@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-19 23:32:32
+ * @Last Modified time: 2018-04-20 13:35:21
  */
 
 //@flow
@@ -28,10 +28,9 @@ import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import PicImage from "../view/PicImage";
 
 class GankItem extends Component {
-
-  static defaultProps={
+  static defaultProps = {
     showSwipes: false
-  }
+  };
 
   _renderSwipeBtn(iconName, text) {
     return (
@@ -48,60 +47,66 @@ class GankItem extends Component {
     );
   }
 
-  _renderIn(){
+  _renderIn() {
     return (
       <TouchableHighlight
-      underlayColor={PRESSEDCOLOR}
-      onPress={() => CallOnceInInterval(this.props.onItemSelect)}
-    >
-      <View style={globalStyles.itemContainer}>
-        <View style={styles.leftContainer}>
-          {this._renderImage()}
-          <Text style={[globalStyles.normalText,{flex:1}]} numberOfLines={4}>{this.props.ctn}</Text>
-        </View>
+        underlayColor={PRESSEDCOLOR}
+        onPress={() => CallOnceInInterval(this.props.onItemSelect)}
+      >
+        <View style={globalStyles.itemContainer}>
+          <View style={styles.leftContainer}>
+            {this._renderImage()}
+            <Text
+              style={[globalStyles.normalText, { flex: 1 }]}
+              numberOfLines={4}
+            >
+              {this.props.ctn}
+            </Text>
+          </View>
 
-        <View style={styles.rightContainer}>
-          <View
-            style={[
-              globalStyles.verticalLayout,
-              {
-                backgroundColor: 'transparent',
-                alignItems: "flex-end",
-                justifyContent: "space-between"
-              }
-            ]}
-          >
-            <IconText name="ios-person-outline" text={this.props.author} />
-            <IconText
-              name="ios-clock-outline"
-              text={DateUtils.parseString(
-                this.props.time,
-                "YYYY年MM月DD日"
-              )}
-            />
+          <View style={styles.rightContainer}>
+            <View
+              style={[
+                globalStyles.verticalLayout,
+                {
+                  backgroundColor: "transparent",
+                  alignItems: "flex-end",
+                  justifyContent: "space-between"
+                }
+              ]}
+            >
+              <IconText name="ios-person-outline" text={this.props.author} />
+              <IconText
+                name="ios-clock-outline"
+                text={DateUtils.parseString(this.props.time, "YYYY年MM月DD日")}
+              />
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableHighlight>
-    )
+      </TouchableHighlight>
+    );
   }
 
-  _renderImage(){
-    if(this.props.images===undefined){
+  _renderImage() {
+    if (this.props.images === undefined) {
       return (
         <PicImage
-        style={styles.image}
-        url={require("../../resources/empty.png")}
-         />
-      )
-    }
-    else{
-      return   <PicImage
-      style={styles.image}
-      url={{uri:this.props.images[0]+'?imageView2/0/w/200'}}
-      placeholder={this.props.isNight?require("../../resources/empty_night.png"):require("../../resources/empty.png")
-    }
-      />
+          style={styles.image}
+          url={require("../../resources/empty.png")}
+        />
+      );
+    } else {
+      return (
+        <PicImage
+          style={styles.image}
+          url={{ uri: this.props.images[0] + "?imageView2/0/w/200" }}
+          placeholder={
+            this.props.isNight
+              ? require("../../resources/empty_night.png")
+              : require("../../resources/empty.png")
+          }
+        />
+      );
     }
   }
 
@@ -109,7 +114,10 @@ class GankItem extends Component {
     let swipeBtns = [
       {
         backgroundColor: "deeppink",
-        component: this._renderSwipeBtn("ios-heart", !this.props.like?"收藏":"取消收藏"),
+        component: this._renderSwipeBtn(
+          "ios-heart",
+          !this.props.like ? "收藏" : "取消收藏"
+        ),
         onPress: () => this.props.clickLike(this.props.index)
       },
       {
@@ -118,28 +126,25 @@ class GankItem extends Component {
         onPress: () => this.props.clickMore(this.props.index)
       }
     ];
-    if(this.props.showSwipes){
-    return (
-      
-      <Swipeout right={swipeBtns} buttonWidth={80} autoClose={true}>
-       {this._renderIn()}
-      </Swipeout>
-    )}
-    else{
+    if (this.props.showSwipes) {
       return (
-        this._renderIn()
-      )
+        <Swipeout right={swipeBtns} buttonWidth={80} autoClose={true}>
+          {this._renderIn()}
+        </Swipeout>
+      );
+    } else {
+      return this._renderIn();
     }
   }
 }
 
-const stateToProps= state => {
+const stateToProps = state => {
   return {
     isNight: state.SettingReducer.isNight
-  }
-}
+  };
+};
 
-export default connect(stateToProps)(GankItem)
+export default connect(stateToProps)(GankItem);
 
 const styles = StyleSheet.create({
   swBtnContainer: {
@@ -152,12 +157,12 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "row"
   },
   image: {
-     width: 60, 
-     height: 80 ,
-     marginRight: 5,
-     borderRadius: 5,
+    width: 60,
+    height: 80,
+    marginRight: 5,
+    borderRadius: 5
   }
 });

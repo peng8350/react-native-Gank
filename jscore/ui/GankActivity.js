@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 10:36:35
+ * @Last Modified time: 2018-04-20 13:50:56
  * @Email: peng8350@gmail.com 
  */
 
@@ -24,6 +24,16 @@ import GankManager from "../utils/GankManager";
 import GankItem from "../components/Item/GankItem";
 import PullableList from "../components/list/PullableList";
 import { BOTTTOMBGCOLOR, NIGHTBGCOLOR } from "../constants/colors";
+import PopupDialog, {
+  DialogTitle,
+  DialogButton,
+  SlideAnimation
+} from "react-native-popup-dialog";
+import { getWidth } from "../utils/ScreenUtils";
+
+const slideAnimation = new SlideAnimation({
+  slideFrom: "left"
+});
 
 class GankActivity extends Component {
   pageIndex = 1;
@@ -47,10 +57,53 @@ class GankActivity extends Component {
   constructor() {
     super();
     this.state = {
+      selectPos: 0,
       dataSource: [],
       liked: [false, false, false, false],
       error: false
     };
+  }
+
+  _renderDialog() {
+    return (
+      <PopupDialog
+        show={this.props.showMore}
+        width={getWidth() * 0.75}
+        dialogStyle={{backgroundColor:this.props.isNight?BOTTTOMBGCOLOR:'#fff' }}
+        dialogAnimation={slideAnimation}
+        onDismissed={ () =>  this.props.action.showMore(false) }
+        dialogTitle={
+          <DialogTitle
+            title="更多信息"
+            titleStyle={{
+              backgroundColor: this.props.isNight?BOTTTOMBGCOLOR:'#fff',
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0
+            }}
+
+          />
+        }
+        actions={[
+          <DialogButton
+            key="1"
+            textStyle={[globalStyles.BigText, { color: "red" }]}
+            text="取消"
+            align="center"
+            onPress={() => {
+              this.props.action.showMore(false);
+            }}
+          />
+        ]}
+      >
+        <View style={globalStyles.verticalLayout}>
+          <Text style={[globalStyles.normalText,{margin: 3}]}>描述:{'\n'}{this.state.dataSource[this.state.selectPos].desc}</Text>
+          <Text style={[globalStyles.normalText,{margin: 3}]}>类型:{'\n'}{this.state.dataSource[this.state.selectPos].type}</Text>
+          <Text style={[globalStyles.normalText,{margin: 3}]}>时间:{'\n'}{this.state.dataSource[this.state.selectPos].time}</Text>
+          <Text style={[globalStyles.normalText,{margin: 3}]}>作者:{'\n'}{this.state.dataSource[this.state.selectPos].who}</Text>
+          <Text style={[globalStyles.normalText,{margin: 3}]}>地址:{'\n'}{this.state.dataSource[this.state.selectPos].url}</Text>
+        </View>
+      </PopupDialog>
+    );
   }
 
   _pressRight = () => {
@@ -112,7 +165,12 @@ class GankActivity extends Component {
     });
   };
 
-  _pressMore = index => {};
+  _pressMore = index => {
+    this.setState({
+      selectPos: index
+    },() =>  this.props.action.showMore(true))
+   
+  };
 
   _onLoadMore = call => {
     const url = FETCHGANK_URL + this.type + "/20/" + this.pageIndex;
@@ -144,6 +202,34 @@ class GankActivity extends Component {
       }
     );
   };
+
+  _renderSearchingBar(){
+    return (
+      <Modal visible={this.props.searching} transparent={true}>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          backgroundColor: "rgba(0,0,0,0.5)"
+        }}
+      >
+        <View
+          style={{
+            width: 100,
+            height: 100,
+            backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3",
+            borderRadius: 6,
+            borderWidth: 12,
+            borderColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3"
+          }}
+        >
+          <LoadingBar title={"搜索中"} />
+        </View>
+      </View>
+    </Modal>
+    )
+  }
 
   _renderSearchList() {
     return this.props.enterSearch ? (
@@ -257,29 +343,8 @@ class GankActivity extends Component {
           onHide={() => this.props.action.toggleSearch(false)}
         />
         {this._renderSearchList()}
-        <Modal visible={this.props.searching} transparent={true}>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flex: 1,
-              backgroundColor: "rgba(0,0,0,0.5)"
-            }}
-          >
-            <View
-              style={{
-                width: 100,
-                height: 100,
-                backgroundColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3",
-                borderRadius: 6,
-                borderWidth: 12,
-                borderColor: this.props.isNight ? NIGHTBGCOLOR : "#f3f3f3"
-              }}
-            >
-              <LoadingBar title={"搜索中"} />
-            </View>
-          </View>
-        </Modal>
+        {this._renderSearchingBar()}
+        {this._renderDialog()}
       </View>
     );
   }
@@ -303,7 +368,8 @@ const stateToprops = state => {
     isNight: state.SettingReducer.isNight,
     enterSearch: state.GankReducer.enterSearch,
     searching: state.GankReducer.searching,
-    searchList: state.GankReducer.searchList
+    searchList: state.GankReducer.searchList,
+    showMore: state.GankReducer.showMore
   };
 };
 

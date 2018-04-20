@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 10:33:36
+ * @Last Modified time: 2018-04-20 13:27:45
  * @Email: peng8350@gmail.com 
  */
 
@@ -48,6 +48,7 @@ class GirlPage extends Component {
   }
 
   _renderItem(info) {
+    const marginStyle  = info.index&1?{marginLeft: 5,marginBottom: 3}:{marginRight: 2,marginBottom: 1}
     return (
       <TouchableHighlight
         onPress={() => {
@@ -55,6 +56,7 @@ class GirlPage extends Component {
         }}
       >
         <PicImage
+          style={marginStyle}
           url={{ uri: info.item.url }}
           placeholder={
             this.props.isNight
