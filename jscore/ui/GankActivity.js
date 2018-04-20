@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:53:54
+ * @Last Modified time: 2018-04-20 22:08:46
  * @Email: peng8350@gmail.com 
  */
 
@@ -64,6 +64,33 @@ class GankActivity extends Component {
     };
   }
 
+  _renderMoreView(){
+    return (
+      <View>
+      <Text style={[globalStyles.normalText, { margin: 3 }]}>
+      描述:{"\n"}
+      {this.state.dataSource[this.state.selectPos].desc}
+      </Text>
+      <Text style={[globalStyles.normalText, { margin: 3 }]}>
+        类型:{"\n"}
+        {this.state.dataSource[this.state.selectPos].type}
+      </Text>
+      <Text style={[globalStyles.normalText, { margin: 3 }]}>
+        时间:{"\n"}
+        {this.state.dataSource[this.state.selectPos].time}
+      </Text>
+      <Text style={[globalStyles.normalText, { margin: 3 }]}>
+        作者:{"\n"}
+        {this.state.dataSource[this.state.selectPos].who}
+      </Text>
+      <Text style={[globalStyles.normalText, { margin: 3 }]}>
+        地址:{"\n"}
+        {this.state.dataSource[this.state.selectPos].url}
+      </Text>
+      </View>
+    )
+  }
+
   _renderDialog() {
     return (
       <PopupDialog
@@ -97,26 +124,8 @@ class GankActivity extends Component {
         ]}
       >
         <View style={globalStyles.verticalLayout}>
-          <Text style={[globalStyles.normalText, { margin: 3 }]}>
-            描述:{"\n"}
-            {this.state.dataSource[this.state.selectPos].desc}
-          </Text>
-          <Text style={[globalStyles.normalText, { margin: 3 }]}>
-            类型:{"\n"}
-            {this.state.dataSource[this.state.selectPos].type}
-          </Text>
-          <Text style={[globalStyles.normalText, { margin: 3 }]}>
-            时间:{"\n"}
-            {this.state.dataSource[this.state.selectPos].time}
-          </Text>
-          <Text style={[globalStyles.normalText, { margin: 3 }]}>
-            作者:{"\n"}
-            {this.state.dataSource[this.state.selectPos].who}
-          </Text>
-          <Text style={[globalStyles.normalText, { margin: 3 }]}>
-            地址:{"\n"}
-            {this.state.dataSource[this.state.selectPos].url}
-          </Text>
+        
+            {this._renderMoreView()}
         </View>
       </PopupDialog>
     );

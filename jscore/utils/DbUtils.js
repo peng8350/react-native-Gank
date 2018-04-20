@@ -5,7 +5,7 @@ import { getDefaultDir } from "./SystemUtils";
  * @Author: Jpeng 
  * @Date: 2018-04-03 22:55:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 11:39:26
+ * @Last Modified time: 2018-04-20 22:13:35
  * @Email: peng8350@gmail.com 
  */
 
@@ -39,9 +39,22 @@ const GankSchema = {
   }
 };
 
+const GirlSchema = {
+  name: "girl",
+  primaryKey: "_id",
+  properties: {
+    _id: "string",
+    type: { type: "string", default: "Web" },
+    who: { type: "string", default: "空" },
+    url: { type: "string", default: "" },
+    desc: { type: "string", default: "null" },
+    time: { type: "string", default: "null" }
+  }
+};
+
 var realm;
 
-Realm.open({ schema: [SettingSchema, GankSchema] })
+Realm.open({ schema: [SettingSchema, GankSchema,GirlSchema] })
   .then(realmm => {
     realm = realmm;
 

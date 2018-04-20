@@ -1,13 +1,13 @@
 /*
- * @Author: Jpeng
- * @Date: 2018-03-24 22:54:12 
+ * @Author: Jpeng 
+ * @Date: 2018-04-20 22:17:44 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 22:33:05
+ * @Last Modified time: 2018-04-20 22:33:47
  * @Email: peng8350@gmail.com 
  */
 
-//@flow
-import React, { Component } from "react";
+ //@flow
+ import React, { Component } from "react";
 import {
   View,
   Text,
@@ -15,7 +15,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Modal,
-  CameraRoll
+  CameraRoll,
+  FlatList
 } from "react-native";
 import * as Actions from "../../actions/fetchGirlAction";
 import PullableList from "../../components/list/PullableList";
@@ -30,23 +31,18 @@ import { isIOS, _Download, downPic } from "../../utils/SystemUtils";
 import ActionSheet from "react-native-actionsheet";
 import DbUtils from "../../utils/DbUtils";
 
-class GirlPage extends Component {
-  pageSize = 0;
-  _onRefresh(isUp, call) {
-    if (isUp) {
-      this.pageSize = 1;
-    } else {
-      this.pageSize++;
-    }
-    this.props.actions.fetchGirl(isUp, this.pageSize, () => {
-      if (isUp) {
-        this.refs.girllist.RefreshComplete();
-      } else {
-        call();
-        // this.refs.girllist.LoadComplete();
-      }
-    });
+class LikeGirlPage extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      dataSource: [],
+      selectList: [],
+      viewing: false,
+      viewIndex: 0
+    };
   }
+
 
   _renderItem(info) {
     const marginStyle =
@@ -56,7 +52,10 @@ class GirlPage extends Component {
     return (
       <TouchableHighlight
         onPress={() => {
-          this.props.actions.startViewPic(info.index);
+          this.setState({
+              viewing:true,
+              viewIndex: info.index
+          })
         }}
       >
         <PicImage
@@ -78,11 +77,7 @@ class GirlPage extends Component {
       "/Users/peng/Pictures"
     );
   }
-  // type: { type: "string", default: "Web" },
-  // who: { type: "string", default: "空" },
-  // url: { type: "string", default: "" },
-  // desc: { type: "string", default: "null" },
-  // time: { type: "string", default: "null" }
+
   _renderActionSheet() {
     let actionArr = ["收藏", "下载到本地手机", "关闭"];
     return (
@@ -92,17 +87,8 @@ class GirlPage extends Component {
         options={actionArr}
         cancelButtonIndex={2}
         onPress={index => {
-          let item = this.props.dataSource[this.props.viewIndex];
           switch (index) {
             case 0:
-              DbUtils.insert('girl',{
-                type: item.type,
-                desc: item.desc,
-                time: item.publishedAt,
-                url: item.url,
-                _id: item._id,
-                who: item.who
-              })
               break;
             case 1:
               //下载图片保存到本地
@@ -115,26 +101,23 @@ class GirlPage extends Component {
   }
 
   componentDidMount() {
-    if (this.props.autoRefresh)
-      this.props.actions.fetchGirl(true, ++this.pageSize, () => {
-        this.refs.girllist.RefreshComplete();
-      });
+      let arr=DbUtils.queryAll('girl')
+      this.setState({
+          dataSource: arr
+      })
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PullableList
+        <FlatList
           ref={"girllist"}
-          data={this.props.dataSource}
+          data={this.state.dataSource}
           renderItem={info => this._renderItem(info)}
+          keyExtractor={(item, index) => index + ""}
           numColumns={2}
-          onRefresh={() => this._onRefresh(true)}
-          onLoadMore={call => {
-            this._onRefresh(false, call);
-          }}
         />
-        <Modal visible={this.props.viewing}>
+        <Modal visible={this.state.viewing}>
           <TouchableHighlight
             onLongPress={() => this.refs.actionSheet.show()}
             style={[globalStyles.verCenLayout, { backgroundColor: "#000" }]}
@@ -143,14 +126,16 @@ class GirlPage extends Component {
               <PhotoView
                 source={{
                   uri:
-                    this.props.dataSource.length > 0
-                      ? this.props.dataSource[this.props.viewIndex].url
+                  this.state.dataSource&&this.state.dataSource.length > 0
+                      ? this.state.dataSource[this.state.viewIndex].url
                       : "http://baidu.com"
                 }}
                 minimumZoomScale={0.5}
                 maximumZoomScale={3}
                 androidScaleType="center"
-                onViewTap={() => this.props.actions.stopViewPic()}
+                onViewTap={() => this.setState({
+                    viewing: false
+                })}
                 style={{ width: getWidth(), height: getHeight() }}
               />
               {this._renderActionSheet()}
@@ -162,22 +147,17 @@ class GirlPage extends Component {
   }
 }
 
+
 const stateToProps = state => {
-  return {
-    isNight: state.SettingReducer.isNight,
-    fetching: state.GirlReducer.fetching,
-    dataSource: state.GirlReducer.dataSource,
-    viewing: state.GirlReducer.viewing,
-    viewIndex: state.GirlReducer.viewIndex,
-    picPos: state.SettingReducer.picPos,
-    autoRefresh: state.SettingReducer.autoRefresh
-  };
-};
+    return {
+        isNight : state.SettingReducer.isNight
+    }
+}
+const dispatchAction = dispatch => {
 
-const actionsToProps = dispatch => {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  };
-};
+    return {
+        actions: bindActionCreators(Action,dispatch)
+    }
+}
 
-export default connect(stateToProps, actionsToProps)(GirlPage);
+export default connect(stateToProps,dispatchAction)(LikeGirlPage)

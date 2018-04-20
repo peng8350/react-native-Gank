@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 23:09:46
+ * @Last Modified time: 2018-04-20 22:34:00
  * @Email: peng8350@gmail.com 
  */
 
@@ -25,10 +25,12 @@ import ScrollableTabView, {
 } from "react-native-scrollable-tab-view";
 import { connect } from "react-redux";
 import { isAndroid } from "../utils/SystemUtils";
+import LikeGirlPage from '../ui/pagers/LikeGirlPage'
 
 class LikeActivity extends Component {
   constructor() {
     super();
+    
     this.state = {
       rightBtnText: "删除"
     };
@@ -73,11 +75,6 @@ class LikeActivity extends Component {
           rightText: "删除"
         });
         if (this.refs.like1) this.refs.like1.deleteData();
-        if (this.refs.like2) this.refs.like2.deleteData();
-        if (this.refs.like3) this.refs.like3.deleteData();
-        if (this.refs.like4) this.refs.like4.deleteData();
-        if (this.refs.like5) this.refs.like5.deleteData();
-        if (this.refs.like6) this.refs.like6.deleteData();
         break;
       case 1:
         this.setState({
@@ -139,58 +136,19 @@ class LikeActivity extends Component {
         }
         renderTabBar={() => <ScrollableTabBar />}
       >
-        <LikePage
+        { <LikePage
           ref="like1"
           key={1}
           {...this.state}
-          tabLabel="前端"
+          tabLabel="干货"
           navigation={this.props.navigation}
           change={this.changeRightText}
-          type="前端"
-        />
-        <LikePage
+        /> }
+        <LikeGirlPage
           ref="like2"
           key={2}
-          tabLabel="Android"
-          navigation={this.props.navigation}
-          {...this.state}
+          tabLabel="妹子们"
           change={this.changeRightText}
-          type="Android"
-        />
-        <LikePage
-          ref="like3"
-          key={3}
-          tabLabel="IOS"
-          {...this.state}
-          change={this.changeRightText}
-          type="iOS"
-        />
-        <LikePage
-          ref="like4"
-          key={4}
-          tabLabel="App"
-          navigation={this.props.navigation}
-          {...this.state}
-          change={this.changeRightText}
-          type="App"
-        />
-        <LikePage
-          ref="like5"
-          key={5}
-          tabLabel="瞎推荐"
-          navigation={this.props.navigation}
-          {...this.state}
-          change={this.changeRightText}
-          type="瞎推荐"
-        />
-        <LikePage
-          ref="like6"
-          key={6}
-          tabLabel="拓展资源"
-          navigation={this.props.navigation}
-          {...this.state}
-          change={this.changeRightText}
-          type="拓展资源"
         />
       </ScrollableTabView>
     );
