@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 22:34:00
+ * @Last Modified time: 2018-04-20 23:45:44
  * @Email: peng8350@gmail.com 
  */
 
@@ -25,12 +25,12 @@ import ScrollableTabView, {
 } from "react-native-scrollable-tab-view";
 import { connect } from "react-redux";
 import { isAndroid } from "../utils/SystemUtils";
-import LikeGirlPage from '../ui/pagers/LikeGirlPage'
+import LikeGirlPage from "./pagers/LikeGirlPage";
 
 class LikeActivity extends Component {
   constructor() {
     super();
-    
+
     this.state = {
       rightBtnText: "删除"
     };
@@ -75,6 +75,7 @@ class LikeActivity extends Component {
           rightText: "删除"
         });
         if (this.refs.like1) this.refs.like1.deleteData();
+        if (this.refs.girl) this.refs.girl.deleteData()
         break;
       case 1:
         this.setState({
@@ -136,18 +137,21 @@ class LikeActivity extends Component {
         }
         renderTabBar={() => <ScrollableTabBar />}
       >
-        { <LikePage
-          ref="like1"
+        <LikePage
+          ref={"like1"}
           key={1}
           {...this.state}
-          tabLabel="干货"
+          tabLabel={"干货"}
           navigation={this.props.navigation}
           change={this.changeRightText}
-        /> }
+        />
+
         <LikeGirlPage
-          ref="like2"
+          ref={"girl"}
           key={2}
-          tabLabel="妹子们"
+          tabLabel={"妹子们"}
+          {...this.state}
+          navigation={this.props.navigation}
           change={this.changeRightText}
         />
       </ScrollableTabView>

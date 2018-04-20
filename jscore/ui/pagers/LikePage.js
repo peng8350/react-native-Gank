@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-19 20:35:17
+ * @Last Modified time: 2018-04-20 23:00:36
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -27,7 +27,7 @@ export default class LikePage extends Component {
   }
 
   _renderCheckBox(index) {
-    if (this.props.rightBtnText != "删除") {
+    if (this.props.rightBtnText !== "删除") {
       return (
         <View
           style={{
