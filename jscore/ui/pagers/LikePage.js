@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 14:08:45
+ * @Last Modified time: 2018-04-21 14:44:17
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -33,7 +33,7 @@ export default class LikePage extends Component {
 
     this.state = {
       dataSource: [[], [], [], [], [], []],
-      selectList: [],
+      selectList: [[], [], [], [], [], []],
       rotate: [
         new Animated.Value(0),
         new Animated.Value(0),
@@ -46,7 +46,7 @@ export default class LikePage extends Component {
     };
   }
 
-  _renderCheckBox(index) {
+  _renderCheckBox(groupIndex, index) {
     if (this.props.rightBtnText !== "删除") {
       return (
         <View
@@ -62,14 +62,14 @@ export default class LikePage extends Component {
           }}
         >
           <MyCheckBox
-            selected={this.state.selectList[index]}
+            selected={this.state.selectList[groupIndex][index]}
             onChecked={selected => {
               this.selectCount += selected ? 1 : -1;
-              this.state.selectList[index] = selected;
+              this.state.selectList[groupIndex][index] = selected;
               if (this.selectCount > 0) this.props.change(2);
               else this.props.change(1);
               this.setState({
-                selectList: [].concat(this.state.selectList)
+                selectList: this.state.selectList
               });
             }}
           />
@@ -80,28 +80,23 @@ export default class LikePage extends Component {
   }
 
   deleteData() {
-    let arr1 = [];
-    for (let i = 0; i < this.state.selectList.length; i++) {
-      if (!this.state.selectList[i]) {
-        arr1.push(this.state.dataSource[i]);
-      } else {
-        let bean = this.state.dataSource[i];
-        DbUtils.update("gank", { _id: bean._id, like: false });
+    let arr1 = this.state.dataSource
+    let arr2= this.state.selectList
+    for (let j = 0; j < 6; j++) {
+      for (let i = 0; i < this.state.selectList[j].length; i++) {
+        if(this.state.selectList[j][i]) {
+          //alert(arr1[j].data)
+          DbUtils.update("gank", { _id: arr1[j].data[i]._id, like: false });
+          arr1[j].data.splice(i,1)
+          arr2[j].splice(i,1)
+          i--;//因为这里删除了一个元素之后,后面的往前面移动,如果多个删除会产生漏删除的情况
+        }
       }
     }
     this.setState(
       {
-        dataSource: [].concat(arr1)
-      },
-      () => {
-        let arr2 = [];
-        for (const item of this.state.dataSource) {
-          arr2.push(false);
-        }
-        this.setState({
-          selectList: [].concat(arr2)
-        });
-        this.selectCount = 0;
+        dataSource: arr1,
+        selectList: arr2
       }
     );
   }
@@ -134,7 +129,7 @@ export default class LikePage extends Component {
               this.props.navigation.navigate("Web", { url: item.url });
             }}
           />
-          {this._renderCheckBox(index)}
+          {this._renderCheckBox(groupIndex, index)}
         </View>
       );
     return null;
@@ -143,8 +138,8 @@ export default class LikePage extends Component {
   _rendeHeader(section, index) {
     const spin = this.state.rotate[index].interpolate({
       inputRange: [0, 1],
-      outputRange: ['0deg', '-90deg']
-    })
+      outputRange: ["0deg", "-90deg"]
+    });
     return (
       <TouchableHighlight
         onPress={previous => {
@@ -165,7 +160,7 @@ export default class LikePage extends Component {
           ]}
         >
           <IconText
-            iconStyle={{ transform: [{rotate: spin}] }}
+            iconStyle={{ transform: [{ rotate: spin }] }}
             textStyle={globalStyles.BigText}
             text={section.title}
             animate={true}
@@ -183,12 +178,7 @@ export default class LikePage extends Component {
       <SectionList
         sections={this.state.dataSource}
         keyExtractor={(item, index) => index + ""}
-        extraData={[
-          this.state.selectList,
-          this.props.rightBtnText,
-          this.state.vischild,
-          this.state.rotate
-        ]}
+        extraData={[this.state.selectList, this.props.rightBtnText]}
         renderItem={this._renderItem}
         renderSectionHeader={({ section }) =>
           this._rendeHeader(section, section.index)
@@ -198,20 +188,29 @@ export default class LikePage extends Component {
   }
 
   componentWillMount() {
-    let queryList1 = GankManager.getLikeFromDb("前端");
-    let queryList2 = GankManager.getLikeFromDb("Android");
-    let queryList3 = GankManager.getLikeFromDb("iOS");
-    let queryList4 = GankManager.getLikeFromDb("App");
-    let queryList5 = GankManager.getLikeFromDb("瞎推荐");
-    let queryList6 = GankManager.getLikeFromDb("拓展资源");
+    let queryLists = [GankManager.getLikeFromDb("前端"),GankManager.getLikeFromDb("Android"),GankManager.getLikeFromDb("iOS"),GankManager.getLikeFromDb("App"),GankManager.getLikeFromDb("瞎推荐"),GankManager.getLikeFromDb("拓展资源")];
+
     let arr = [
-      { index: 0, data: queryList1, title: "前端" },
-      { index: 1, data: queryList2, title: "Android" },
-      { index: 2, data: queryList3, title: "iOS" },
-      { index: 3, data: queryList4, title: "App" },
-      { index: 4, data: queryList5, title: "瞎推荐" },
-      { index: 5, data: queryList6, title: "拓展资源" }
+      { index: 0, data: [], title: "前端" },
+      { index: 1, data: [], title: "Android" },
+      { index: 2, data: [], title: "iOS" },
+      { index: 3, data: [], title: "App" },
+      { index: 4, data: [], title: "瞎推荐" },
+      { index: 5, data: [], title: "拓展资源" }
     ];
+    for(let i =0 ;i<6;i++){
+      for(let j =0  ;j<queryLists[i].length;j++){
+        let bean = queryLists[i][j];
+        arr[i].data.push({
+          _id: bean._id,
+          who: bean.who,
+          time: bean.publishedAt,
+          type: bean.type,
+          url: bean.url,
+          desc: bean.desc,
+        })
+      }
+    }
     let selectList = [[], [], [], [], [], []];
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < arr[i].data.length; i++) {
@@ -219,7 +218,7 @@ export default class LikePage extends Component {
       }
     }
     this.setState({
-      dataSource: [].concat(...arr),
+      dataSource: arr,
       selectList: selectList
     });
   }
