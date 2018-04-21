@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 19:22:32 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:22
+ * @Last Modified time: 2018-04-21 12:40:34
  * @Email: peng8350@gmail.com 
  */
 
@@ -37,7 +37,6 @@ export var globalStyles = StyleSheet.create({
   },
   BigText: {
     fontSize: 15,
-    textAlign: "center",
     color: TEXTNORMALCOLOR
   },
   itemContainer: {

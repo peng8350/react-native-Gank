@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 22:08:46
+ * @Last Modified time: 2018-04-21 11:09:11
  * @Email: peng8350@gmail.com 
  */
 
@@ -65,6 +65,7 @@ class GankActivity extends Component {
   }
 
   _renderMoreView(){
+    if(this.state.dataSource[this.state.selectPos])
     return (
       <View>
       <Text style={[globalStyles.normalText, { margin: 3 }]}>

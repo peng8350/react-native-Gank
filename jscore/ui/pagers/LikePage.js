@@ -2,27 +2,47 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 23:00:36
+ * @Last Modified time: 2018-04-21 14:08:45
  * @Email: peng8350@gmail.com 
  */
 //@flow
 
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  SectionList,
+  TouchableHighlight,
+  Animated
+} from "react-native";
 import GankItem from "../../components/Item/GankItem";
 import GankManager from "../../utils/GankManager";
 import MyCheckBox from "../../components/view/MyCheckBox";
 import { FETCH_GIRL_SUCCESS } from "../../actions/ActionType";
 import DbUtils from "../../utils/DbUtils";
+import { globalStyles } from "../../constants/styles";
+import IconText from "../../components/view/IconText";
+import { THEMECOLOR, NIGHTTHEMECOLOR } from "../../constants/colors";
 
 export default class LikePage extends Component {
   //用来判断选中的数量
   selectCount = 0;
   constructor() {
     super();
+
     this.state = {
-      dataSource: [],
-      selectList: []
+      dataSource: [[], [], [], [], [], []],
+      selectList: [],
+      rotate: [
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0)
+      ],
+      vischild: [true, true, true, true, true, true]
     };
   }
 
@@ -87,43 +107,119 @@ export default class LikePage extends Component {
   }
 
   _renderItem = ({ item, index }) => {
-    return (
-      <View stlye={{ flex: 1, flexDirection: "row" }}>
-        <GankItem
-          ctn={item.desc}
-          author={item.who}
-          // images={item.images}
-          time={item.time}
-          clickLike={this._pressLike}
-          clickMore={this._pressMore}
-          onItemSelect={() => {
-            this.props.navigation.navigate("Web", { url: item.url });
-          }}
-        />
-        {this._renderCheckBox(index)}
-      </View>
-    );
+    //表示组的下标索引,实属没办法通过renderItem来获取groupIndex
+    let groupIndex =
+      item.type === "前端"
+        ? 0
+        : item.type === "Android"
+          ? 1
+          : item.type === "iOS"
+            ? 2
+            : item.type === "App"
+              ? 3
+              : item.type === "拓展资源"
+                ? 5
+                : 4;
+    if (this.state.vischild[groupIndex])
+      return (
+        <View stlye={{ flex: 1, flexDirection: "row" }}>
+          <GankItem
+            ctn={item.desc}
+            author={item.who}
+            // images={item.images}
+            time={item.time}
+            clickLike={this._pressLike}
+            clickMore={this._pressMore}
+            onItemSelect={() => {
+              this.props.navigation.navigate("Web", { url: item.url });
+            }}
+          />
+          {this._renderCheckBox(index)}
+        </View>
+      );
+    return null;
   };
+
+  _rendeHeader(section, index) {
+    const spin = this.state.rotate[index].interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '-90deg']
+    })
+    return (
+      <TouchableHighlight
+        onPress={previous => {
+          Animated.timing(this.state.rotate[index], {
+            toValue: this.state.vischild[index] ? 1 : 0,
+            duration: 300
+          }).start();
+          this.state.vischild[index] = !this.state.vischild[index];
+          this.setState({
+            vischild: this.state.vischild
+          });
+        }}
+      >
+        <View
+          style={[
+            globalStyles.horizontalLayout,
+            { backgroundColor: "#f6f6f6", height: 40, paddingLeft: 20 }
+          ]}
+        >
+          <IconText
+            iconStyle={{ transform: [{rotate: spin}] }}
+            textStyle={globalStyles.BigText}
+            text={section.title}
+            animate={true}
+            color={"#fff"}
+            size={26}
+            name={"ios-arrow-down"}
+          />
+        </View>
+      </TouchableHighlight>
+    );
+  }
 
   render() {
     return (
-      <FlatList
-        data={this.state.dataSource}
+      <SectionList
+        sections={this.state.dataSource}
         keyExtractor={(item, index) => index + ""}
-        extraData={[this.state.selectList, this.props.rightBtnText]}
+        extraData={[
+          this.state.selectList,
+          this.props.rightBtnText,
+          this.state.vischild,
+          this.state.rotate
+        ]}
         renderItem={this._renderItem}
+        renderSectionHeader={({ section }) =>
+          this._rendeHeader(section, section.index)
+        }
       />
     );
   }
 
   componentWillMount() {
-    let queryList = GankManager.getLikeFromDb(this.props.type);
-    let selectList = [];
-    for (let i = 0; i < queryList.length; i++) {
-      selectList.push(false);
+    let queryList1 = GankManager.getLikeFromDb("前端");
+    let queryList2 = GankManager.getLikeFromDb("Android");
+    let queryList3 = GankManager.getLikeFromDb("iOS");
+    let queryList4 = GankManager.getLikeFromDb("App");
+    let queryList5 = GankManager.getLikeFromDb("瞎推荐");
+    let queryList6 = GankManager.getLikeFromDb("拓展资源");
+    let arr = [
+      { index: 0, data: queryList1, title: "前端" },
+      { index: 1, data: queryList2, title: "Android" },
+      { index: 2, data: queryList3, title: "iOS" },
+      { index: 3, data: queryList4, title: "App" },
+      { index: 4, data: queryList5, title: "瞎推荐" },
+      { index: 5, data: queryList6, title: "拓展资源" }
+    ];
+    let selectList = [[], [], [], [], [], []];
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < arr[i].data.length; i++) {
+        selectList[i].push(false);
+      }
     }
     this.setState({
-      dataSource: [].concat(...queryList),
+      dataSource: [].concat(...arr),
       selectList: selectList
     });
   }
