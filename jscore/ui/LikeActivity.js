@@ -2,14 +2,14 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 18:56:20
+ * @Last Modified time: 2018-04-21 20:20:46
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component, PureComponent } from "react";
-import { FlatList, View, Text, Button } from "react-native";
+import { FlatList, View, Text, Button, BackAndroid, BackHandler } from "react-native";
 import { TabNavigator } from "react-navigation";
 import LikePage from "./pagers/LikePage";
 import {
@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import { isAndroid } from "../utils/SystemUtils";
 import LikeGirlPage from "./pagers/LikeGirlPage";
 
-class LikeActivity extends PureComponent {
+class LikeActivity extends Component {
   constructor() {
     super();
 
@@ -113,6 +113,13 @@ class LikeActivity extends PureComponent {
   };
 
   componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress',() => {
+        if(this.state.rightBtnText==='取消'||this.state.rightBtnText==='确定'){
+          this.changeRightText(0)
+          return true
+        }
+        return false
+    })
     this.props.navigation.setParams({
       rightText: this.state.rightBtnText,
       pressRight: this._onPressRight

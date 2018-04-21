@@ -2,14 +2,14 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 18:55:32
+ * @Last Modified time: 2018-04-21 19:19:54
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
 import React, { Component, PureComponent } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Modal, StyleSheet, BackHandler } from "react-native";
 import { globalStyles } from "../constants/styles";
 import { FETCHGANK_URL } from "../constants/strings";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -30,6 +30,7 @@ import PopupDialog, {
   SlideAnimation
 } from "react-native-popup-dialog";
 import { getWidth } from "../utils/ScreenUtils";
+import { isAndroid } from "../utils/SystemUtils";
 
 const slideAnimation = new SlideAnimation({
   slideFrom: "left"
@@ -140,7 +141,12 @@ class GankActivity extends PureComponent {
 
   componentWillUnmount() {
     this.props.action.toggleSearch(false);
+
+    if (isAndroid()) {  
+      BackHandler.removeEventListener('hardwareBackPress',()=>{});  
+    }  
   }
+
 
   _onRefresh = () => {
     const url = FETCHGANK_URL + this.type + "/20/" + 1;
@@ -290,6 +296,13 @@ class GankActivity extends PureComponent {
   }
 
   componentWillMount() {
+    BackHandler.addEventListener('hardwareBackPress',() => {
+      if(this.props.enterSearch){
+        this.refs.searchBar.hide()
+        return true;
+      }
+      return false
+    })
     this.type =
       this.props.navigation.state.params.GankType === "IOS"
         ? "iOS"

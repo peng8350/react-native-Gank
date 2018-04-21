@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-20 22:17:44 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 00:26:30
+ * @Last Modified time: 2018-04-21 20:19:34
  * @Email: peng8350@gmail.com 
  */
 
@@ -14,7 +14,8 @@ import {
   TouchableHighlight,
   Modal,
   CameraRoll,
-  FlatList
+  FlatList,
+  BackHandler
 } from "react-native";
 import { connect } from "react-redux";
 import PicImage from "../../components/view/PicImage";
@@ -158,7 +159,9 @@ export default class LikeGirlPage extends Component {
     );
   };
 
+
   componentWillMount() {
+
     let querys = DbUtils.queryAll("girl");
     let selectList = [];
     let arr =[]
@@ -166,7 +169,7 @@ export default class LikeGirlPage extends Component {
       selectList.push(false);
       arr.push({url:querys[i].url,_id:querys[i]._id})
     }
- 
+    
 
     this.setState({
       dataSource: arr,
@@ -185,7 +188,11 @@ export default class LikeGirlPage extends Component {
           keyExtractor={(item, index) => index + ""}
           numColumns={2}
         />
-        <Modal visible={this.state.viewing}>
+        <Modal visible={this.state.viewing} transparent={true} onRequestClose={() => {
+                            this.setState({
+                              viewing: false
+                            })
+        }}>
           <TouchableHighlight
             onLongPress={() => this.refs.actionSheet.show()}
             style={[globalStyles.verCenLayout, { backgroundColor: "#000" }]}

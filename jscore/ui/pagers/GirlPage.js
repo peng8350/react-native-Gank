@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 22:33:05
+ * @Last Modified time: 2018-04-21 20:18:01
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,7 +15,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Modal,
-  CameraRoll
+  CameraRoll,
+  BackHandler
 } from "react-native";
 import * as Actions from "../../actions/fetchGirlAction";
 import PullableList from "../../components/list/PullableList";
@@ -72,6 +73,8 @@ class GirlPage extends Component {
     );
   }
 
+  
+
   _saveToPath() {
     downPic(
       this.props.dataSource[this.props.viewIndex].url,
@@ -95,14 +98,14 @@ class GirlPage extends Component {
           let item = this.props.dataSource[this.props.viewIndex];
           switch (index) {
             case 0:
-              DbUtils.insert('girl',{
+              DbUtils.insert("girl", {
                 type: item.type,
                 desc: item.desc,
                 time: item.publishedAt,
                 url: item.url,
                 _id: item._id,
                 who: item.who
-              })
+              });
               break;
             case 1:
               //下载图片保存到本地
@@ -114,11 +117,14 @@ class GirlPage extends Component {
     );
   }
 
+
   componentDidMount() {
-    if (this.props.autoRefresh)
+    if (this.props.autoRefresh){
       this.props.actions.fetchGirl(true, ++this.pageSize, () => {
         this.refs.girllist.RefreshComplete();
       });
+    }
+
   }
 
   render() {
@@ -134,7 +140,9 @@ class GirlPage extends Component {
             this._onRefresh(false, call);
           }}
         />
-        <Modal visible={this.props.viewing}>
+        <Modal visible={this.props.viewing} onRequestClose={ () => {
+          this.props.actions.stopViewPic()
+        } }>
           <TouchableHighlight
             onLongPress={() => this.refs.actionSheet.show()}
             style={[globalStyles.verCenLayout, { backgroundColor: "#000" }]}
@@ -152,9 +160,11 @@ class GirlPage extends Component {
                 androidScaleType="center"
                 onViewTap={() => this.props.actions.stopViewPic()}
                 style={{ width: getWidth(), height: getHeight() }}
-              />
-              {this._renderActionSheet()}
+              /> 
+               {this._renderActionSheet()}
+             
             </View>
+          
           </TouchableHighlight>
         </Modal>
       </View>
