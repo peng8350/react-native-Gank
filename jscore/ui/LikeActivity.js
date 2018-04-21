@@ -2,13 +2,13 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:19:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 23:45:44
+ * @Last Modified time: 2018-04-21 18:56:20
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { FlatList, View, Text, Button } from "react-native";
 import { TabNavigator } from "react-navigation";
 import LikePage from "./pagers/LikePage";
@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import { isAndroid } from "../utils/SystemUtils";
 import LikeGirlPage from "./pagers/LikeGirlPage";
 
-class LikeActivity extends Component {
+class LikeActivity extends PureComponent {
   constructor() {
     super();
 
@@ -35,6 +35,7 @@ class LikeActivity extends Component {
       rightBtnText: "删除"
     };
   }
+
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: "收藏",
@@ -141,6 +142,7 @@ class LikeActivity extends Component {
           ref={"like1"}
           key={1}
           {...this.state}
+          isNight={this.props.isNight}
           tabLabel={"干货"}
           navigation={this.props.navigation}
           change={this.changeRightText}
@@ -150,6 +152,7 @@ class LikeActivity extends Component {
           ref={"girl"}
           key={2}
           tabLabel={"妹子们"}
+          isNight ={this.props.isNight}
           {...this.state}
           navigation={this.props.navigation}
           change={this.changeRightText}

@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 22:06:44 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 21:57:15
+ * @Last Modified time: 2018-04-21 18:57:52
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,10 +15,17 @@ import { getWidth } from "../../utils/ScreenUtils";
 import { connect } from "react-redux";
 
 class ItemSeparater extends Component {
+
+  
   static defaultProps = {
     width: getWidth(),
     height: 0.5,
   };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+     return false
+  }
+
   render() {
     return (
       <View

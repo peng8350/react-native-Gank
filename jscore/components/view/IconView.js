@@ -4,10 +4,10 @@
  * @Last Modified by:   Jpeng 
  * @Last Modified time: 2018-04-02 21:06:18 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:33
+ * @Last Modified time: 2018-04-21 18:57:25
 */
 //@flow
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { View, StyleSheet } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -27,7 +27,7 @@ var Icon = function(props) {
 /**
  * 可圆角或者圆形的IconView
  */
-export default class IconView extends Component {
+export default class IconView extends PureComponent {
   static defaultProps = {
     size: 35,
     radius: 35,

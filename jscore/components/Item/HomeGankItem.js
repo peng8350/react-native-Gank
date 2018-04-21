@@ -2,13 +2,13 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:24:47 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-15 21:11:10
+ * @Last Modified time: 2018-04-21 18:36:57
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { globalStyles } from "../../constants/styles";
 import {
   View,
@@ -25,7 +25,7 @@ import { getWidth } from "../../utils/ScreenUtils";
 import IconText from "../view/IconText";
 import CallOnceInInterval from "../../utils/CallOnceInInterval";
 
-export default class HomeGankItem extends Component {
+export default class HomeGankItem extends PureComponent {
   render() {
     return (
       <TouchableHighlight

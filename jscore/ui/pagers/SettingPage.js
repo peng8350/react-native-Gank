@@ -2,11 +2,11 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 11:50:27
+ * @Last Modified time: 2018-04-21 18:46:46
  * @Email: peng8350@gmail.com 
  */
 //@flow
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import {
   View,
   Text,
@@ -36,7 +36,7 @@ const slideAnimation = new SlideAnimation({
   slideFrom: "left"
 });
 
-class SettingPage extends Component {
+class SettingPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

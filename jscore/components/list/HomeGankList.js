@@ -2,12 +2,12 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:19:35 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-07 19:40:50
+ * @Last Modified time: 2018-04-21 19:03:05
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import * as Action from "../../actions/fetchHomeAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -15,10 +15,11 @@ import { FlatList } from "react-native";
 import HomeGankItem from "../Item/HomeGankItem";
 import LoadingBar from "../view/LoadingBar";
 
-class HomeGankList extends Component {
+class HomeGankList extends PureComponent {
   _extraUniqueKey(item, index) {
     return "index" + index + item;
   }
+
 
   render() {
     return (

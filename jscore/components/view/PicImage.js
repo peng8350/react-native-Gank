@@ -2,19 +2,19 @@
  * @Author: Jpeng 
  * @Date: 2018-03-28 12:29:06 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:28
+ * @Last Modified time: 2018-04-21 18:38:31
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { StyleSheet, Image, View } from "react-native";
 import { getWidth } from "../../utils/ScreenUtils";
 import HttpUtils from "../../utils/HttpUtils";
 
 //占位图,error图，渐变流加载
-export default class PicImage extends Component {
+export default class PicImage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

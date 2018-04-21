@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 16:50:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 14:09:47
+ * @Last Modified time: 2018-04-21 18:21:41
  * @Email: peng8350@gmail.com 
  */
 
@@ -34,6 +34,10 @@ export default class IconText extends Component {
     animate: false,
     textStyle: [globalStyles.smallText, { textAlign: "right", marginLeft: 2 }]
   };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+     return false
+  }
 
   _renderIcon(){
     //注意,这里如果要开启动画的话,对性能肯定会造成影响

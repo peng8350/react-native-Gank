@@ -2,12 +2,12 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:58:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 11:42:18
+ * @Last Modified time: 2018-04-21 19:03:40
  * @Email: peng8350@gmail.com 
  */
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Action from "../../actions";
@@ -25,7 +25,7 @@ import ItemSeparater from "../other/ItemSeparater";
 import DbUtils from "../../utils/DbUtils";
 import ShareUtils from "../../utils/ShareUtils";
 
-class SettingList extends Component {
+class SettingList extends PureComponent {
   _renderRightSwitch = (state1, onValueChange1) => {
     return (
       <Switch

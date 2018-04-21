@@ -2,23 +2,24 @@
  * @Author: Jpeng 
  * @Date: 2018-04-02 19:59:12 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:46
+ * @Last Modified time: 2018-04-21 18:39:23
  * @Email: peng8350@gmail.com 
  */
 
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { View, StyleSheet, Text, TouchableHighlight } from "react-native";
 import { globalStyles } from "../../constants/styles";
 import IconView from "../view/IconView";
 import { PRESSEDCOLOR } from "../../constants/colors";
 
-export default class SettingItem extends Component {
+export default class SettingItem extends PureComponent {
   static defaultProps = {
     title: "标题",
     extra: ""
   };
+
 
   render() {
     return (

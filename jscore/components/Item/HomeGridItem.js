@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-31 10:28:30 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:48
+ * @Last Modified time: 2018-04-21 18:37:03
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -21,6 +21,11 @@ import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import { globalStyles } from "../../constants/styles";
 
 class HomeGridItem extends Component {
+
+  shouldComponentUpdate(){
+    return false
+  }
+
   render() {
     return (
       <TouchableHighlight

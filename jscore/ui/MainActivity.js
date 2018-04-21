@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:54:28
+ * @Last Modified time: 2018-04-21 18:56:31
  * @Email: peng8350@gmail.com 
  */
 
@@ -41,6 +41,7 @@ import {
   THEMECOLOR,
   BOTTTOMBGCOLOR
 } from "../constants/colors";
+import ShareUtils from "../utils/ShareUtils";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -83,7 +84,7 @@ class MainActivity extends Component {
     actions.setPicPosition(settingInfo.picPos);
   }
 
-  _renderActionSheet() {
+  _renderActionSheet = () => {
     let actionArr =
       Platform.OS === "ios"
         ? ["分享", "反馈", "关于作者", "关闭"]
@@ -98,10 +99,10 @@ class MainActivity extends Component {
           onPress={index => {
             switch (index) {
               case 0:
-                this._shareMessage();
+                ShareUtils.shareMessage();
                 break;
               case 2:
-                this.props.actions2.toggleAboutDlg(true);
+                this.props.actions.toggleAboutDlg(true);
                 break;
             }
           }}
@@ -118,10 +119,10 @@ class MainActivity extends Component {
         onPress={index => {
           switch (index) {
             case 0:
-              this._shareMessage();
+              ShareUtils.shareMessage();
               break;
             case 2:
-              this.refs.dialog.show();
+            this.props.actions.toggleAboutDlg(true);
               break;
             case 3:
               this._pressExit();

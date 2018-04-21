@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 14:44:17
+ * @Last Modified time: 2018-04-21 18:33:18
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -24,6 +24,7 @@ import DbUtils from "../../utils/DbUtils";
 import { globalStyles } from "../../constants/styles";
 import IconText from "../../components/view/IconText";
 import { THEMECOLOR, NIGHTTHEMECOLOR } from "../../constants/colors";
+import { connect } from "react-redux";
 
 export default class LikePage extends Component {
   //用来判断选中的数量
@@ -156,7 +157,7 @@ export default class LikePage extends Component {
         <View
           style={[
             globalStyles.horizontalLayout,
-            { backgroundColor: "#f6f6f6", height: 40, paddingLeft: 20 }
+            { backgroundColor: this.props.isNight?'#333333':"#f3f3f3", height: 40, paddingLeft: 20 }
           ]}
         >
           <IconText
@@ -164,7 +165,7 @@ export default class LikePage extends Component {
             textStyle={globalStyles.BigText}
             text={section.title}
             animate={true}
-            color={"#fff"}
+            color={this.props.isNight?"#f3f3f3":'#666'}
             size={26}
             name={"ios-arrow-down"}
           />
@@ -204,7 +205,7 @@ export default class LikePage extends Component {
         arr[i].data.push({
           _id: bean._id,
           who: bean.who,
-          time: bean.publishedAt,
+          time: bean.time,
           type: bean.type,
           url: bean.url,
           desc: bean.desc,
@@ -223,3 +224,6 @@ export default class LikePage extends Component {
     });
   }
 }
+
+
+

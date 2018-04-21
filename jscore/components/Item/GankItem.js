@@ -3,12 +3,12 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-20 13:35:21
+ * @Last Modified time: 2018-04-21 18:45:06
  */
 
 //@flow
 
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { globalStyles } from "../../constants/styles";
 import {
   View,
@@ -27,10 +27,11 @@ import { connect } from "react-redux";
 import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import PicImage from "../view/PicImage";
 
-class GankItem extends Component {
+class GankItem extends PureComponent {
   static defaultProps = {
     showSwipes: false
   };
+
 
   _renderSwipeBtn(iconName, text) {
     return (

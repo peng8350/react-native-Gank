@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-26 21:20:17 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:43
+ * @Last Modified time: 2018-04-21 19:01:14
  * @Email: peng8350@gmail.com 
  */
 
@@ -18,7 +18,10 @@ import IconText from "../view/IconText";
 import { connect } from "react-redux";
 
 class HomeGirdView extends Component {
+
+  
   dataSource = [];
+
 
   componentWillMount() {
     const itemTitles = ["前端", "Android", "IOS", "App", "瞎推荐", "拓展资源"];
