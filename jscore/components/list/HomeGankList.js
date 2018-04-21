@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-04 14:19:35 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 19:03:05
+ * @Last Modified time: 2018-04-21 20:57:17
  * @Email: peng8350@gmail.com 
  */
 
@@ -15,7 +15,7 @@ import { FlatList } from "react-native";
 import HomeGankItem from "../Item/HomeGankItem";
 import LoadingBar from "../view/LoadingBar";
 
-class HomeGankList extends PureComponent {
+class HomeGankList extends Component {
   _extraUniqueKey(item, index) {
     return "index" + index + item;
   }
