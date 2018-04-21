@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:27 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 20:07:35
+ * @Last Modified time: 2018-04-21 20:52:31
  * @Email: peng8350@gmail.com 
  */
 
@@ -53,6 +53,9 @@ const instructions = Platform.select({
 const slideAnimation = new SlideAnimation({
   slideFrom: "left"
 });
+
+const lastBackPressed = Date.now();
+
 
 class MainActivity extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -122,7 +125,7 @@ class MainActivity extends Component {
               ShareUtils.shareMessage();
               break;
             case 2:
-            this.props.actions.toggleAboutDlg(true);
+              this.props.actions.toggleAboutDlg(true);
               break;
             case 3:
               this._pressExit();
@@ -131,7 +134,7 @@ class MainActivity extends Component {
         }}
       />
     );
-  }
+  };
 
   _renderDialog() {
     return (
@@ -194,6 +197,15 @@ class MainActivity extends Component {
     );
   }
 
+  _onBackPressed() {
+    if (lastBackPressed && lastBackPressed + 2000 >= Date.now()) {
+        BackHandler.exitApp();
+      }
+      lastBackPressed = Date.now();
+      ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+      return true;
+  }
+
   _pressExit(int) {
     BackHandler.exitApp();
   }
@@ -202,13 +214,20 @@ class MainActivity extends Component {
     this.refs.actionSheet.show();
   };
 
+  componentWillUnmount(){
+    BackHandler.removeEventListener('hardwareBackPress',() => {})
+  }
+
   componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this._onBackPressed);
     this.props.navigation.setParams({
       navTitle: TAB1_TITLE,
       pressRight: this._pressRight
     });
   }
 }
+
+
 
 const stateToprops = state => {
   return {
