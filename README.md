@@ -2,19 +2,21 @@
 这是一个本人作为练习React Native的第一个项目,干货集中营,入门15天的第一个项目,开发时间:1个月
 
 ## Screenshoots
-Android:
+Android:<br>
 ![](/art/android1.gif)
-Ios:
+<br>
+Ios:<br>
 ![](/art/ios1.gif)
 <br>
-Android:
+Android:<br>
 ![](/art/android2.gif)
 Ios:
+<br>
 ![](/art/ios2.gif)
 <br>
-Android:
+Android:<br>
 ![](/art/android3.gif)
-Ios:
+Ios:<br>
 ![](/art/ios3.gif)
 <br>
 
@@ -47,3 +49,28 @@ Ios:
 
 ## 感谢
 感谢@代码家提供的数据
+
+## LICENSE
+```
+    MIT License
+
+    Copyright (c) 2018 Jpeng
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+```
