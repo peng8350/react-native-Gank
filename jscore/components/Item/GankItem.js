@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-22 11:22:32
+ * @Last Modified time: 2018-04-22 12:10:37
  */
 
 //@flow
@@ -92,7 +92,7 @@ class GankItem extends PureComponent {
   }
 
   _renderImage() {
-    if (this.props.image === ' ') {
+    if (!this.props.image||this.props.image === ' ') {
       return (
         <PicImage
           style={styles.image}
