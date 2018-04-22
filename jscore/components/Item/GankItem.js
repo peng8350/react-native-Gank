@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-21 18:45:06
+ * @Last Modified time: 2018-04-22 11:22:32
  */
 
 //@flow
@@ -32,6 +32,9 @@ class GankItem extends PureComponent {
     showSwipes: false
   };
 
+  componentDidMount() {
+    console.log(this.props.image)
+  }
 
   _renderSwipeBtn(iconName, text) {
     return (
@@ -89,7 +92,7 @@ class GankItem extends PureComponent {
   }
 
   _renderImage() {
-    if (this.props.images === undefined) {
+    if (this.props.image === ' ') {
       return (
         <PicImage
           style={styles.image}
@@ -100,7 +103,7 @@ class GankItem extends PureComponent {
       return (
         <PicImage
           style={styles.image}
-          url={{ uri: this.props.images[0] + "?imageView2/0/w/200" }}
+          url={{ uri: this.props.image + "?imageView2/0/w/150" }}
           placeholder={
             this.props.isNight
               ? require("../../resources/empty_night.png")

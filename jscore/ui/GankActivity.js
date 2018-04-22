@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-03-30 17:54:58 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 19:19:54
+ * @Last Modified time: 2018-04-21 23:59:12
  * @Email: peng8350@gmail.com 
  */
 
@@ -281,7 +281,7 @@ class GankActivity extends PureComponent {
               author={item.who}
               showSwipes={false}
               like={this.state.liked[index]}
-              // images={item.images}
+               image={item.image}
               time={item.publishedAt}
               clickLike={this._pressLike}
               clickMore={this._pressMore}
@@ -355,7 +355,7 @@ class GankActivity extends PureComponent {
                 author={item.who}
                 showSwipes={true}
                 like={this.state.liked[index]}
-                // images={item.images}
+               image={item.image}
                 time={item.time}
                 clickLike={this._pressLike}
                 clickMore={this._pressMore}

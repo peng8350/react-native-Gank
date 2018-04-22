@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-01 20:23:52 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-20 13:55:33
+ * @Last Modified time: 2018-04-22 11:35:45
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -42,7 +42,7 @@ export default class LoadingBar extends Component {
       append += ".";
     }
     return (
-      <View style={globalStyles.verCenLayout}>
+      <View style={{flex:1,justifyContent:'center',alignItems: 'center',}}>
         <ActivityIndicator size={"large"} />
         <Text style={[globalStyles.normalText, { marginTop: 8 }]}>
           {this.props.title + append}

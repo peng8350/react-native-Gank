@@ -2,7 +2,7 @@
  * @Author: Jpeng 
  * @Date: 2018-04-12 17:23:55 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 18:33:18
+ * @Last Modified time: 2018-04-22 11:40:58
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -122,7 +122,7 @@ export default class LikePage extends Component {
           <GankItem
             ctn={item.desc}
             author={item.who}
-            // images={item.images}
+            image={item.image}
             time={item.time}
             clickLike={this._pressLike}
             clickMore={this._pressMore}
@@ -208,13 +208,14 @@ export default class LikePage extends Component {
           time: bean.time,
           type: bean.type,
           url: bean.url,
+          image: bean.image,
           desc: bean.desc,
         })
       }
     }
     let selectList = [[], [], [], [], [], []];
     for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < arr[i].data.length; i++) {
+      for (let j = 0; j < arr[i].data.length; j++) {
         selectList[i].push(false);
       }
     }
