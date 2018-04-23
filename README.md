@@ -41,6 +41,7 @@ Ios:<br>
 * scrollable-tab-view这个存在一个bug,就是用到滑动的tab的时候,组件刚初始化的时候tab的指标没有显示,点击一下或者滑动一下界面的就显示了
 * ios平台:跳转或者后退页面会造成两次componentdidmount或者willmount触发两次以上回调,这个问题我严重怀疑是react-navigation的bug,这个问题在它issue里很多人都提问过,尽管我尝试更新到最新版的react-navigation还是有这个问题,触发两次的回调会严重影响性能,所以跳转或者移除GankActivity这个页面时,性能严重下滑,估计就是和这个bug有关
 * navigationOptions想要传入一些状态的时候,很棘手,官方提供的一种方法就是this.props.navigation.setParams({})传入一个对象来获取当前组件的状态,可以是可以,但是有个致命的问题就是,无论我在willmount还是didmount调用这个方法,事实上还是需要一定时间才能把参数传进去(- -!意思是说回调willmount或didmount都要时间上的延迟),我有一个onPressRight的方法,然后通过setParams()传入navigationOptions改变它的状态,但万一用户点击页面后快速点击右边的呢?这时,我状态还没来得及传进去就GG了。说了那么多,其实我想表达的就是setParams把组件里的状态传到导航的这种方法,有一个时间上的延迟问题,不能达到立马改变。其实这个问题也是一个大众都会问到的一个问题
+* flatlist滑动太快的时候,item渲染空白?
 
 ## 感想
 * 刚开始说实在的,并不知道redux有什么用啊,然后参考别人的写着写着之后,才明白这是一个提供给我们给多个组件共享一个组件状态的库,试想下,如果多个组件引用一个组件,这会不会导致代码不断传参传参呢?

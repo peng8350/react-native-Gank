@@ -2,7 +2,7 @@
  * @Author: Jpeng
  * @Date: 2018-03-24 22:54:24 
  * @Last Modified by: Jpeng
- * @Last Modified time: 2018-04-21 18:46:46
+ * @Last Modified time: 2018-04-23 19:00:22
  * @Email: peng8350@gmail.com 
  */
 //@flow
@@ -93,7 +93,7 @@ class SettingPage extends PureComponent {
           ref={"input"}
           suppressHighlighting={true}
           placeholder={"输入保存图片位置"}
-          autoFocus={true}
+          autoFocus={false}
           style={{ padding: 15 }}
           defaultValue={this.props.picPos}
           onChangeText={text => {

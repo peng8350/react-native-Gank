@@ -3,7 +3,7 @@
  * @Date: 2018-03-30 20:05:36 
  * @Last Modified by: Jpeng
  * @Last Modified time: 2018-03-31 12:16:36
- * @Last Modified time: 2018-04-22 12:10:37
+ * @Last Modified time: 2018-04-23 19:01:45
  */
 
 //@flow
@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import CallOnceInInterval from "../../utils/CallOnceInInterval";
 import PicImage from "../view/PicImage";
 
-class GankItem extends PureComponent {
+class GankItem extends Component {
   static defaultProps = {
     showSwipes: false
   };
